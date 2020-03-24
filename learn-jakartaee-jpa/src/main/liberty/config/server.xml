@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="rieckpil">
+
+	<featureManager>
+		<feature>localConnector-1.0</feature>
+		<feature>webProfile-8.0</feature>
+		<feature>jndi-1.0</feature>
+	</featureManager>
+
+	<variable name="default.http.port" defaultValue="9080" />
+	<variable name="default.https.port" defaultValue="9443" />
+	<variable name="app.name" defaultValue="learn-jakartaee-jpa" />
+	<variable name="app.version" defaultValue="0.0.1-SNAPSHOT" />
+
+	<httpEndpoint id="defaultHttpEndpoint"
+		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
+
+	<webApplication id="${app.name}"
+		location="${app.name}-${app.version}.war" contextRoot="${app.name}" />
+
+	<library id="derby">
+		<file name="${derbypath}" />
+	</library>
+
+	<!-- See persistence.xml and web.xml -->
+	<dataSource id="personDataSource"
+		jndiName="jdbc/personDataSource">
+		<jdbcDriver libraryRef="derby" />
+		<connectionManager minPoolSize="1"/>
+		<properties.derby.embedded
+			databaseName="memory:persondb" createDatabase="create" user="dbuser"
+			password="dbpass" />
+	</dataSource>
+
+</server>
