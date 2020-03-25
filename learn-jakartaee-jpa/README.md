@@ -3,7 +3,7 @@ Learn Jakarta EE APIs
 
 ## JPA
 
-After building the applicaton, you can run this application with Open Liberty using 
+After building the application, you can run this application with Open Liberty using 
 this command from this `learn-jakartaee-jpa` directory:
 
 ```
@@ -13,7 +13,7 @@ mvn liberty:stop && mvn liberty:run
 Once Liberty has started open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jpa/index.jsp)
 
 ```
-Note: Sometimes Liberty goes into a seemingly infinite with errors building the data source.
+Note: Sometimes Liberty goes into a seemingly infinite loop with errors building the data source.
 I do not know why. I just restart Liberty.
 ```
 
@@ -24,7 +24,7 @@ From that `index.jsp` page, you can go to a page that adds people to the databas
 Liberty is configured from this file: `src/main/liberty/config/server.xml`
 
 It uses the Jakarta EE Web Profile with JNDI support. The database connection information
-is in this file. You will find that it connects to:
+is in this file. You will find that the `jdbc/personDataSource` connects to:
 
 ```
 src/main/webapp/WEB-INF/ibm-bnd-web.xml

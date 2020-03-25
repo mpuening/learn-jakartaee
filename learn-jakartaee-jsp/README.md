@@ -3,7 +3,7 @@ Learn Jakarta EE APIs
 
 ## JSP and Servlets
 
-After building the applicaton, you can run this application with Open Liberty using 
+After building the application, you can run this application with Open Liberty using 
 this command from this `learn-jakartaee-jsp` directory:
 
 ```
