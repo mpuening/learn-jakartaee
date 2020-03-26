@@ -25,7 +25,7 @@ public class PeopleServlet extends HttpServlet {
 			throws ServletException, IOException {
 		List<Person> people = personService.getPeople();
 		request.setAttribute("people", people);
-		request.getRequestDispatcher("/WEB-INF/view/people.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/view/people.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
