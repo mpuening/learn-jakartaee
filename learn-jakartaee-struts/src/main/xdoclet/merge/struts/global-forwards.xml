@@ -1,0 +1,9 @@
+<!-- Example -->
+<!-- 
+<global-forwards>
+	<forward name="availabilityViolation" path="error.security" redirect="true" />
+	<forward name="duplicateSubmit" path="error.duplicate.submit" redirect="true" />
+	<forward name="configurationError" path="error.configuration" redirect="true" />
+	<forward name="welcome" path="/welcome/welcome/select.do" redirect="true" />
+</global-forwards>
+ -->

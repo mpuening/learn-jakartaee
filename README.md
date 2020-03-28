@@ -28,6 +28,17 @@ to store new records in the database.
 This project is a super simple REST API containing just a ping service. But at least 
 it shows how Swagger UI is built-in to Open Liberty.
 
+## [`learn-jakartaee-struts`](./learn-jakartaee-struts)
+
+This project is an Apache Struts 1.3 application. Even though Apache Struts is no longer 
+active, it is amazing to me how capable it still is to creating a web application (except
+for the security risks). This application features:
+
+1. EJB back-end
+2. XDoclet Generated Struts Configuration
+3. Tiles Layout with navigation bar and side menus using Twitter Bootstrap CSS
+4. Apache Validation (Validator) Rules
+
 Building
 ========
 

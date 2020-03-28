@@ -33,6 +33,7 @@
 		<module>learn-jakartaee-jsp</module>
 		<module>learn-jakartaee-jpa</module>
 		<module>learn-jakartaee-jaxrs</module>
+		<module>learn-jakartaee-struts</module>
 	</modules>
 
 	<dependencyManagement>

@@ -1,0 +1,8 @@
+<!-- Example -->
+<!--
+<global-exceptions>
+	<exception type="java.lang.Exception" key="exception.fatal"
+		handler="io.github.learnjakartaee.GlobalExceptionHandler"
+		path="error.fatal" />
+</global-exceptions>
+-->
