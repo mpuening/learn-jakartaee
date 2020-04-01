@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="spring">
+
+	<featureManager>
+		<feature>localConnector-1.0</feature>
+		<feature>webProfile-8.0</feature>
+	</featureManager>
+
+	<variable name="default.http.port" defaultValue="9080" />
+	<variable name="default.https.port" defaultValue="9443" />
+	<variable name="app.name" defaultValue="learn-jakartaee-spring" />
+	<variable name="app.version" defaultValue="0.0.1-SNAPSHOT" />
+
+	<httpEndpoint id="defaultHttpEndpoint"
+		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
+
+	<webApplication id="${app.name}"
+		location="${app.name}-${app.version}.war" contextRoot="${app.name}" />
+</server>

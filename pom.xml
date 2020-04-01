@@ -25,6 +25,7 @@
 
 		<jakartaee.version>8.0.0</jakartaee.version>
 		<microprofile.version>3.2</microprofile.version>
+		<spring-boot.version>2.2.4.RELEASE</spring-boot.version>
 
 		<liberty-maven-plugin.version>3.2</liberty-maven-plugin.version>
 	</properties>
@@ -34,6 +35,7 @@
 		<module>learn-jakartaee-jpa</module>
 		<module>learn-jakartaee-jaxrs</module>
 		<module>learn-jakartaee-struts</module>
+		<module>learn-jakartaee-spring</module>
 	</modules>
 
 	<dependencyManagement>
@@ -48,6 +50,13 @@
 				<groupId>org.eclipse.microprofile</groupId>
 				<artifactId>microprofile</artifactId>
 				<version>${microprofile.version}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
 				<type>pom</type>
 				<scope>provided</scope>
 			</dependency>

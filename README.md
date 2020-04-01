@@ -39,6 +39,15 @@ for the security risks). This application features:
 3. Tiles Layout with navigation bar and side menus using Twitter Bootstrap CSS
 4. Apache Validation (Validator) Rules
 
+## [`learn-jakartaee-struts`](./learn-jakartaee-spring)
+
+I did not want to include an example application that uses Spring, but in a conversation 
+with someone about these examples, this person seemed to forget that much of Spring relies 
+on the Jakarta EE APIs, and still how easy it is to configure an application without 
+Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerInitializer`
+which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
+EE API. It's actually quite simple.
+
 Building
 ========
 
