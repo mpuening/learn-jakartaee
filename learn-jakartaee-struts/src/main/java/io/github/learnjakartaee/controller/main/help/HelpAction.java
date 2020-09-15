@@ -11,7 +11,7 @@ import org.apache.struts.actions.DispatchAction;
 /**
  * @struts.action path="/help" parameter="method" validate="false"
  * 
- * @struts.action-forward name="success" path="/WEB-INF/jsp/view/main/help.jsp"
+ * @struts.action-forward name="success" path="/WEB-INF/views/main/help.jsp"
  */
 public class HelpAction extends DispatchAction {
 

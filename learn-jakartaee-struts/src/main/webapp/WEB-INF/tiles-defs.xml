@@ -3,27 +3,27 @@
 "http://struts.apache.org/dtds/tiles-config_1_3.dtd">
 <tiles-definitions>
 
-	<definition name="base-layout" path="/WEB-INF/jsp/layout/layout.jsp">
+	<definition name="base-layout" path="/WEB-INF/views/layout/layout.jsp">
 		<put name="pageTitle" value="Learn Jakarta EE Struts" />
 		<put name="mainNavBarSelected" value="false" />
 		<put name="adminNavBarSelected" value="false" />
 		<put name="disableSideMenu" value="true" />
 
-		<put name="head" value="/WEB-INF/jsp/layout/head.jsp" />
-		<put name="header" value="/WEB-INF/jsp/layout/header.jsp" />
-		<put name="sidemenu" value="/WEB-INF/jsp/layout/sidemenu.jsp" />
+		<put name="head" value="/WEB-INF/views/layout/head.jsp" />
+		<put name="header" value="/WEB-INF/views/layout/header.jsp" />
+		<put name="sidemenu" value="/WEB-INF/views/layout/sidemenu.jsp" />
 	</definition>
 
 	<definition name="main-layout" extends="base-layout">
 		<put name="mainNavBarSelected" value="true" />
 		<put name="disableSideMenu" value="false" />
-		<put name="sidemenu" value="/WEB-INF/jsp/view/main/sidemenu.jsp" />
+		<put name="sidemenu" value="/WEB-INF/views/main/sidemenu.jsp" />
 	</definition>
 
 	<definition name="admin-layout" extends="base-layout">
 		<put name="adminNavBarSelected" value="true" />
 		<put name="disableSideMenu" value="false" />
-		<put name="sidemenu" value="/WEB-INF/jsp/view/admin/sidemenu.jsp" />
+		<put name="sidemenu" value="/WEB-INF/views/admin/sidemenu.jsp" />
 	</definition>
 
 </tiles-definitions>

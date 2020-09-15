@@ -28,9 +28,19 @@ public class PeopleForm extends ValidatorForm {
 	 */
 	private Collection people;
 
+	private String id = "";
+
 	private String firstName;
 
 	private String lastName;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * Sets the first name attribute of the peopleForm object

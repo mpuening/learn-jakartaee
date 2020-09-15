@@ -3,7 +3,8 @@ Learn Jakarta EE APIs
 
 This project is about learning the Jakarta EE APIs (i.e. Java development without Spring).
 
-Here is the main web site for [Jakarta EE](https://jakarta.ee/).
+Here is the main web site for [Jakarta EE](https://jakarta.ee/). The specifications 
+can be found [here](https://jakarta.ee/specifications/).
 
 The projects in this repository focus on different areas, and some take inspiration
 from the [Open Liberty Guides](https://openliberty.io/guides/).
@@ -34,12 +35,22 @@ This project is an Apache Struts 1.3 application. Even though Apache Struts is n
 active, it is amazing to me how capable it still is to creating a web application (except
 for the security risks). This application features:
 
-1. EJB back-end
+1. EJB back-end (See [`learn-jakartaee-ejb`](./learn-jakartaee-ejb))
 2. XDoclet Generated Struts Configuration
 3. Tiles Layout with navigation bar and side menus using Twitter Bootstrap CSS
 4. Apache Validation (Validator) Rules
 
-## [`learn-jakartaee-struts`](./learn-jakartaee-spring)
+## [`learn-jakartaee-jsf`](./learn-jakartaee-jsf)
+
+This project is similar to the Struts application, except that it uses Jakarta Server 
+Faces. Likewise, it features:
+
+1. EJB back-end (See [`learn-jakartaee-ejb`](./learn-jakartaee-ejb))
+2. Authentication and URL Authorization
+3. Layout with navigation bar and side menus using Twitter Bootstrap CSS
+4. JSF Form Validation
+
+## [`learn-jakartaee-spring`](./learn-jakartaee-spring)
 
 I did not want to include an example application that uses Spring, but in a conversation 
 with someone about these examples, this person seemed to forget that much of Spring relies 

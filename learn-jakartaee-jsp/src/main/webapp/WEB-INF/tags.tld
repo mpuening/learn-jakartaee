@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jsee/web-jsptagLibrary_2_0.xsd"
+	version="2.0">
+
+		<tlib-version>1.0</tlib-version>
+		<jsp-version>2.0</jsp-version>
+		<short-name>learnjakartaee</short-name>
+		<uri>http://learnjakartaee.github.com/learnjakartaee-taglib</uri>
+		<description>Learn Jakarta EE JSP Tags</description>
+
+
+		<tag>
+			<name>today</name>
+			<tag-class>io.github.learnjakartaee.tag.TimestampTag</tag-class>
+		</tag>
+	</taglib>  

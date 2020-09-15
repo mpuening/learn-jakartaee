@@ -5,4 +5,9 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
    http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404</location>
+	</error-page>
+
 </web-app>

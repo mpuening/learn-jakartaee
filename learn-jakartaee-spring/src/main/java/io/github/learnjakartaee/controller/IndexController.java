@@ -20,4 +20,9 @@ public class IndexController {
 		model.addAttribute("message", messageService.getGreetingMessage());
 		return "index";
 	}
+
+	@RequestMapping("/404")
+	public String notFound() {
+		return "404";
+	}
 }

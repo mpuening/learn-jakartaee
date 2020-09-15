@@ -10,9 +10,13 @@ this command from this `learn-jakartaee-jsp` directory:
 mvn liberty:stop && mvn liberty:run
 ```
 
-Once Liberty has started open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jsp/index.jsp)
+Once Liberty has started, open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jsp/index.jsp)
 
 From that page, you have a link to get a greeting.
+
+The `HelloServlet` manages the GET and POST, and there is also a `TimestampTag` to 
+show an example custom tag. The views also use a `layout.tag` file to handle a simple
+page layout.
 
 ## Configuration
 

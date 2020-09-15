@@ -11,7 +11,7 @@ import org.apache.struts.actions.DispatchAction;
 /**
  * @struts.action path="/events" parameter="method" validate="false"
  * 
- * @struts.action-forward name="success" path="/WEB-INF/jsp/view/admin/events.jsp"
+ * @struts.action-forward name="success" path="/WEB-INF/views/admin/events.jsp"
  */
 public class EventsAction extends DispatchAction {
 

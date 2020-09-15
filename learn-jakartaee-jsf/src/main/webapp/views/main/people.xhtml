@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
+		<ui:param name="pageTitle" value="People" />
+		<ui:param name="mainNavBarSelected" value="true" />
+
+		<ui:define name="sidemenu">
+			<ui:include src="/WEB-INF/fragments/main/sidemenu.xhtml" />
+		</ui:define>
+
+		<ui:define name="body">
+
+			<h:form>
+				<h2>People Listing</h2>
+				<div class="container-fluid">
+					<h:messages globalOnly="true" errorClass="alert alert-danger" layout="table"/>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:outputLink value="add-person.xhtml" class="btn btn-primary">Add New</h:outputLink>
+					</div>
+				</div>
+				<h:dataTable id="peopleTable" value="#{peopleBean.getPeople()}"
+					var="person" class="table table-striped" rendered="#{!peopleBean.getPeople().isEmpty()}">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputText value="#{person.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">First Name</f:facet>
+						<h:outputText value="#{person.firstName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Last Name</f:facet>
+						<h:outputText value="#{person.lastName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+						<h:commandButton action="#{peopleBean.editPerson(person.id)}"
+							value="Edit" class="btn btn-info" />
+						<span></span>
+						<h:commandButton action="#{peopleBean.deletePerson(person.id)}"
+							value="Delete" class="btn btn-danger" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

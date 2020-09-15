@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	--- Everything above this line is ignored ---
+	<ui:composition>
+		<div>
+			<div class="card">
+				<div class="card-header">Main Links</div>
+				<div class="card-body">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<h:link value="People" outcome="/views/main/people" styleClass="nav-link"/>
+						</li>
+						<li class="nav-item">
+							<h:link value="Help" outcome="/views/main/help" styleClass="nav-link"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</ui:composition>
+	--- Everything below this line is ignored ---
+</body>
+</html>
