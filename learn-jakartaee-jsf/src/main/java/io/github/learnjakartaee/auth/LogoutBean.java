@@ -18,6 +18,6 @@ public class LogoutBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/login.xhtml?logout=&faces-redirect=true";
+		return "/views/auth/login.xhtml?logout=&faces-redirect=true";
 	}
 }

@@ -35,7 +35,7 @@ public class GlobalExceptionHandler extends ExceptionHandlerWrapper {
 				if (context != null && context.getApplication() != null) {
 					NavigationHandler nav = context.getApplication().getNavigationHandler();
 					if (throwable instanceof ViewExpiredException) {
-						nav.handleNavigation(context, null, "/login");
+						nav.handleNavigation(context, null, "/views/auth/login");
 					} else {
 						throwable.printStackTrace();
 						nav.handleNavigation(context, null, "/views/errors/500");
