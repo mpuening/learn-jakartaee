@@ -35,6 +35,20 @@ The Tiles layout is defined in `tiles-def.xml`. The layout JSPs are in the `layo
 directory under the `WEB-INF` directory. `Webjars` are used to get support for `JQuery` 
 and `Bootstrap`.
 
+## Docker
+
+To build a Docker image that uses Open Liberty, run this command:
+
+```
+mvn clean package && sudo docker build -t io.github.learnjakartaee/learn-jakartaee-struts .
+```
+
+To run the Docker image, run this command:
+
+```
+docker rm -f learn-jakartaee-struts || true && docker run -d -p 9080:9080 --name learn-jakartaee-struts io.github.learnjakartaee/learn-jakartaee-struts
+```
+
 ## TODO
 
 How do I write a test case that does not require the server to be started?

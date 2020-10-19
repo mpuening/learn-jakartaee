@@ -47,6 +47,14 @@
 				<groupId>io.openliberty.tools</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>${liberty-maven-plugin.version}</version>
+				<configuration>
+					<runtimeArtifact>
+						<groupId>io.openliberty.beta</groupId>
+						<artifactId>openliberty-jakartaee9</artifactId>
+						<version>20.0.0.11-beta</version>
+						<type>zip</type>
+					</runtimeArtifact>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>

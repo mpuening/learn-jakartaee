@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
+		<version>2.3.4.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -23,11 +23,11 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 
-		<jakartaee.version>8.0.0</jakartaee.version>
-		<microprofile.version>3.2</microprofile.version>
-		<spring-boot.version>2.2.4.RELEASE</spring-boot.version>
+		<jakartaee.version>9.0.0-RC3</jakartaee.version>
+		<!-- This should eventually be 4.0 -->
+		<microprofile.version>3.3</microprofile.version>
 
-		<liberty-maven-plugin.version>3.2</liberty-maven-plugin.version>
+		<liberty-maven-plugin.version>3.2.3</liberty-maven-plugin.version>
 	</properties>
 
 	<modules>
@@ -52,13 +52,6 @@
 				<groupId>org.eclipse.microprofile</groupId>
 				<artifactId>microprofile</artifactId>
 				<version>${microprofile.version}</version>
-				<type>pom</type>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring-boot.version}</version>
 				<type>pom</type>
 				<scope>provided</scope>
 			</dependency>

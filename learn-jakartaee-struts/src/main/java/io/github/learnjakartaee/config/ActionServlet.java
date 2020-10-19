@@ -1,6 +1,6 @@
 package io.github.learnjakartaee.config;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import io.github.learnjakartaee.service.PeopleService;
 

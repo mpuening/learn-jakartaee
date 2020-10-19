@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
 import io.github.learnjakartaee.model.Person;
 

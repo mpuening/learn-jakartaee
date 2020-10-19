@@ -9,6 +9,22 @@ can be found [here](https://jakarta.ee/specifications/).
 The projects in this repository focus on different areas, and some take inspiration
 from the [Open Liberty Guides](https://openliberty.io/guides/).
 
+NOTE! If you are looking for examples of Jakarta EE 8, 
+[click here](https://github.com/mpuening/learn-jakartaee/tree/jakartaee8).
+
+The projects in this branch are being updated to Jakarta EE 9. This is still a work
+in progress because at the time of this writing, version 9 has not be released, nor 
+have all the application servers released fully working versions. So not all projects
+are in working order at this time.
+
+### Jakarta EE 9 Issues
+
+* Open Liberty Beta does not yet support Micro Profile 4 (also, what deps do I use?)
+* Open Liberty Beta does not yet support JSF
+* `persistence.xml` still requires old XML namespace (version 2.x)
+* What is the best way to interface with the Eclipse Transformer?
+* How does the Eclipse Transformer work with the Open Liberty Maven Plug-in?
+
 So what is in this project?
 ===========================
 

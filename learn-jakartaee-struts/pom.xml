@@ -30,6 +30,18 @@
 	</properties>
 	<!-- ================================================ -->
 	<dependencies>
+		<!-- Compilation purposes because Struts is not converted to jakarta.* APIs-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-ejb</artifactId>
@@ -38,11 +50,6 @@
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -75,6 +82,14 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+
+		<!-- Support for Eclipse Transformer -->
+		<dependency>
+			<groupId>org.tomitribe.transformer</groupId>
+			<artifactId>org.eclipse.transformer.cli</artifactId>
+			<version>0.1.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<!-- ================================================ -->
 	<build>
@@ -84,6 +99,14 @@
 				<groupId>io.openliberty.tools</groupId>
 				<artifactId>liberty-maven-plugin</artifactId>
 				<version>${liberty-maven-plugin.version}</version>
+				<configuration>
+					<runtimeArtifact>
+						<groupId>io.openliberty.beta</groupId>
+						<artifactId>openliberty-jakartaee9</artifactId>
+						<version>20.0.0.11-beta</version>
+						<type>zip</type>
+					</runtimeArtifact>
+			    </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -123,6 +146,46 @@
 						<version>${struts.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<!-- tomitribe transformer maven plugin did not work for me, so invoke CLI directly -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<move
+									file="${project.build.directory}/${project.artifactId}-${project.version}.war"
+									tofile="${project.build.directory}/${project.artifactId}-${project.version}-orig.war" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>org.eclipse.transformer.jakarta.JakartaTransformer</mainClass> 
+					<classpathScope>compile</classpathScope>
+					<arguments>
+						<argument>--verbose</argument>
+						<argument>${project.build.directory}/${project.artifactId}-${project.version}-orig.war</argument>
+						<argument>${project.build.directory}/${project.artifactId}-${project.version}.war</argument>
+					</arguments>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>

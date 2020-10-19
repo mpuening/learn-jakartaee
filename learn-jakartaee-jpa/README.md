@@ -50,6 +50,20 @@ PeopleService.java (@PersistenceContext)
 
 The `server.xml` has a `derbypath` variable that is set in `pom.xml`
 
+## Docker
+
+To build a Docker image that uses Open Liberty, run this command:
+
+```
+mvn clean package && sudo docker build -t io.github.learnjakartaee/learn-jakartaee-jpa .
+```
+
+To run the Docker image, run this command:
+
+```
+docker rm -f learn-jakartaee-jpa || true && docker run -d -p 9080:9080 --name learn-jakartaee-jpa io.github.learnjakartaee/learn-jakartaee-jpa
+
+```
 ## TODO
 
 How do I write a test case that does not require the server to be started?

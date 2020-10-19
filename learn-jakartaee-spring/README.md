@@ -26,3 +26,17 @@ configuration classes.
 Liberty is configured from this file: `src/main/liberty/config/server.xml`
 
 It uses the Jakarta EE Web-profile.
+
+## Docker
+
+To build a Docker image that uses Open Liberty, run this command:
+
+```
+mvn clean package && sudo docker build -t io.github.learnjakartaee/learn-jakartaee-spring .
+```
+
+To run the Docker image, run this command:
+
+```
+
+```

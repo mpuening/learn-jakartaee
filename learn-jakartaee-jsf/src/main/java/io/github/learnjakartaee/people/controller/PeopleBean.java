@@ -3,12 +3,12 @@ package io.github.learnjakartaee.people.controller;
 import java.util.Collection;
 import java.util.UUID;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import io.github.learnjakartaee.model.Person;
 import io.github.learnjakartaee.service.PeopleException;

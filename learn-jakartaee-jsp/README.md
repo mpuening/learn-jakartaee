@@ -24,6 +24,20 @@ Liberty is configured from this file: `src/main/liberty/config/server.xml`
 
 It uses the Jakarta EE Web-profile.
 
+## Docker
+
+To build a Docker image that uses Open Liberty, run this command:
+
+```
+mvn clean package && sudo docker build -t io.github.learnjakartaee/learn-jakartaee-jsp .
+```
+
+To run the Docker image, run this command:
+
+```
+docker rm -f learn-jakartaee-jsp || true && docker run -d -p 9080:9080 --name learn-jakartaee-jsp io.github.learnjakartaee/learn-jakartaee-jsp
+```
+
 ## TODO
 
 How do I write a test case that does not require the server to be started?

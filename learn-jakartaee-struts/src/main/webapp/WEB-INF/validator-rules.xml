@@ -75,7 +75,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    msg="errors.required"/>
 
         <validator name="requiredif"
@@ -86,7 +86,7 @@
                                org.apache.commons.validator.Field,
                                org.apache.struts.action.ActionMessages,
                                org.apache.commons.validator.Validator,
-                               javax.servlet.http.HttpServletRequest"
+                               jakarta.servlet.http.HttpServletRequest"
                    msg="errors.required"/>
 
         <validator name="validwhen"
@@ -98,7 +98,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"/>
+                       jakarta.servlet.http.HttpServletRequest"/>
 
 
         <validator name="minlength"
@@ -109,7 +109,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.minlength"
                    jsFunction="org.apache.commons.validator.javascript.validateMinLength"/>
@@ -123,7 +123,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.maxlength"
                    jsFunction="org.apache.commons.validator.javascript.validateMaxLength"/>
@@ -137,7 +137,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.invalid"/>
 
@@ -150,7 +150,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.byte"
                    jsFunctionName="ByteValidations"/>
@@ -164,7 +164,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.short"
                    jsFunctionName="ShortValidations"/>
@@ -178,7 +178,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.integer"
                    jsFunctionName="IntegerValidations"/>
@@ -192,7 +192,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.long"/>
 
@@ -205,7 +205,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.float"
                    jsFunctionName="FloatValidations"/>
@@ -218,7 +218,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.double"/>
 
@@ -231,7 +231,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.byte"/>
 
@@ -244,7 +244,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.short"/>
 
@@ -257,7 +257,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.integer"/>
 
@@ -270,7 +270,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.long"/>
 
@@ -283,7 +283,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.float"/>
 
@@ -295,7 +295,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.double"/>
 
@@ -308,7 +308,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.date"
                    jsFunctionName="DateValidations"/>
@@ -322,7 +322,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends="integer"
                    msg="errors.range"/>
 
@@ -334,7 +334,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends="long"
                    msg="errors.range"/>
 
@@ -347,7 +347,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends="float"
                    msg="errors.range"/>
 
@@ -359,7 +359,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends="double"
                    msg="errors.range"/>
 
@@ -372,7 +372,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.creditcard"/>
 
@@ -385,7 +385,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.email"/>
 
@@ -397,7 +397,7 @@
                        org.apache.commons.validator.Field,
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
-                       javax.servlet.http.HttpServletRequest"
+                       jakarta.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.url"/>
 

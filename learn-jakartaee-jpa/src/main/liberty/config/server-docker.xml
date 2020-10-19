@@ -9,17 +9,12 @@
 
 	<variable name="default.http.port" defaultValue="9080" />
 	<variable name="default.https.port" defaultValue="9443" />
-	<variable name="app.name" defaultValue="learn-jakartaee-jpa" />
-	<variable name="app.version" defaultValue="0.0.1-SNAPSHOT" />
 
 	<httpEndpoint id="defaultHttpEndpoint"
 		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
 
-	<webApplication id="${app.name}"
-		location="${app.name}-${app.version}.war" contextRoot="${app.name}" />
-
 	<library id="derby">
-		<file name="${derbypath}" />
+		<file name="/config/derby.jar" />
 	</library>
 
 	<!-- See persistence.xml and web.xml -->
