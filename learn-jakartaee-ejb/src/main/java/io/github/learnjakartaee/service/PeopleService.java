@@ -1,5 +1,6 @@
 package io.github.learnjakartaee.service;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
@@ -10,7 +11,9 @@ import jakarta.ejb.Stateless;
 import io.github.learnjakartaee.model.Person;
 
 @Stateless
-public class PeopleService {
+public class PeopleService implements Serializable {
+
+	private static final long serialVersionUID = -4552560979186791887L;
 
 	/**
 	 * This is cheating, as we aren't really stateless are we?

@@ -38,14 +38,6 @@
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf-spring5</artifactId>
 		</dependency>
-
-		<!-- Support for Eclipse Transformer -->
-		<dependency>
-			<groupId>org.tomitribe.transformer</groupId>
-			<artifactId>org.eclipse.transformer.cli</artifactId>
-			<version>0.1.1</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 	<!-- ================================================ -->
 	<build>
@@ -59,49 +51,26 @@
 					<runtimeArtifact>
 						<groupId>io.openliberty.beta</groupId>
 						<artifactId>openliberty-jakartaee9</artifactId>
-						<version>20.0.0.11-beta</version>
+						<version>${liberty-runtime.version}</version>
 						<type>zip</type>
 					</runtimeArtifact>
-			    </configuration>
+				</configuration>
 			</plugin>
-			<!-- tomitribe transformer maven plugin did not work for me, so invoke CLI directly -->
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
+				<groupId>org.eclipse.transformer</groupId>
+				<artifactId>org.eclipse.transformer.maven</artifactId>
+				<version>${eclipse.transformer.version}</version>
+				<configuration>
+					<classifier>jakartaee9</classifier>
+				</configuration>
 				<executions>
 					<execution>
-						<phase>package</phase>
-						<configuration>
-							<target>
-								<move
-									file="${project.build.directory}/${project.artifactId}-${project.version}.war"
-									tofile="${project.build.directory}/${project.artifactId}-${project.version}-orig.war" />
-							</target>
-						</configuration>
 						<goals>
 							<goal>run</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<executions>
-					<execution>
 						<phase>package</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>org.eclipse.transformer.jakarta.JakartaTransformer</mainClass> 
-					<classpathScope>compile</classpathScope>
-					<arguments>
-						<argument>${project.build.directory}/${project.artifactId}-${project.version}-orig.war</argument>
-						<argument>${project.build.directory}/${project.artifactId}-${project.version}.war</argument>
-					</arguments>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

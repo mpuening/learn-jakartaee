@@ -10,7 +10,7 @@ this command from this `learn-jakartaee-jsf` directory:
 mvn liberty:stop && mvn liberty:run
 ```
 
-Once Liberty has started open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jsf/index.xhtml)
+Once Liberty has started open your browser to [index.xhtml](http://localhost:9080/learn-jakartaee-jsf/index.xhtml)
 
 From that page, you have a link to get a greeting.
 

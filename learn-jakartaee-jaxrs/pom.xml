@@ -30,13 +30,11 @@
 		<dependency>
 			<groupId>jakarta.ws.rs</groupId>
 			<artifactId>jakarta.ws.rs-api</artifactId>
-			<version>3.0.0-M1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.microprofile</groupId>
-			<artifactId>microprofile</artifactId>
-			<type>pom</type>
+			<groupId>org.eclipse.microprofile.config</groupId>
+			<artifactId>microprofile-config-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -52,10 +50,10 @@
 					<runtimeArtifact>
 						<groupId>io.openliberty.beta</groupId>
 						<artifactId>openliberty-jakartaee9</artifactId>
-						<version>20.0.0.11-beta</version>
+						<version>${liberty-runtime.version}</version>
 						<type>zip</type>
 					</runtimeArtifact>
-			    </configuration>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

@@ -38,5 +38,5 @@ mvn clean package && sudo docker build -t io.github.learnjakartaee/learn-jakarta
 To run the Docker image, run this command:
 
 ```
-
+docker rm -f learn-jakartaee-spring || true && docker run -d -p 9080:9080 --name learn-jakartaee-spring io.github.learnjakartaee/learn-jakartaee-spring
 ```

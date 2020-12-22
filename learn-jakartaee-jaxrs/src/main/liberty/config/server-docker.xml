@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<server description="jsp">
+<server description="jaxrs">
 
 	<featureManager>
-		<feature>localConnector-1.0</feature>
 		<feature>microProfile-4.0</feature>
 	</featureManager>
 

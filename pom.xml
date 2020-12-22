@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.4.RELEASE</version>
+		<version>2.4.1</version>
 	</parent>
 
 	<properties>
@@ -23,11 +23,13 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 
-		<jakartaee.version>9.0.0-RC3</jakartaee.version>
+		<jakartaee.version>9.0.0</jakartaee.version>
 		<!-- This should eventually be 4.0 -->
-		<microprofile.version>3.3</microprofile.version>
+		<microprofile.version>4.0-RC1</microprofile.version>
+		<eclipse.transformer.version>0.2.0</eclipse.transformer.version>
 
-		<liberty-maven-plugin.version>3.2.3</liberty-maven-plugin.version>
+		<liberty-runtime.version>21.0.0.1-beta</liberty-runtime.version>
+		<liberty-maven-plugin.version>3.3.3</liberty-maven-plugin.version>
 	</properties>
 
 	<modules>
@@ -53,6 +55,12 @@
 				<artifactId>microprofile</artifactId>
 				<version>${microprofile.version}</version>
 				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.transformer</groupId>
+				<artifactId>org.eclipse.transformer.cli</artifactId>
+				<version>${eclipse.transformer.version}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
