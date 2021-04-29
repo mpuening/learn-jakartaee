@@ -19,7 +19,6 @@ are in working order at this time.
 
 ### Jakarta EE 9 Issues
 
-* Open Liberty Beta seems to have problems with Micro Profile 4. Jax-RS project does not work.
 * What is the best way to interface with the Eclipse Transformer?
 * How does the Eclipse Transformer work with the Open Liberty Maven Plug-in?
 
@@ -40,8 +39,10 @@ to store new records in the database.
 
 ## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
 
-This project is a super simple REST API containing just a ping service. But at least 
-it shows how Swagger UI is built-in to Open Liberty.
+This Microprofile 4 project is a super simple REST API containing just a ping service.
+But at least  it shows how Swagger UI is built-in to Open Liberty. This project does
+not use the Jakarta EE 9 APIs because Microprofile 4 is not aligned to it yet and
+there is no specification for it yet.
 
 ## [`learn-jakartaee-struts`](./learn-jakartaee-struts)
 

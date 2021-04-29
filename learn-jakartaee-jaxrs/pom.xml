@@ -23,14 +23,13 @@
 	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-web-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>jakarta.ws.rs</groupId>
 			<artifactId>jakarta.ws.rs-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.microprofile.config</groupId>
@@ -49,7 +48,7 @@
 				<configuration>
 					<runtimeArtifact>
 						<groupId>io.openliberty.beta</groupId>
-						<artifactId>openliberty-jakartaee9</artifactId>
+						<artifactId>openliberty-runtime</artifactId>
 						<version>${liberty-runtime.version}</version>
 						<type>zip</type>
 					</runtimeArtifact>
