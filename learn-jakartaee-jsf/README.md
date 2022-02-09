@@ -3,16 +3,24 @@ Learn Jakarta EE APIs
 
 ## Jakarta Server Faces
 
-After building the application, you can run this application with Open Liberty using 
-this command from this `learn-jakartaee-jsf` directory:
+After building the application, you can run this application with Open Liberty or
+Tom EE (via Cargo) using these commands from this `learn-jakartaee-jsf` directory:
 
 ```
 mvn liberty:stop && mvn liberty:run
+
+mvn cargo:run
 ```
 
 Once Liberty has started open your browser to [index.xhtml](http://localhost:9080/learn-jakartaee-jsf/index.xhtml)
 
 From that page, you have a link to get a greeting.
+
+If using Cargo, open your browser to [/](http://localhost:8080/learn-jakartaee-jsf/index.xhtml)
+
+```
+Note: As I write this, TomEE 9.0.0-M7 does not yet support JSF 3.0, so it does not work yet.
+```
 
 ## Configuration
 

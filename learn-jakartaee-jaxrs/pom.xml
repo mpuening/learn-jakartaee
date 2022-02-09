@@ -25,6 +25,13 @@
 		<dependency>
 			<groupId>jakarta.ws.rs</groupId>
 			<artifactId>jakarta.ws.rs-api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+			<version>2.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -47,11 +54,32 @@
 				<version>${liberty-maven-plugin.version}</version>
 				<configuration>
 					<runtimeArtifact>
-						<groupId>io.openliberty.beta</groupId>
-						<artifactId>openliberty-runtime</artifactId>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-jakartaee9</artifactId>
 						<version>${liberty-runtime.version}</version>
 						<type>zip</type>
 					</runtimeArtifact>
+					<stripVersion>true</stripVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- mvn cargo:run -->
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven3-plugin</artifactId>
+				<version>${cargo-maven-plugin.version}</version>
+				<configuration>
+					<container>
+						<containerId>tomee9x</containerId>
+					</container>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomee.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<version>8.0.9</version>
+				<configuration>
+					<tomeeVersion>9.0.0-M7</tomeeVersion>
+					<tomeeClassifier>microprofile</tomeeClassifier>
 				</configuration>
 			</plugin>
 			<plugin>

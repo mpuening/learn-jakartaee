@@ -3,14 +3,18 @@ Learn Jakarta EE APIs
 
 ## JSP and Servlets
 
-After building the application, you can run this application with Open Liberty using 
-this command from this `learn-jakartaee-jsp` directory:
+After building the application, you can run this application with Open Liberty or
+TomEE (via Cargo) using these commands from this `learn-jakartaee-jsp` directory:
 
 ```
 mvn liberty:stop && mvn liberty:run
+
+mvn cargo:run
 ```
 
 Once Liberty has started, open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jsp/index.jsp)
+
+If using Cargo, open your browser to [index.jsp](http://localhost:8080/learn-jakartaee-jsp/index.jsp)
 
 From that page, you have a link to get a greeting.
 

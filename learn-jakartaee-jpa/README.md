@@ -3,11 +3,13 @@ Learn Jakarta EE APIs
 
 ## JPA
 
-After building the application, you can run this application with Open Liberty using 
-this command from this `learn-jakartaee-jpa` directory:
+After building the application, you can run this application with Open Liberty or
+Tom EE (via Cargo) using these commands from this `learn-jakartaee-jpa` directory:
 
 ```
 mvn liberty:stop && mvn liberty:run
+
+mvn cargo:run
 ```
 
 Once Liberty has started open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jpa/index.jsp)
@@ -16,6 +18,8 @@ Once Liberty has started open your browser to [index.jsp](http://localhost:9080/
 Note: Sometimes Liberty goes into a seemingly infinite loop with errors building the data source.
 I do not know why. I just restart Liberty.
 ```
+
+If using Cargo, open your browser to [index.jsp](http://localhost:8080/learn-jakartaee-jpa/index.jsp)
 
 From that `index.jsp` page, you can go to a page that adds people to the database.
 
@@ -28,6 +32,12 @@ is in this file. You will find that the `jdbc/personDataSource` connects to:
 
 ```
 src/main/webapp/WEB-INF/ibm-bnd-web.xml
+```
+
+or
+
+```
+src/main/webapp/WEB-INF/resources.xml (TomEE)
 ```
  
 which connects to

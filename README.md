@@ -1,7 +1,9 @@
 Learn Jakarta EE APIs
 =====================
 
-This project is about learning the Jakarta EE APIs (i.e. Java development without Spring).
+[![Continuous Integration](https://github.com/mpuening/learn-jakartaee/actions/workflows/ci.yml/badge.svg)](https://github.com/mpuening/learn-jakartaee/actions/workflows/ci.yml)
+
+This project is about learning the Jakarta EE APIs (i.e. Java development without Spring Boot).
 
 Here is the main web site for [Jakarta EE](https://jakarta.ee/). The specifications 
 can be found [here](https://jakarta.ee/specifications/).
@@ -12,15 +14,19 @@ from the [Open Liberty Guides](https://openliberty.io/guides/).
 NOTE! If you are looking for examples of Jakarta EE 8, 
 [click here](https://github.com/mpuening/learn-jakartaee/tree/jakartaee8).
 
-The projects in this branch are being updated to Jakarta EE 9. This is still a work
-in progress because at the time of this writing, version 9 has just been released, and 
-not all the application servers have released fully working versions. So not all projects
-are in working order at this time.
+The projects in this branch are being updated to Jakarta EE 9.1. This is still a work
+in progress because at the time of this writing, app servers are still trying to implement
+all the specifications. So not all projects are in working order at this time in all
+app servers.
 
 ### Jakarta EE 9 Issues
 
 * What is the best way to interface with the Eclipse Transformer?
 * How does the Eclipse Transformer work with the Open Liberty Maven Plug-in?
+
+### TODO
+
+Learn more from https://github.com/OpenLiberty/liberty-bikes and https://openliberty.io/blog/2021/09/24/liberty-bikes.html
 
 So what is in this project?
 ===========================

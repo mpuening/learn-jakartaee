@@ -24,15 +24,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<!-- ================================================ -->
-	<build>
-		<plugins>
-			<plugin>
-				<!-- https://github.com/OpenLiberty/ci.maven -->
-				<groupId>io.openliberty.tools</groupId>
-				<artifactId>liberty-maven-plugin</artifactId>
-				<version>${liberty-maven-plugin.version}</version>
-			</plugin>
-		</plugins>
-	</build>
 </project>

@@ -4,11 +4,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>learn-jakartaee-jsp</artifactId>
+	<artifactId>learn-jakartaee-spring-jakartaee9</artifactId>
 	<packaging>war</packaging>
 
-	<name>learn-jakartaee-jsp</name>
-	<description>Learn Jakarta EE - JSP</description>
+	<name>learn-jakartaee-spring-jakartaee9</name>
+	<description>Learn Jakarta EE - Spring/Thymeleaf App</description>
 
 	<parent>
 		<groupId>io.github.learnjakartaee</groupId>
@@ -16,14 +16,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<!-- ================================================ -->
-	<dependencies>
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-web-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 	<!-- ================================================ -->
 	<build>
 		<plugins>
@@ -39,18 +31,8 @@
 						<version>${liberty-runtime.version}</version>
 						<type>zip</type>
 					</runtimeArtifact>
+					<looseApplication>false</looseApplication>
 					<stripVersion>true</stripVersion>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- mvn cargo:run -->
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven3-plugin</artifactId>
-				<version>${cargo-maven-plugin.version}</version>
-				<configuration>
-					<container>
-						<containerId>tomee9x</containerId>
-					</container>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -8,18 +8,26 @@ this command from this `learn-jakartaee-jaxrs` directory:
 
 ```
 mvn liberty:stop && mvn liberty:run
+
+mvn cargo:run
+
+tomee:run
 ```
 
-Once Liberty has started open your browser to [index.html](http://localhost:9080/index.html)
+Once Liberty has started open your browser to [index.html](http://localhost:9080/learn-jakartaee-jaxrs/index.html)
 
 From that page, you have three simple links to:
 
-1. [Ping the server](http://localhost:9080/api/ping)
+1. [Ping the server](http://localhost:9080/learn-jakartaee-jaxrs/api/ping)
 2. [View the OpenAPI Spec](http://localhost:9080/openapi)
 3. [Use Swagger UI](http://localhost:9080/openapi/ui)
 
 The `ping` service is implemented in the `PingService` class and the `/api`
 context path is controlled by the `JAXRSConfiguration`.
+
+```
+TomEE does not yet support Micropfile 5 yet
+```
 
 ## Configuration
 
