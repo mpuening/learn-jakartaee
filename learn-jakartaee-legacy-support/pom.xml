@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>learn-jakartaee-legacy-support</artifactId>
+	<packaging>pom</packaging>
+
+	<name>learn-jakartaee-legacy-support</name>
+	<description>Learn Jakarta EE - Legacy Support</description>
+
+	<parent>
+		<groupId>io.github.learnjakartaee</groupId>
+		<artifactId>learn-jakartaee</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<properties>
+		<struts.version>1.3.10</struts.version>
+		<eclipse.transformer.version>0.2.0</eclipse.transformer.version>
+	</properties>
+
+	<modules>
+		<module>learn-jakartaee-legacy-commons-chain</module>
+		<module>learn-jakartaee-legacy-struts-core</module>
+		<module>learn-jakartaee-legacy-struts-extras</module>
+		<module>learn-jakartaee-legacy-struts-taglib</module>
+		<module>learn-jakartaee-legacy-struts-tiles</module>
+	</modules>
+
+</project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+
+	<!-- Wildfly DataSources -->
+
+	<datasource jndi-name="jdbc/personDataSource" pool-name="DerbyDS">
+		<connection-url>jdbc:derby:memory:persondb;create=true</connection-url>
+		<driver>appdriver</driver>
+		<pool></pool>
+		<security>
+			<user-name>APP</user-name>
+			<password></password>
+		</security>
+	</datasource>
+
+	<drivers>
+		<driver name="appdriver">
+			<xa-datasource-class>org.apache.derby.jdbc.EmbeddedDataSource</xa-datasource-class>
+		</driver>
+	</drivers>
+
+</datasources>

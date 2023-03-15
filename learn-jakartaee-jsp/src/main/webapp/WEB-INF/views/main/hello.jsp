@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <layout:layout>
 	<jsp:attribute name="header">
-      <h1>Welcome</h1>
+      <h1 id="banner">Welcome, what is your name?</h1>
     </jsp:attribute>
 	<jsp:body>
 	<c:if test="${requestScope.greeting != null}">

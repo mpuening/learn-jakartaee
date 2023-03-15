@@ -5,16 +5,15 @@ import java.util.List;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-
 import io.github.learnjakartaee.model.Person;
 
 @Stateless
 public class PeopleService {
 
 	// See persistence.xml for name
-	@PersistenceContext(name = "jdbc/personDataSource")
-    private EntityManager entityManager;
-
+	@PersistenceContext(unitName = "jdbcPersonDataSource")
+    EntityManager entityManager;
+	
 	public List<Person> getPeople() {
 		return entityManager.createQuery("SELECT p FROM Person p", Person.class).getResultList();
     }

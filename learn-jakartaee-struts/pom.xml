@@ -30,22 +30,10 @@
 	</properties>
 	<!-- ================================================ -->
 	<dependencies>
-		<!-- Compilation purposes because Struts is not converted to jakarta.* APIs-->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
@@ -53,24 +41,34 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts-core</artifactId>
-			<version>${struts.version}</version>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-legacy-struts-core</artifactId>
+			<version>${project.version}</version>
+			<classifier>jakartaee</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts-extras</artifactId>
-			<version>${struts.version}</version>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-legacy-struts-core</artifactId>
+			<version>${project.version}</version>
+			<classifier>jakartaee</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts-taglib</artifactId>
-			<version>${struts.version}</version>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-legacy-struts-extras</artifactId>
+			<version>${project.version}</version>
+			<classifier>jakartaee</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts-tiles</artifactId>
-			<version>${struts.version}</version>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-legacy-struts-taglib</artifactId>
+			<version>${project.version}</version>
+			<classifier>jakartaee</classifier>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-legacy-struts-tiles</artifactId>
+			<version>${project.version}</version>
+			<classifier>jakartaee</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -82,7 +80,23 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-test-webprofile</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
+
+	<!-- ================================================ -->
+
+	<!-- To run application: -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-struts -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-struts -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-struts -->
+
 	<!-- ================================================ -->
 	<build>
 		<plugins>
@@ -124,54 +138,6 @@
 						<version>${struts.version}</version>
 					</dependency>
 				</dependencies>
-			</plugin>
-			<plugin>
-				<!-- https://github.com/OpenLiberty/ci.maven -->
-				<groupId>io.openliberty.tools</groupId>
-				<artifactId>liberty-maven-plugin</artifactId>
-				<version>${liberty-maven-plugin.version}</version>
-				<configuration>
-					<runtimeArtifact>
-						<groupId>io.openliberty</groupId>
-						<artifactId>openliberty-jakartaee9</artifactId>
-						<version>${liberty-runtime.version}</version>
-						<type>zip</type>
-					</runtimeArtifact>
-					<stripVersion>true</stripVersion>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- mvn cargo:run -->
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven3-plugin</artifactId>
-				<version>${cargo-maven-plugin.version}</version>
-				<configuration>
-					<container>
-						<containerId>tomee9x</containerId>
-					</container>
-					<deployables>
-						<deployable>
-							<!-- Use version built by transformer -->
-							<location>${project.build.directory}/${project.artifactId}-jakartaee9-${project.version}.war</location>
-						</deployable>
-					</deployables>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.transformer</groupId>
-				<artifactId>org.eclipse.transformer.maven</artifactId>
-				<version>${eclipse.transformer.version}</version>
-				<configuration>
-					<classifier>jakartaee9</classifier>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 

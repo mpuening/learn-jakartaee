@@ -7,7 +7,6 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>JSF Views</web-resource-name>
-			<url-pattern>/</url-pattern>
 			<url-pattern>/index.xhtml</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>

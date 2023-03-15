@@ -19,10 +19,28 @@ in progress because at the time of this writing, app servers are still trying to
 all the specifications. So not all projects are in working order at this time in all
 app servers.
 
-### Jakarta EE 9 Issues
+### Rant
 
-* What is the best way to interface with the Eclipse Transformer?
-* How does the Eclipse Transformer work with the Open Liberty Maven Plug-in?
+It looks like there aren't many great matches for your search
+
+### Tested Application Servers
+
+The following application servers are configured in this project for use in running
+each application example. Mileage varies, but Open Liberty is the best.
+
+1. Open Liberty
+2. Wildfly
+3. TomEE
+
+### Legacy Jakarta Support
+
+With the release of Jakarta EE 9, there will be old frameworks, such as Struts, that no longer work
+on the modern app servers. However, the Eclipse Transformer can breathe new life into old frameworks.
+The projects under the `learn-jakarta-legacy-support` folder address old frameworks to make a version that
+is compatible with modern application servers. Each project is fairly straightforward. An old JAR file
+is unzipped, then the Eclipse Transformer is run to create a `jakarta` classifier version of the JAR file
+that uses the new name space. Only a simple `pom.xml` is needed per dependency. No new Java code is
+needed.
 
 ### TODO
 
@@ -45,7 +63,7 @@ to store new records in the database.
 
 ## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
 
-This Microprofile 4 project is a super simple REST API containing just a ping service.
+This Microprofile 5 project is a super simple REST API containing just a ping service.
 But at least  it shows how Swagger UI is built-in to Open Liberty. This project does
 not use the Jakarta EE 9 APIs because Microprofile 4 is not aligned to it yet and
 there is no specification for it yet.
@@ -100,3 +118,7 @@ Running
 
 See the README files in each project for more details.
 
+Additional Information
+======================
+
+https://hantsy.gitbook.io/java-ee-8-by-example/

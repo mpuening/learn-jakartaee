@@ -5,13 +5,13 @@ import java.security.Principal;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,9 +23,6 @@ import jakarta.validation.constraints.Size;
 public class LoginBean {
 	@Inject
 	private SecurityContext securityContext;
-
-	@Inject
-	private ExternalContext externalContext;
 
 	@Inject
 	private FacesContext facesContext;
@@ -55,9 +52,11 @@ public class LoginBean {
 	}
 
 	public void login() throws IOException {
-		AuthenticationStatus status = securityContext.authenticate((HttpServletRequest) externalContext.getRequest(),
-				(HttpServletResponse) externalContext.getResponse(),
-				AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(username, password)));
+		Credential credential = new UsernamePasswordCredential(username, password);
+		AuthenticationStatus status = securityContext
+				.authenticate(
+						getHttpRequestFromFacesContext(), getHttpResponseFromFacesContext(),
+						AuthenticationParameters.withParams().credential(credential));
 		switch (status) {
 		case SEND_CONTINUE:
 			facesContext.responseComplete();
@@ -66,11 +65,23 @@ public class LoginBean {
 			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username and password", null));
 			break;
 		case SUCCESS:
-			externalContext.redirect(externalContext.getRequestContextPath() + "/");
+			facesContext.getExternalContext().redirect(facesContext.getExternalContext().getRequestContextPath() + "/");
 			break;
 		case NOT_DONE:
 		}
 	}
+
+    protected HttpServletRequest getHttpRequestFromFacesContext() {
+        return (HttpServletRequest) facesContext
+                .getExternalContext()
+                .getRequest();
+    }
+
+    protected HttpServletResponse getHttpResponseFromFacesContext() {
+        return (HttpServletResponse) facesContext
+                .getExternalContext()
+                .getResponse();
+    }
 
 	public Principal getPrincipal() {
 		return securityContext.getCallerPrincipal();

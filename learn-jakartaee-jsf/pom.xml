@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
@@ -38,36 +38,20 @@
 			<artifactId>jquery</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-test-webprofile</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<!-- ================================================ -->
-	<build>
-		<plugins>
-			<plugin>
-				<!-- https://github.com/OpenLiberty/ci.maven -->
-				<groupId>io.openliberty.tools</groupId>
-				<artifactId>liberty-maven-plugin</artifactId>
-				<version>${liberty-maven-plugin.version}</version>
-				<configuration>
-					<runtimeArtifact>
-						<groupId>io.openliberty</groupId>
-						<artifactId>openliberty-jakartaee9</artifactId>
-						<version>${liberty-runtime.version}</version>
-						<type>zip</type>
-					</runtimeArtifact>
-					<stripVersion>true</stripVersion>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- mvn cargo:run -->
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven3-plugin</artifactId>
-				<version>${cargo-maven-plugin.version}</version>
-				<configuration>
-					<container>
-						<containerId>tomee9x</containerId>
-					</container>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+
+	<!-- To run application: -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-jsf -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-jsf -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-jsf -->
+
 </project>

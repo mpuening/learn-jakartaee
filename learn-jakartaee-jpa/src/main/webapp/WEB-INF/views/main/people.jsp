@@ -8,7 +8,7 @@
 <title>Hello World Jakarta EE</title>
 </head>
 <body>
-	<h1>Hello Jakarta JPA</h1>
+	<h1 id="banner">Hello Jakarta JPA</h1>
 
 	<form action="<c:url value="/people"/>" method="POST">
 		Add new person? Name: <input type="text" name="name" /> <input

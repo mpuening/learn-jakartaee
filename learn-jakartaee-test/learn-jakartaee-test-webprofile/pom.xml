@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>learn-jakartaee-test-webprofile</artifactId>
+	<packaging>jar</packaging>
+
+	<name>learn-jakartaee-test-webprofile</name>
+	<description>Learn Jakarta EE Test Web Profile</description>
+
+	<parent>
+		<groupId>io.github.learnjakartaee</groupId>
+		<artifactId>learn-jakartaee-test</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>${resteasy.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson2-provider</artifactId>
+			<version>${resteasy.version}</version>
+		</dependency>
+
+		<!-- Arquillian Container -->
+		<dependency>
+			<groupId>org.jboss.arquillian.junit5</groupId>
+			<artifactId>arquillian-junit5-container</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.graphene</groupId>
+			<artifactId>graphene-webdriver</artifactId>
+			<version>${arquillian-graphene.version}</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-depchain</artifactId>
+			<type>pom</type>
+		</dependency>
+
+		<!-- Embedded Web Profile Container -->
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>arquillian-tomee-embedded</artifactId>
+			<version>${tomee-runtime.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.arquillian.junit</groupId>
+					<artifactId>arquillian-junit-container</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.myfaces.core</groupId>
+					<artifactId>myfaces-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.myfaces.core</groupId>
+					<artifactId>myfaces-impl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.tomee</groupId>
+					<artifactId>tomee-myfaces</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>tomee-security</artifactId>
+			<version>${tomee-runtime.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.myfaces.core</groupId>
+					<artifactId>myfaces-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Myfaces is excluded above because it didn't work. Mojarra does. -->
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>tomee-mojarra</artifactId>
+			<version>${tomee-runtime.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.faces</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+	</dependencies>
+</project>

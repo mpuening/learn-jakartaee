@@ -3,18 +3,18 @@ Learn Jakarta EE APIs
 
 ## JAX-RS
 
-After building the application, you can run this application with Open Liberty using 
-this command from this `learn-jakartaee-jaxrs` directory:
+After building the application, you can run this application with various application servers using 
+the following commands from this `learn-jakartaee-jaxrs` directory:
+
+### Open Liberty
+
+To start Open Liberty, run this command:
 
 ```
 mvn liberty:stop && mvn liberty:run
-
-mvn cargo:run
-
-tomee:run
 ```
 
-Once Liberty has started open your browser to [index.html](http://localhost:9080/learn-jakartaee-jaxrs/index.html)
+Once Liberty has started, open your browser to [index.html](http://localhost:9080/learn-jakartaee-jaxrs/index.html)
 
 From that page, you have three simple links to:
 
@@ -25,15 +25,43 @@ From that page, you have three simple links to:
 The `ping` service is implemented in the `PingService` class and the `/api`
 context path is controlled by the `JAXRSConfiguration`.
 
+### Wildfly
+
+To start Wildfly, run this command:
+
 ```
-TomEE does not yet support Micropfile 5 yet
+mvn cargo:run
 ```
+
+Once Wildfly has started, open your browser to [index.html](http://localhost:8080/learn-jakartaee-jaxrs/index.html)
+
+From that page, you can [ping the server](http://localhost:8080/learn-jakartaee-jaxrs/api/ping)
+
+Wildfly does not support the Open API and Swagger UI links.
+
+### TomEE
+
+To start TomEE, run this command:
+
+```
+mvn tomee:run
+```
+
+```
+Note: TomEE does not yet support Micropfile 5 yet
+```
+
+Once TomEE has started, open your browser to [index.html](http://localhost:8080/learn-jakartaee-jaxrs-0.0.1-SNAPSHOT/index.html)
+
+From that page, you can [ping the server](http://localhost:8080/learn-jakartaee-jaxrs-0.0.1-SNAPSHOT/api/ping)
+
+TomEE does not support the Open API and Swagger UI links.
 
 ## Configuration
 
-Liberty is configured from this file: `src/main/liberty/config/server.xml`
+Liberty is configured from this file: `src/main/liberty/config/server.xml`. It uses the Jakarta EE Micro-profile.
 
-It uses the Jakarta EE Micro-profile.
+The OpenAPI YAML file is located in `src/webapp/META-INF` folder.
 
 ## Docker
 

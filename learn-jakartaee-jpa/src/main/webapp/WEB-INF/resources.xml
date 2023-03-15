@@ -1,8 +1,14 @@
-<Resource id="jdbc/personDataSource" type="DataSource">
-    #Embedded Derby for TomEE server
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
 
-    JdbcDriver org.apache.derby.jdbc.EmbeddedDriver
-    JdbcUrl jdbc:derby:memory:persondb;create=true
-    UserName dbuser
-    Password pdbass
-</Resource>
+	<!-- TomEE App Server Resources -->
+
+	<Resource id="jdbc/personDataSource" type="DataSource">
+	    #Embedded Derby for TomEE server
+	
+	    JdbcDriver org.apache.derby.jdbc.EmbeddedDriver
+	    JdbcUrl jdbc:derby:memory:persondb;create=true
+	    UserName APP
+	    Password 
+	</Resource>
+</resources>

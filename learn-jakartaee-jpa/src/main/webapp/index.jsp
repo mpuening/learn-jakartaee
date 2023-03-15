@@ -8,7 +8,7 @@
 <title>Hello World Jakarta EE</title>
 </head>
 <body>
-	<h1>Hello Jakarta JPA</h1>
+	<h1 id="banner">Hello Jakarta JPA</h1>
 
 	<a href="<c:url value="/people"/>">Manage People</a>
 </body>

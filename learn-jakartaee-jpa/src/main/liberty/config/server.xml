@@ -14,6 +14,9 @@
 	
 	<library id="derby">
 		<file name="${derbypath}" />
+		<file name="${derbyclientpath}" />
+		<file name="${derbytoolspath}" />
+		<file name="${derbysharedpath}" />
 	</library>
 
 	<!-- See persistence.xml and web.xml -->
@@ -22,8 +25,10 @@
 		<jdbcDriver libraryRef="derby" />
 		<connectionManager minPoolSize="1"/>
 		<properties.derby.embedded
-			databaseName="memory:persondb" createDatabase="create" user="dbuser"
-			password="dbpass" />
+			databaseName="memory:persondb"
+			createDatabase="create"
+			user="APP"
+			password="" />
 	</dataSource>
 
 </server>

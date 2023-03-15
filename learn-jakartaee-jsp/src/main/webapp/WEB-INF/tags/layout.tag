@@ -9,7 +9,7 @@
 <title>Hello World Jakarta EE</title>
 </head>
 <body>
-	<h1>Hello Jakarta JSP and Servlet</h1>
+	<h1 id="title">Hello Jakarta JSP and Servlet</h1>
 
 	<div id="header">
 		<jsp:invoke fragment="header" />
