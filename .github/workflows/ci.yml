@@ -22,7 +22,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Run Tests
-        run: mvn -B package
+        run: mvn -B install
   build:
     needs: tests
     name: Build
@@ -41,4 +41,4 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build With Maven
-        run: mvn -B package -DskipTests
+        run: mvn -B install -DskipTests
