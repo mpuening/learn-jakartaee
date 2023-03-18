@@ -1,6 +1,6 @@
 package io.github.learnjakartaee.config;
 
-import jakarta.inject.Inject;
+import jakarta.ejb.EJB;
 
 import io.github.learnjakartaee.service.PeopleService;
 
@@ -17,7 +17,7 @@ public class ActionServlet extends org.apache.struts.action.ActionServlet {
 		ActionServlet.singleton = this;
 	}
 
-	@Inject
+	@EJB
 	protected PeopleService peopleService;
 
 	public static PeopleService getPeopleService() {

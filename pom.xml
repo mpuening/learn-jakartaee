@@ -107,7 +107,7 @@
 							<container>
 								<containerId>${cargo-wildfly-runtime}</containerId>
 								<systemProperties>
- 									<spring.profiles.active>dev</spring.profiles.active>
+ 									<spring.profiles.active>local</spring.profiles.active>
 								</systemProperties>
 							</container>
 							<configuration>
@@ -136,7 +136,7 @@
 						<configuration>
 							<tomeeVersion>${tomee-runtime.version}</tomeeVersion>
 							<tomeeClassifier>plus</tomeeClassifier>
-							<args>-Dspring.profiles.active=dev --add-opens java.base/java.lang=ALL-UNNAMED</args>
+							<args>-Dspring.profiles.active=local --add-opens java.base/java.lang=ALL-UNNAMED</args>
 							<systemVariables>
 								<tomee.mp.scan>all</tomee.mp.scan>
 							</systemVariables>

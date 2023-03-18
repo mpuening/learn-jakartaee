@@ -9,11 +9,11 @@ import org.openqa.selenium.support.FindBy;
 @Location("hello")
 public class HelloPage {
 
-    @FindBy(id = "banner")
-    private WebElement banner;
+	@FindBy(id = "banner")
+	private WebElement banner;
 
-    public void assertPageLoaded() {
-    	assertEquals("Welcome, what is your name?", banner.getText());
-    }
+	public void assertPageLoaded() {
+		assertEquals("Welcome, what is your name?", banner.getText());
+	}
 
 }

@@ -15,8 +15,8 @@ import jakarta.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 public interface PingServiceClient {
 
-    @GET
-    @Path("/ping")
-    Response ping();
+	@GET
+	@Path("/ping")
+	Response ping();
 
 }

@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.annotation.ManagedBean;
+import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import io.github.learnjakartaee.model.Person;
@@ -19,7 +19,7 @@ import io.github.learnjakartaee.service.PeopleService;
 @RequestScoped
 public class PeopleBean {
 
-	@Inject
+	@EJB
 	private PeopleService peopleService;
 
 	private Collection<Person> people;
@@ -65,9 +65,9 @@ public class PeopleBean {
 		this.lastName = lastName;
 	}
 
-	public String addPerson(PeopleBean newPersonBean) {
+	public String addPerson() {
 		try {
-			peopleService.addPerson(newPersonBean.getFirstName(), newPersonBean.getLastName());
+			peopleService.addPerson(this.firstName, this.lastName);
 		} catch (PeopleException e) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage());
 			FacesContext.getCurrentInstance().addMessage(null, message);
@@ -90,12 +90,12 @@ public class PeopleBean {
 		return "/views/main/update-person.xhtml";
 	}
 
-	public String updatePerson(PeopleBean updatedPersonBean) {
+	public String updatePerson() {
 		try {
 			Person updatedPerson = new Person();
-			updatedPerson.setId(UUID.fromString(updatedPersonBean.getId()));
-			updatedPerson.setFirstName(updatedPersonBean.getFirstName());
-			updatedPerson.setLastName(updatedPersonBean.getLastName());
+			updatedPerson.setId(UUID.fromString(this.id));
+			updatedPerson.setFirstName(this.firstName);
+			updatedPerson.setLastName(this.lastName);
 			peopleService.updatePerson(updatedPerson);
 		} catch (PeopleException e) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getMessage());

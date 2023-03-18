@@ -6,12 +6,12 @@
 	<container qualifier="tomee" default="true">
 	</container>
 
-    <extension qualifier="drone">
-        <property name="instantiationTimeoutInSeconds">180</property>
-    </extension>
+	<extension qualifier="drone">
+		<property name="instantiationTimeoutInSeconds">180</property>
+	</extension>
 
-    <extension qualifier="webdriver">
-        <property name="browser">phantomjs</property>
-    </extension>
+	<extension qualifier="webdriver">
+		<property name="browser">phantomjs</property>
+	</extension>
 
 </arquillian>

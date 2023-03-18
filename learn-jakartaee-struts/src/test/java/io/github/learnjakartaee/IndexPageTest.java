@@ -30,7 +30,7 @@ import io.github.learnjakartaee.test.WebAppWarBuilder;
 public class IndexPageTest {
 
 	@Deployment
-	public static WebArchive createTestDeployment() {		
+	public static WebArchive createTestDeployment() {
 		return new WebAppWarBuilder("learn-jakartaee-jpa.war")
 				.packages("io.github.learnjakartaee")
 				.jsps()

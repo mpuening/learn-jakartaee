@@ -39,19 +39,19 @@ public class PingServiceTest {
 	@Inject
 	PingService pingService;
 
-    @Inject
-    @RestClient
-    // See microprofile-config.properties for url
-    private PingServiceClient pingServiceClient;
+	@Inject
+	@RestClient
+	// See microprofile-config.properties for url
+	private PingServiceClient pingServiceClient;
 
 	@Test
 	public void testPingService() {
 		assertNotNull(pingService);
-		
+
 		String response = pingService.ping().toString();
 		assertEquals("{greeting=Hello}", response);
 	}
-	
+
 	@Test
 	public void testPingServiceClient() {
 		assertNotNull(pingServiceClient);
@@ -60,20 +60,17 @@ public class PingServiceTest {
 		assertEquals(200, response.getStatus());
 		assertEquals("{\"greeting\":\"Hello\"}", response.readEntity(String.class));
 	}
-	
+
 	@Test
 	public void testPingServiceUsingRestEasy() throws MalformedURLException {
 		assertNotNull(baseURL);
-		
-		Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(new URL(baseURL, "api/ping").toExternalForm());
 
-        try (final Response response = target
-        		.request()
-                .accept(MediaType.APPLICATION_JSON)
-                .get()) {
-    		assertEquals(200, response.getStatus());
-    		assertEquals("{\"greeting\":\"Hello\"}", response.readEntity(String.class));
-        }
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(new URL(baseURL, "api/ping").toExternalForm());
+
+		try (final Response response = target.request().accept(MediaType.APPLICATION_JSON).get()) {
+			assertEquals(200, response.getStatus());
+			assertEquals("{\"greeting\":\"Hello\"}", response.readEntity(String.class));
+		}
 	}
 }

@@ -15,6 +15,13 @@ public class PropertiesConfiguration {
 	}
 
 	@Configuration
+	@Profile("local")
+	@PropertySource(value = { "classpath:application.properties", "classpath:application-local.properties" })
+	public static class LocalConfiguration {
+
+	}
+
+	@Configuration
 	@Profile("dev")
 	@PropertySource(value = { "classpath:application.properties", "classpath:application-dev.properties" })
 	public static class DevConfiguration {

@@ -1,27 +1,55 @@
 Learn Jakarta EE APIs
 =====================
 
-## JPA
+## JPA Web App
 
-After building the application, you can run this application with Open Liberty or
-Tom EE (via Cargo) using these commands from this `learn-jakartaee-jpa` directory:
+After building the application, you can run this application with various application servers using 
+the following commands from this `learn-jakartaee-jpa` directory:
+
+### Open Liberty
+
+To start Open Liberty, run this command:
 
 ```
-mvn liberty:stop && mvn liberty:run
-
-mvn cargo:run
+mvn -P liberty liberty:run
 ```
 
-Once Liberty has started open your browser to [index.jsp](http://localhost:9080/learn-jakartaee-jpa/index.jsp)
+Once Liberty has started, open your browser to:
+
+[http://localhost:9080/learn-jakartaee-jpa/index.jsp](http://localhost:9080/learn-jakartaee-jpa/index.jsp)
 
 ```
 Note: Sometimes Liberty goes into a seemingly infinite loop with errors building the data source.
 I do not know why. I just restart Liberty.
 ```
 
-If using Cargo, open your browser to [index.jsp](http://localhost:8080/learn-jakartaee-jpa/index.jsp)
+### Wildfly
 
-From that `index.jsp` page, you can go to a page that adds people to the database.
+To start Wildfly, run this command:
+
+```
+mvn -P wildfly cargo:run
+```
+
+Once Wildfly has started, open your browser to:
+
+[http://localhost:8080/learn-jakartaee-jpa/index.jsp](http://localhost:8080/learn-jakartaee-jpa/index.jsp)
+
+### TomEE
+
+To start TomEE, run this command:
+
+```
+mvn -P tomee tomee:run
+```
+
+Once TomEE has started, open your browser to:
+
+[http://localhost:8080/learn-jakartaee-jpa/index.jsp](http://localhost:8080/learn-jakartaee-jpa/index.jsp)
+
+## User Interface
+
+From the `index.jsp` page, you can go to a page that adds people to the database.
 
 ## Configuration
 
@@ -72,11 +100,7 @@ To run the Docker image, run this command:
 
 ```
 docker rm -f learn-jakartaee-jpa || true && docker run -d -p 9080:9080 --name learn-jakartaee-jpa io.github.learnjakartaee/learn-jakartaee-jpa
-
 ```
-## TODO
-
-How do I write a test case that does not require the server to be started?
 
 ## Alternative DataSource Configuration
 

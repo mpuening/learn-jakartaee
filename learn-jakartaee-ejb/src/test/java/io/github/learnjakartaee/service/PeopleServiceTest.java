@@ -42,7 +42,6 @@ public class PeopleServiceTest {
 		assertNotNull(person.getId());
 		assertEquals("Alice", person.getFirstName());
 		assertEquals("Alexander", person.getLastName());
-		System.out.println(person.getId());
 	}
 
 	@Test

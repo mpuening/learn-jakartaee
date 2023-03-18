@@ -46,9 +46,7 @@ public class WebAppWarBuilder {
 	}
 
 	public WebAppWarBuilder persistenceXml() {
-		//this.archive = archive.addAsManifestResource(new File("src/main/resources/META-INF/persistence.xml"));
-		//return addFiles("src/main/resources/META-INF", ".*persistence\\.xml$", "/WEB-INF/classes/META-INF");
-		this.archive = archive.addAsResource(new ClassLoaderAsset("META-INF/persistence.xml") , "META-INF/persistence.xml");
+		this.archive = archive.addAsResource(new ClassLoaderAsset("META-INF/persistence.xml"), "META-INF/persistence.xml");
 		return this;
 	}
 
@@ -88,10 +86,10 @@ public class WebAppWarBuilder {
 	public WebAppWarBuilder mavenDependencies() {
 		File[] dependencies = Maven.resolver()
 				.loadPomFromFile("pom.xml")
-		        .importCompileAndRuntimeDependencies()
-		        .resolve()
-		        .withTransitivity()
-		        .asFile();
+				.importCompileAndRuntimeDependencies()
+				.resolve()
+				.withTransitivity()
+				.asFile();
 		archive = archive.addAsLibraries(dependencies);
 		return this;
 	}

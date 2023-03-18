@@ -3,10 +3,7 @@ package io.github.learnjakartaee.test;
 import java.io.File;
 import java.io.PrintStream;
 
-import org.jboss.shrinkwrap.api.Filters;
-import org.jboss.shrinkwrap.api.GenericArchive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 public class RestApiWarBuilder {

@@ -39,7 +39,7 @@
 			<groupId>org.jboss.arquillian.junit5</groupId>
 			<artifactId>arquillian-junit5-container</artifactId>
 		</dependency>
- 
+
 		<!-- Embedded Microprofile Container -->
 		<dependency>
 			<groupId>org.apache.tomee</groupId>
