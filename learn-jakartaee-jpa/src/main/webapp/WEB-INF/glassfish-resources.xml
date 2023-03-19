@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+	<!-- GlassFish App Server Resources -->
+	
+	<jdbc-resource
+		jndi-name="jdbc/personDataSource"
+		pool-name="jdbcPersonDataSource"
+		object-type="user">
+	</jdbc-resource>
+
+	<jdbc-connection-pool
+		name="jdbcPersonDataSource"
+		res-type="javax.sql.DataSource" 
+		datasource-classname="org.apache.derby.jdbc.EmbeddedDataSource">
+
+		<!-- https://db.apache.org/derby/docs/10.1/publishedapi/org/apache/derby/jdbc/EmbeddedDataSource.html -->
+		<property name="databaseName" value="memory:persondb"/>
+		<property name="createDatabase" value="create"/> 
+
+		<property name="user" value="APP" />
+		<property name="password" value="" />
+	</jdbc-connection-pool>
+
+</resources>

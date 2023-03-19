@@ -61,6 +61,7 @@
 	<!-- To run application: -->
 	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-jpa -->
 	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-jpa -->
+	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-jpa -->
 	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-jpa -->
 
 </project>

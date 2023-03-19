@@ -48,8 +48,9 @@ public class PingServiceTest {
 	public void testPingService() {
 		assertNotNull(pingService);
 
-		String response = pingService.ping().toString();
-		assertEquals("{greeting=Hello}", response);
+		Response response = pingService.ping();
+		assertEquals(200, response.getStatus());
+		assertEquals("{greeting=Hello}", response.getEntity().toString());
 	}
 
 	@Test

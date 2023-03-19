@@ -35,6 +35,8 @@
 		<!-- Property is intended to be used in module dirs -->
 		<cargo-wildfly-script.dir>${project.basedir}/..</cargo-wildfly-script.dir>
 
+		<cargo-glassfish-runtime>glassfish7x</cargo-glassfish-runtime>
+
 		<!-- https://tomee.apache.org/master/docs/tomee-maven-plugin.html -->
 		<tomee-maven-plugin.version>9.0.0</tomee-maven-plugin.version>
 		<tomee-runtime.version>9.0.0</tomee-runtime.version>
@@ -109,7 +111,7 @@
 							<container>
 								<containerId>${cargo-wildfly-runtime}</containerId>
 								<systemProperties>
- 									<spring.profiles.active>local</spring.profiles.active>
+									<spring.profiles.active>local</spring.profiles.active>
 								</systemProperties>
 							</container>
 							<configuration>
@@ -117,9 +119,39 @@
 									<cargo.start.jvmargs>
 										--add-opens java.base/java.lang=ALL-UNNAMED
 										--add-opens java.base/java.util=ALL-UNNAMED
-										--add-opens=java.base/java.io=ALL-UNNAMED
+										--add-opens java.base/java.io=ALL-UNNAMED
 									</cargo.start.jvmargs>
 									<cargo.wildfly.script.cli.embedded>${cargo-wildfly-script.dir}/wildfly.cli</cargo.wildfly.script.cli.embedded>
+								</properties>
+							</configuration>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>glassfish</id>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- mvn -P glassfish cargo:run -->
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven3-plugin</artifactId>
+						<version>${cargo-maven-plugin.version}</version>
+						<configuration>
+							<container>
+								<containerId>${cargo-glassfish-runtime}</containerId>
+								<systemProperties>
+									<spring.profiles.active>local</spring.profiles.active>
+								</systemProperties>
+							</container>
+							<configuration>
+								<properties>
+									<cargo.start.jvmargs>
+										--add-opens java.base/java.lang=ALL-UNNAMED
+										--add-opens java.base/java.util=ALL-UNNAMED
+										--add-opens java.base/java.io=ALL-UNNAMED
+									</cargo.start.jvmargs>
 								</properties>
 							</configuration>
 						</configuration>
@@ -166,7 +198,7 @@
 					</argLine>
 				</configuration>
 			</plugin>
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 
 </project>

@@ -6,7 +6,19 @@
  
 	<persistence-unit name="jdbcPersonDataSource" transaction-type="JTA">
 
+		<!--
+			I could not find a name that would work across all app servers. Most
+			particularly, GlassFish does not believe EMF's leverage the resource-ref's
+			in web.xml, even though the other do. Open Liberty and WildFly do not
+			seem to have an application scope. So Open Liberty and WildFly and 
+			TomEE work with "java:comp/env/jdbc/personDataSource". And TomEE and
+			GlassFish work with "java:app/jdbc/personDataSource".  So I need to
+			research a solution that is happy across all the app servers.
+			When no <jta-data-source> is specified, the Default DataSource is used.
+			But I could not figure out how to set a custom default on GlassFish.
+		 -->
 		<jta-data-source>java:comp/env/jdbc/personDataSource</jta-data-source>
+<!-- 		<jta-data-source>java:app/jdbc/personDataSource</jta-data-source> -->
 
 		<class>io.github.learnjakartaee.model.Person</class>
 

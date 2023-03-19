@@ -158,14 +158,13 @@ commands:
 ```
 mvn -P liberty liberty:run
 mvn -P wildfly cargo:run
+mvn -P glassfish cargo:run
 mvn -P tomee tomee:run
 ```
 
-I tried to have Glassfish to the list, but I had nothing but trouble with it. What has
-happened with Glassfish? I see many people having similar poor experiences with it. But I will
-check back later with future versions to see if it can go back on the list. The various maven
-plugins (liberty, cargo, tomee) are used to perform the download of the app server and then deploy
-the apps. The maven plugin configuration is all included in the parent `pom.xml` file.
+The various maven plugins (liberty, cargo, tomee) are used to perform the download of the app
+server and then deploy the apps. The maven plugin configuration is all included in the parent
+`pom.xml` file.
 
 Running the test cases is almost just as easy. Again, no separate app server is required to
 be used. The test cases use TomEE as the embedded app server. So it is really easy to debug

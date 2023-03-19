@@ -18,15 +18,27 @@ Once Liberty has started, open your browser to:
 
 [http://localhost:9080/learn-jakartaee-jaxrs/index.html](http://localhost:9080/learn-jakartaee-jaxrs/index.html)
 
-### Wildfly
+### WildFly
 
-To start Wildfly, run this command:
+To start WildFly, run this command:
 
 ```
 mvn -P wildfly cargo:run
 ```
 
-Once Wildfly has started, open your browser to:
+Once WildFly has started, open your browser to:
+
+[http://localhost:8080/learn-jakartaee-jaxrs/index.html](http://localhost:8080/learn-jakartaee-jaxrs/index.html)
+
+### GlassFish
+
+To start GlassFish, run this command:
+
+```
+mvn -P glassfish cargo:run
+```
+
+Once GlassFish has started, open your browser to:
 
 [http://localhost:8080/learn-jakartaee-jaxrs/index.html](http://localhost:8080/learn-jakartaee-jaxrs/index.html)
 
