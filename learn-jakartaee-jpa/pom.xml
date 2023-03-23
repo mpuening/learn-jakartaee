@@ -16,13 +16,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<properties>
-		<repo.dir>${user.home}/.m2/repository</repo.dir>
-		<liberty.var.derbypath>${repo.dir}/org/apache/derby/derby/${derby.version}/derby-${derby.version}.jar</liberty.var.derbypath>
-		<liberty.var.derbyclientpath>${repo.dir}/org/apache/derby/derbyclient/${derby.version}/derbyclient-${derby.version}.jar</liberty.var.derbyclientpath>
-		<liberty.var.derbytoolspath>${repo.dir}/org/apache/derby/derbytools/${derby.version}/derbytools-${derby.version}.jar</liberty.var.derbytoolspath>
-		<liberty.var.derbysharedpath>${repo.dir}/org/apache/derby/derbyshared/${derby.version}/derbyshared-${derby.version}.jar</liberty.var.derbysharedpath>
-	</properties>
 	<!-- ================================================ -->
 	<dependencies>
 		<dependency>

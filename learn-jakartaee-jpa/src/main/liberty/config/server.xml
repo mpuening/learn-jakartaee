@@ -12,23 +12,11 @@
 	<httpEndpoint id="defaultHttpEndpoint"
 		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
 	
-	<library id="derby">
+	<library id="global">
 		<file name="${derbypath}" />
 		<file name="${derbyclientpath}" />
 		<file name="${derbytoolspath}" />
 		<file name="${derbysharedpath}" />
 	</library>
-
-	<!-- See persistence.xml and web.xml -->
-	<dataSource id="personDataSource"
-		jndiName="jdbc/personDataSource">
-		<jdbcDriver libraryRef="derby" />
-		<connectionManager minPoolSize="1"/>
-		<properties.derby.embedded
-			databaseName="memory:persondb"
-			createDatabase="create"
-			user="APP"
-			password="" />
-	</dataSource>
 
 </server>

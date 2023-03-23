@@ -47,10 +47,6 @@ Once GlassFish has started, open your browser to:
 
 [http://localhost:8080/learn-jakartaee-jpa/index.jsp](http://localhost:8080/learn-jakartaee-jpa/index.jsp)
 
-```
-Note: Make sure to check if persistence.xml uses a corresponding jndi-name for Glassfish
-```
-
 ### TomEE
 
 To start TomEE, run this command:
@@ -69,28 +65,11 @@ From the `index.jsp` page, you can go to a page that adds people to the database
 
 ## Configuration
 
-Liberty is configured from this file: `src/main/liberty/config/server.xml`
+The Data Source is configured in:
 
-It uses the Jakarta EE Web Profile with JNDI support. The database connection information
-is in this file. You will find that the `jdbc/personDataSource` connects to:
+`src/main/java/io/github/learnjakartaee/config/DataSourceConfiguration.java`
 
-```
-src/main/webapp/WEB-INF/ibm-bnd-web.xml
-```
-
-or
-
-```
-src/main/webapp/WEB-INF/resources.xml (TomEE)
-```
- 
-which connects to
-
-```
-src/main/webapp/WEB-INF/web.xml
-```
-
- which connects to
+The JNDI name defined in that class is used in:
 
 ```
 src/main/resources/META-INF/persistence.xml
@@ -101,6 +80,11 @@ which connects to
 ```
 PeopleService.java (@PersistenceContext)
 ```
+
+While most app servers can use drivers bundled with the application, Liberty
+must be configured from a global library for drivers in:
+
+`src/main/liberty/config/server.xml`
 
 The `server.xml` has a `derbypath` variable that is set in `pom.xml`
 
@@ -118,56 +102,3 @@ To run the Docker image, run this command:
 docker rm -f learn-jakartaee-jpa || true && docker run -d -p 9080:9080 --name learn-jakartaee-jpa io.github.learnjakartaee/learn-jakartaee-jpa
 ```
 
-## Alternative DataSource Configuration
-
-In persistence.xml
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-	version="3.0">
- 
-	<persistence-unit name="jdbcPersonDataSource" transaction-type="JTA">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<properties>
-			<property name="jakarta.persistence.jdbc.driver"
-				value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:derby:memory:persondb;create=true" />
-
-			<property name="eclipselink.logging.level" value="INFO" />
-			<property name="eclipselink.target-database" value="DERBY" />
-			<property name="eclipselink.ddl-generation"
-				value="drop-and-create-tables" />
-		</properties>
-	</persistence-unit>
-	
-</persistence>
-```
-
-Or in DataSourceConfiguration.java
-
-```
-package io.github.learnjakartaee.config;
-
-import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.ejb.Startup;
-
-/**
- * If using, consider using ${ENV=DATABASE_USER} / ${ENV=DATABASE_PASSWORD}
- */
-@DataSourceDefinition(
- 	name = "jdbc/personDataSource",
- 	className = "org.apache.derby.jdbc.EmbeddedDataSource",
- 	url = "jdbc:derby:memory:persondb;create=true",
-	user = "APP",
-	password = "",
-	initialPoolSize = 1,
-	minPoolSize = 1
-)
-@Startup
-public class DataSourceConfiguration {
-}
-```

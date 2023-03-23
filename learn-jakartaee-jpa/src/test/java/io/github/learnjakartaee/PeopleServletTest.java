@@ -36,7 +36,6 @@ public class PeopleServletTest {
 				.jsps()
 				.webXml()
 				.persistenceXml()
-				.tomeeResources()
 				.mavenDependencies()
 				.build();
 	}

@@ -12,7 +12,7 @@ public class PeopleService {
 
 	// See persistence.xml for name
 	@PersistenceContext(unitName = "jdbcPersonDataSource")
-    EntityManager entityManager;
+	EntityManager entityManager;
 	
 	public List<Person> getPeople() {
 		return entityManager.createQuery("SELECT p FROM Person p", Person.class).getResultList();
