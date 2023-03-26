@@ -9,6 +9,12 @@
 #
 /subsystem=undertow/application-security-domain=other:write-attribute(name=integrated-jaspi,value=false)
 
+#
+# Add Microprofile Health sub-system, which is not include by default anymore
+#
+/extension=org.wildfly.extension.microprofile.health-smallrye:add
+/subsystem=microprofile-health-smallrye:add
+/subsystem=microprofile-health-smallrye:write-attribute(name=security-enabled,value=false)
 
 ################
 #

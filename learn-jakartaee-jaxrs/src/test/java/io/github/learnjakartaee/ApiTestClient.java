@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.service;
+package io.github.learnjakartaee;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -13,10 +13,21 @@ import jakarta.ws.rs.core.Response;
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface PingServiceClient {
+public interface ApiTestClient {
+
+	@GET
+	@Path("/health/started")
+	Response healthStarted();
+
+	@GET
+	@Path("/health/ready")
+	Response healthReady();
+
+	@GET
+	@Path("/health/live")
+	Response healthLive();
 
 	@GET
 	@Path("/ping")
 	Response ping();
-
 }

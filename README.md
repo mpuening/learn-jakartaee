@@ -182,8 +182,6 @@ I'll continue to investigate module settings. I am not well versed with the Java
 TODO
 ====
 
-Learn more from https://github.com/OpenLiberty/liberty-bikes and https://openliberty.io/blog/2021/09/24/liberty-bikes.html
-
 Ideas
 * learn-jakartaee-jpa-ejb
 * learn-jakartaer-ldap-server
@@ -191,7 +189,8 @@ Ideas
 * learn-jakartaee-jaxws
 * learn-jakartaee-jms
 
-Additional Information
-======================
-
-https://hantsy.gitbook.io/java-ee-8-by-example/
+Learn from
+* https://github.com/OpenLiberty/liberty-bikes and https://openliberty.io/blog/2021/09/24/liberty-bikes.html
+* https://hantsy.gitbook.io/java-ee-8-by-example/
+* https://github.com/phillip-kruger/microprofile-demo
+* https://github.com/apache/tomee/tree/main/examples

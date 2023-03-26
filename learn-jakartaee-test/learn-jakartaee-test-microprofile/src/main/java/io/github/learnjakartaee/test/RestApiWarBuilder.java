@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintStream;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 public class RestApiWarBuilder {
@@ -26,6 +27,11 @@ public class RestApiWarBuilder {
 
 	public RestApiWarBuilder webXml() {
 		this.archive = archive.addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"));
+		return this;
+	}
+
+	public RestApiWarBuilder persistenceXml() {
+		this.archive = archive.addAsResource(new ClassLoaderAsset("META-INF/persistence.xml"), "META-INF/persistence.xml");
 		return this;
 	}
 
