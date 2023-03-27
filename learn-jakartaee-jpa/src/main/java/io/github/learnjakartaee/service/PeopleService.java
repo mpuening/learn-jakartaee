@@ -16,7 +16,7 @@ public class PeopleService {
 	
 	public List<Person> getPeople() {
 		return entityManager.createQuery("SELECT p FROM Person p", Person.class).getResultList();
-    }
+	}
 
 	public Person addPerson(String name) {
 		Person newPerson = new Person();

@@ -9,12 +9,12 @@ import org.openqa.selenium.support.FindBy;
 @Location("")
 public class IndexPage {
 
-    @FindBy(id = "message")
-    private WebElement message;
+	@FindBy(id = "message")
+	private WebElement message;
 
-    public void assertPageLoaded() {
-    	assertEquals("Hello, thank you for visiting...", message.getText());
-    }
+	public void assertPageLoaded() {
+	assertEquals("Hello, thank you for visiting...", message.getText());
+	}
 }
 
 

@@ -71,17 +71,13 @@ public class LoginBean {
 		}
 	}
 
-    protected HttpServletRequest getHttpRequestFromFacesContext() {
-        return (HttpServletRequest) facesContext
-                .getExternalContext()
-                .getRequest();
-    }
+	protected HttpServletRequest getHttpRequestFromFacesContext() {
+		return (HttpServletRequest) facesContext.getExternalContext().getRequest();
+	}
 
-    protected HttpServletResponse getHttpResponseFromFacesContext() {
-        return (HttpServletResponse) facesContext
-                .getExternalContext()
-                .getResponse();
-    }
+	protected HttpServletResponse getHttpResponseFromFacesContext() {
+		return (HttpServletResponse) facesContext.getExternalContext().getResponse();
+	}
 
 	public Principal getPrincipal() {
 		return securityContext.getCallerPrincipal();

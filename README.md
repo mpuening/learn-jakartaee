@@ -188,6 +188,7 @@ Ideas
 * learn-jakartaee-auth-server
 * learn-jakartaee-jaxws
 * learn-jakartaee-jms
+* YAML Config
 
 Learn from
 * https://github.com/OpenLiberty/liberty-bikes and https://openliberty.io/blog/2021/09/24/liberty-bikes.html
