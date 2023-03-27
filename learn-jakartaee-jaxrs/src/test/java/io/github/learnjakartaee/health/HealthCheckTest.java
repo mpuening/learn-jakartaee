@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import io.github.learnjakartaee.BaseTestCase;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
 @ExtendWith(ArquillianExtension.class)
@@ -26,11 +28,16 @@ public class HealthCheckTest extends BaseTestCase {
 		return commonTestDeployment();
 	}
 
+	@Inject
+	@RestClient
+	// See microprofile-config.properties for url
+	protected HealthCheckTestClient healthCheckTestClient;
+
 	@Test
 	public void testHealthStarted() {
-		assertNotNull(apiTestClient);
+		assertNotNull(healthCheckTestClient);
 
-		Response response = apiTestClient.healthStarted();
+		Response response = healthCheckTestClient.healthStarted();
 		assertEquals(200, response.getStatus());
 		with(response.readEntity(String.class))
 				.assertThat("$.status", is("UP"))
@@ -42,9 +49,9 @@ public class HealthCheckTest extends BaseTestCase {
 
 	@Test
 	public void testHealthReady() {
-		assertNotNull(apiTestClient);
+		assertNotNull(healthCheckTestClient);
 
-		Response response = apiTestClient.healthReady();
+		Response response = healthCheckTestClient.healthReady();
 		assertEquals(200, response.getStatus());
 		with(response.readEntity(String.class))
 				.assertThat("$.status", is("UP"))
@@ -56,9 +63,9 @@ public class HealthCheckTest extends BaseTestCase {
 
 	@Test
 	public void testHealthLive() {
-		assertNotNull(apiTestClient);
+		assertNotNull(healthCheckTestClient);
 
-		Response response = apiTestClient.healthLive();
+		Response response = healthCheckTestClient.healthLive();
 		assertEquals(200, response.getStatus());
 		with(response.readEntity(String.class))
 				// Super busy CI runners have too little resources, may cause DOWN

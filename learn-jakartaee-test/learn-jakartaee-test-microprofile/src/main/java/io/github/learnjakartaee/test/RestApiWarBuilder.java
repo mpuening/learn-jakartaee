@@ -1,6 +1,5 @@
 package io.github.learnjakartaee.test;
 
-import java.io.File;
 import java.io.PrintStream;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -21,17 +20,17 @@ public class RestApiWarBuilder {
 	}
 
 	public RestApiWarBuilder beansXml() {
-		this.archive = archive.addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"));
-		return this;
-	}
-
-	public RestApiWarBuilder webXml() {
-		this.archive = archive.addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"));
+		this.archive = archive.addAsManifestResource(new ClassLoaderAsset("META-INF/beans.xml"), "beans.xml");
 		return this;
 	}
 
 	public RestApiWarBuilder persistenceXml() {
-		this.archive = archive.addAsResource(new ClassLoaderAsset("META-INF/persistence.xml"), "META-INF/persistence.xml");
+		this.archive = archive.addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
+		return this;
+	}
+
+	public RestApiWarBuilder indexHtml() {
+		this.archive = archive.addAsWebInfResource(new ClassLoaderAsset("index.html"), "classes/index.html");
 		return this;
 	}
 

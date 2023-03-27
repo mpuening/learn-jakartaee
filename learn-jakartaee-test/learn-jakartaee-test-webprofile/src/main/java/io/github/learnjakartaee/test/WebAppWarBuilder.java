@@ -46,7 +46,7 @@ public class WebAppWarBuilder {
 	}
 
 	public WebAppWarBuilder persistenceXml() {
-		this.archive = archive.addAsResource(new ClassLoaderAsset("META-INF/persistence.xml"), "META-INF/persistence.xml");
+		this.archive = archive.addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
 		return this;
 	}
 

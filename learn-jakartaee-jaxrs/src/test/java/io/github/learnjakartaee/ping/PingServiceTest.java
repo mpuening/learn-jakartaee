@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.service;
+package io.github.learnjakartaee.ping;
 
 import static com.jayway.jsonassert.JsonAssert.with;
 
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -35,6 +36,11 @@ public class PingServiceTest extends BaseTestCase {
 	@Inject
 	PingService pingService;
 
+	@Inject
+	@RestClient
+	// See microprofile-config.properties for url
+	protected PingTestClient pingTestClient;
+
 	@Test
 	public void testPingService() {
 		assertNotNull(pingService);
@@ -46,9 +52,9 @@ public class PingServiceTest extends BaseTestCase {
 
 	@Test
 	public void testPingServiceClient() {
-		assertNotNull(apiTestClient);
+		assertNotNull(pingTestClient);
 
-		Response response = apiTestClient.ping();
+		Response response = pingTestClient.ping();
 		assertEquals(200, response.getStatus());
 		with(response.readEntity(String.class)).assertThat("$.greeting", is("HelloTest"));
 	}

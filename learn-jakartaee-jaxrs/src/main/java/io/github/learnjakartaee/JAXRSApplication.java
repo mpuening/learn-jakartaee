@@ -7,7 +7,7 @@ import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
 @OpenAPIDefinition(info = @Info(title = "Learn Jakarta EE JAX-RS", version = "1.0.0"))
-@ApplicationPath("api")
-public class JAXRSConfiguration extends Application {
+@ApplicationPath("")
+public class JAXRSApplication extends Application {
 
 }
