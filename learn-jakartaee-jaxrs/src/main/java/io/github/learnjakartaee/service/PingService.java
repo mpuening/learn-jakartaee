@@ -3,6 +3,7 @@ package io.github.learnjakartaee.service;
 import java.util.Map;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -21,6 +22,7 @@ public class PingService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(description = "Ping Response")
 	public Response ping() {
 		Map<String, Object> data = Map.of("greeting", greeting);
 		return Response.status(Status.OK).entity(data).build();

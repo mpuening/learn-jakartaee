@@ -181,6 +181,9 @@
 							<args>-Dspring.profiles.active=local --add-opens java.base/java.lang=ALL-UNNAMED</args>
 							<systemVariables>
 								<tomee.mp.scan>all</tomee.mp.scan>
+								<!-- TomEE does not use the usual location -->
+								<mp.openapi.servers>/${artifactId}</mp.openapi.servers>
+								<openapi.ui.yamlUrl>/${artifactId}/openapi</openapi.ui.yamlUrl>
 							</systemVariables>
 							<context>${project.artifactId}</context>
 						</configuration>

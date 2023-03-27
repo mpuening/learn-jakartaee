@@ -16,6 +16,12 @@
 /subsystem=microprofile-health-smallrye:add
 /subsystem=microprofile-health-smallrye:write-attribute(name=security-enabled,value=false)
 
+#
+# Add Microprofile OpenAPI sub-system, which is not include by default
+#
+/extension=org.wildfly.extension.microprofile.openapi-smallrye:add
+/subsystem=microprofile-openapi-smallrye:add
+
 ################
 #
 # In the example apps that use custom Identity Stores, Wildfly requires that the Integrated JASPI be
