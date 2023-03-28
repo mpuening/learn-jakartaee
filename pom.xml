@@ -55,6 +55,7 @@
 	<modules>
 		<module>learn-jakartaee-ejb</module>
 		<module>learn-jakartaee-jaxrs</module>
+		<module>learn-jakartaee-jaxws</module>
 		<module>learn-jakartaee-jsp</module>
 		<module>learn-jakartaee-jpa</module>
 		<module>learn-jakartaee-jsf</module>

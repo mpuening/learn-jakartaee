@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="jaxws">
+
+	<featureManager>
+		<feature>jakartaee-9.1</feature>
+	</featureManager>
+
+	<variable name="default.http.port" defaultValue="9080" />
+	<variable name="default.https.port" defaultValue="9443" />
+
+	<httpEndpoint id="defaultHttpEndpoint"
+		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
+
+</server>

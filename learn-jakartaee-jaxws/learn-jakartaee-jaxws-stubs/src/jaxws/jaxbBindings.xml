@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+	version="3.0">
+
+	<jaxb:globalBindings>
+		<jaxb:javaType xmlType="xs:dateTime" name="java.util.Date"
+			parseMethod="io.github.learnjakartaee.ws.adapters.DataTypeAdapter.parseDateTime"
+			printMethod="io.github.learnjakartaee.ws.adapters.DataTypeAdapter.printDateTime" />
+		<jaxb:javaType xmlType="xs:date" name="java.util.Date"
+			parseMethod="io.github.learnjakartaee.ws.adapters.DataTypeAdapter.parseDate"
+			printMethod="io.github.learnjakartaee.ws.adapters.DataTypeAdapter.printDate" />
+	</jaxb:globalBindings>
+
+</jaxb:bindings>

@@ -34,6 +34,11 @@ to store new records in the database.
 This Microprofile 5 project is a super simple REST API containing just a ping service.
 But at least it shows how Swagger UI is built-in to Open Liberty.
 
+## [`learn-jakartaee-jaxws`](./learn-jakartaee-jaxws)
+
+This project implements a SOAP-based Web Service. It uses a WSDL-first philosphy and
+includes a projects to creates the stubs that is used in server and client project.
+
 ## [`learn-jakartaee-struts`](./learn-jakartaee-struts)
 
 This project is an Apache Struts 1.3 application. Even though Apache Struts is no longer 
@@ -186,7 +191,6 @@ Ideas
 * learn-jakartaee-jpa-ejb
 * learn-jakartaer-ldap-server
 * learn-jakartaee-auth-server
-* learn-jakartaee-jaxws
 * learn-jakartaee-jms
 * YAML Config
 
