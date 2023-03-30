@@ -1,6 +1,7 @@
 package io.github.learnjakartaee.config;
 
 import java.io.InputStream;
+import java.net.URI;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
@@ -20,7 +21,7 @@ public class WebConfiguration {
 	@Produces(MediaType.TEXT_HTML)
 	@Operation(hidden = true)
 	public Response slash() {
-		return indexHtml();
+		return Response.seeOther(URI.create("/index.html")).build();
 	}
 	
 	@Path("index.html")

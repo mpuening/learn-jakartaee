@@ -33,7 +33,11 @@ public class WebTest extends BaseTestCase {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(new URL(baseURL, "").toExternalForm());
-		assertPageResponse(target);
+		try (final Response response = target.request().get()) {
+			assertEquals(303, response.getStatus());
+			String location = response.getHeaderString("Location");
+			assertTrue(location.contains("index.html"));
+		}
 	}
 
 	@Test
@@ -42,10 +46,6 @@ public class WebTest extends BaseTestCase {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(new URL(baseURL, "index.html").toExternalForm());
-		assertPageResponse(target);
-	}
-
-	private void assertPageResponse(WebTarget target) {
 		try (final Response response = target.request().get()) {
 			assertEquals(200, response.getStatus());
 			String body = response.readEntity(String.class);
