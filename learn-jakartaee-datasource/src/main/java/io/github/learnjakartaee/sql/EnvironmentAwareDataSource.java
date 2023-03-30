@@ -2,9 +2,25 @@ package io.github.learnjakartaee.sql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ * This is an Hikari DataSource extension that is capable of looking up database
+ * connection information from environment variables or system properties.
+ * Variable names are indicated by starting with '$'. Default values are
+ * supported by having a value coming after a ":" that is after the variable
+ * name. For example: $DB_USERNAME:username
+ *
+ * Much more could be added to this class such as supporting values from
+ * Microprofile Config sources, JNDI names, or encryption. Also, not added to
+ * this class are setters to externalize the connection pool settings, or having
+ * a validation SQL statement. But all that should be fairly easy to add. I just
+ * don't need it for this project.
+ *
+ * See the test DataSourceConfiguration class for example usage.
+ */
 public class EnvironmentAwareDataSource extends HikariDataSource {
 
 	@Override
@@ -46,8 +62,6 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 		return value;
 	}
 
-
-
 	// ==========================================
 	// Bootstrap logic
 	// ==========================================
@@ -55,7 +69,7 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	private static boolean isPoolStarted = false;
 	private static int tries = 3;
 
-	protected void warmConnectionPool() {
+	protected void bootstrapConnectionPool() {
 		while (!isPoolStarted && tries > 0) {
 			try (Connection connection = super.getConnection()) {
 				connection.getMetaData();
@@ -66,12 +80,10 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 		}
 	}
 
-	/**
-	 * Try to bootstrap connection pool and not return bad connections.
-	 */
 	@Override
 	public Connection getConnection() throws SQLException {
-		warmConnectionPool();
+		// Try to bootstrap connection pool and not return bad connections.
+		bootstrapConnectionPool();
 		return super.getConnection();
 	}
 
@@ -79,9 +91,14 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	public Connection getConnection(String username, String password) throws SQLException {
 		// Hikari doesn't support new auth connections (called by Wildfly)
 
-		// username = lookupValue(username);
-		// password = lookupValue(password);
-		return getConnection();
+		username = lookupValue(username);
+		password = lookupValue(password);
+		if (Objects.equals(username, getUsername()) && Objects.equals(password, getPassword())) {
+			// Allow it if same from initial config
+			return getConnection();
+		}
+		// This will likely fail
+		return super.getConnection(username, password);
 	}
 
 	// ==========================================
@@ -107,6 +124,6 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	}
 
 	public void setCreate(String create) {
-		// Glassfish wants to invoke this method
+		// GlassFish wants to invoke this method
 	}
 }

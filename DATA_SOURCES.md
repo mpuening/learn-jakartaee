@@ -2,7 +2,8 @@ Learn Jakarta EE Data Sources
 =============================
 
 This document contains the approaches one may take to configure data sources
-in a Jakarta EE application.
+in a Jakarta EE application. The projects in this repository are using the
+fifth approach in this document.
 
 [1] Using @DataSourceDefinition
 ===========================
@@ -81,7 +82,7 @@ a position you want to be in,
 
 [2] Using persistence.xml
 =====================
-The schema for `persistence.xml` now includes a way to specify a database connection like so:
+The schema for `persistence.xml` includes a way to specify a database connection like so:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -147,7 +148,7 @@ rebuilding the application.
 
 [4] Using App Server Specific Configuration
 =======================================
-This approach is the original one. To begin, an application defines a outlet in `web.xml` like so:
+This approach is the original "Java EE" one. To begin, an application defines a outlet in `web.xml` like so:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -167,7 +168,7 @@ This approach is the original one. To begin, an application defines a outlet in 
 
 That outlet now needs to be plugged by each app server and their approaches are different. But most
 importantly, that configuration can be external to the WAR file, meaning code does not need to be
-changed. This makes this approach best. For convenience, configuration files can be included with
+changed. This makes this approach good. For convenience, configuration files can be included with
 the code. This approach is described below:
 
 Open Liberty
@@ -341,8 +342,9 @@ Furthermore, their Entity Manager Factory system is not implemented to have visi
 to the `resource-ref` names in `web.xml`. This make GlassFish a thorn in the side of
 anyone trying to create an app that can work in any app server.
 
-Is it for this reason, that this project went with the `@DataSourceConfiguration` approach
-so that people wanting to run the code need not change any code.
+Is it for this reason, that this project went with the `@DataSourceConfiguration` with a
+custom `DataSource` approach (see below) so that people wanting to run the code need not
+change any code.
 
 Connecting the Dots
 -------------------
@@ -445,9 +447,13 @@ As an example, see `wildfly.cli` how it set system properties to be used. No one
 to re-compile the code to use a different database, assuming the app contains the 
 proper database drivers.
 
+But that is just one implementation. Another implementation might be to delegate to
+another DataSource looked up via JNDI. This approach would be useful to get around the
+GlassFish conundrum mentioned above.
+
 An important Open Liberty note is that the data source class must exist in its global
 library path, and not just WEB-INF lib. So one will need to reference the datasource
 project along with the Hikari and SLF4J jar files in the server.xml.
 
-I did not fully complete the data source class to test support for the Hikari connection
-pool properties. But that is not a difficult task.
+As far as Hikari goes, I did not fully complete the data source class to have support
+for the Hikari connection pool configuration properties. But that is not a difficult task.
