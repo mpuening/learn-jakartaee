@@ -4,11 +4,9 @@ Learn Jakarta EE Data Sources
 This document contains the approaches one may take to configure data sources
 in a Jakarta EE application.
 
-Using @DataSourceDefinition
+[1] Using @DataSourceDefinition
 ===========================
-This is currently the way data sources are configured in this project. The reason
-is that it provides the minimum amount of files and works across all the app
-servers tested in this project. Here is a sample file:
+This is a convenient way to set up a database in a Java file. Here is a sample file:
 
 ```
 package io.github.learnjakartaee.config;
@@ -25,7 +23,7 @@ import jakarta.ejb.Startup;
 		properties = {
 				"createDatabase=create"
 		})
-@Singleton
+@@ApplicationScoped
 public class DataSourceConfiguration {
 
 	@Resource(lookup="java:app/env/jdbc/appDataSource")
@@ -81,7 +79,7 @@ https://dplatz.de/blog/2018/self-contained-jee-app.html
 Having to re-build an application to adjust connection information or pool settings is not
 a position you want to be in,
 
-Using persistence.xml
+[2] Using persistence.xml
 =====================
 The schema for `persistence.xml` now includes a way to specify a database connection like so:
 
@@ -110,10 +108,10 @@ The schema for `persistence.xml` now includes a way to specify a database connec
 </persistence>
 ```
 
-This shares similar pros and cons as the `@DataSourceCOnfiguration` but only defines a connection
+This shares similar pros and cons as the `@DataSourceConfiguration` but only defines a connection
 for use with an `EntityManager`.
 
-Using web.xml
+[3] Using web.xml
 =============
 The schema for `web.xml` also includes a way to specify a database connection like so:
 
@@ -147,7 +145,7 @@ Likewise, this approach hard codes connection information that may or may not be
 rebuilding the application.
 
 
-Using App Server Specific Configuration
+[4] Using App Server Specific Configuration
 =======================================
 This approach is the original one. To begin, an application defines a outlet in `web.xml` like so:
 
@@ -346,8 +344,8 @@ anyone trying to create an app that can work in any app server.
 Is it for this reason, that this project went with the `@DataSourceConfiguration` approach
 so that people wanting to run the code need not change any code.
 
-Summary
-=======
+Connecting the Dots
+-------------------
 
 If you got lost in how everything connects together, perhaps this helps.
 
@@ -401,3 +399,55 @@ EntityManager entityManager;
 
 The `server.xml` has a `derbypath` variable that is set in `pom.xml`
 
+[5] Using @DataSourceDefinition with Custom DataSource
+======================================================
+This approach gives developers the most control over how the DataSource is built.
+In other words, developers implement the `DataSource` interface and do what is needed.
+The `@DataSourceDefinition` annotation would reference that implementation like so:
+
+```
+@DataSourceDefinition(
+		name = "java:app/env/jdbc/appDataSource",
+		className = "io.github.learnjakartaee.sql.EnvironmentAwareDataSource",
+		url = "$DB_URL:jdbc:derby:memory:appdb;create=true",
+		user = "$DB_USERNAME:APP",
+		password = "$DB_PASSWORD:",
+		properties = {
+				"driverClassName=$DB_DRIVER:org.apache.derby.jdbc.EmbeddedDriver"
+		})
+@ApplicationScoped
+public class DataSourceConfiguration {
+
+	@Resource(lookup = "java:app/env/jdbc/appDataSource")
+	DataSource dataSource;
+
+	@Produces
+	@AppDataSource
+	public DataSource getDatasource() {
+		return dataSource;
+	}
+}
+```
+
+and the `DataSource` class might look as follows:
+
+```
+public class EnvironmentAwareDataSource extends HikariDataSource {
+}
+```
+
+In this case, the `EnvironmentAwareDataSource` class that is in the '`learn-jakartaee-datasource`
+project gives one a Hikari Connection Pool that can be configured across all app servers
+with connection information stored consistently in environment variables or system properties.
+Default values are also supported.
+
+As an example, see `wildfly.cli` how it set system properties to be used. No one needs
+to re-compile the code to use a different database, assuming the app contains the 
+proper database drivers.
+
+An important Open Liberty note is that the data source class must exist in its global
+library path, and not just WEB-INF lib. So one will need to reference the datasource
+project along with the Hikari and SLF4J jar files in the server.xml.
+
+I did not fully complete the data source class to test support for the Hikari connection
+pool properties. But that is not a difficult task.

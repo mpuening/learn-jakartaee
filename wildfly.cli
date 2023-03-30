@@ -1,8 +1,14 @@
-# Example script to configure Wildfly/Elytron
+# Example script to configure Wildfly
 
 #
-# Example: https://github.com/wildfly/quickstart/blob/main/http-custom-mechanism/configure-elytron.cli
+# System Properties
 #
+/system-property=DB_DRIVER:add(value="org.apache.derby.jdbc.EmbeddedDriver")
+/system-property=DB_URL:add(value="jdbc:derby:memory:appdb;create=true")
+/system-property=DB_USERNAME:add(value="APP")
+/system-property=DB_PASSWORD:add(value="")
+
+/system-property=spring.profiles.active:add(value="local")
 
 #
 # Disable integrated JASPI in the 'other' application security domain
@@ -58,3 +64,8 @@
 #
 # Finally, re-open your browser to the application URL
 #
+# Obviously it is better to automate the above.
+#
+# For more examples of cli, see:
+#
+# Example: https://github.com/wildfly/quickstart/blob/main/http-custom-mechanism/configure-elytron.cli

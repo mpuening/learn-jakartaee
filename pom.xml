@@ -50,6 +50,9 @@
 		<liberty.var.derbyclientpath>${repo.dir}/org/apache/derby/derbyclient/${derby.version}/derbyclient-${derby.version}.jar</liberty.var.derbyclientpath>
 		<liberty.var.derbytoolspath>${repo.dir}/org/apache/derby/derbytools/${derby.version}/derbytools-${derby.version}.jar</liberty.var.derbytoolspath>
 		<liberty.var.derbysharedpath>${repo.dir}/org/apache/derby/derbyshared/${derby.version}/derbyshared-${derby.version}.jar</liberty.var.derbysharedpath>
+		<liberty.var.datasourceutil>${repo.dir}/io/github/learnjakartaee/learn-jakartaee-datasource/${project.version}/learn-jakartaee-datasource-${project.version}.jar</liberty.var.datasourceutil>
+		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
+		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
 	</properties>
 
 	<modules>
@@ -61,6 +64,7 @@
 		<module>learn-jakartaee-jsf</module>
 		<module>learn-jakartaee-struts</module>
 		<module>learn-jakartaee-spring</module>
+		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-legacy-support</module>
 		<module>learn-jakartaee-test</module>
 	</modules>
@@ -119,7 +123,7 @@
 							<container>
 								<containerId>${cargo-wildfly-runtime}</containerId>
 								<systemProperties>
-									<spring.profiles.active>local</spring.profiles.active>
+									<!-- see wildfly.cli -->
 								</systemProperties>
 							</container>
 							<configuration>

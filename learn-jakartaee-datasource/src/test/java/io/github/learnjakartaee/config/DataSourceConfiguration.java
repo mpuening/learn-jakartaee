@@ -35,6 +35,7 @@ public class DataSourceConfiguration {
 	public void onStart(@Observes @Initialized(ApplicationScoped.class) Object unused) {
 		// It's not good practice to have an app be responsible to run migrations.
 		// But it is quite convenient.
-		FlywayMigration.run(dataSource, DataSourceConfiguration.class.getClassLoader());
+		FlywayMigration.run(getDatasource(), DataSourceConfiguration.class.getClassLoader());
 	}
+
 }

@@ -11,6 +11,7 @@ import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.Liveness;
 
+import io.github.learnjakartaee.sql.AppDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -19,6 +20,7 @@ import jakarta.inject.Inject;
 public class DatabaseCheck implements HealthCheck {
 
 	@Inject
+	@AppDataSource
 	DataSource dataSource;
 
 	@Override

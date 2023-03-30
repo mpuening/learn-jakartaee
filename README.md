@@ -69,6 +69,13 @@ Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerIn
 which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
 EE API. It's actually quite simple.
 
+## [`learn-jakartaee-datasource`](./learn-jakartaee-datasource)
+
+This project contains the database drivers along with an implementation of the Hikari
+Connection Pool that can be configured via environment variables or system properties.
+The named of the `DataSource` is `EnvironmentAwareDataSource` and is used in the projects
+that use a database.
+
 ## [`learn-jakartaee-legacy-support`](./learn-jakartaee-legacy-support)
 
 With the release of Jakarta EE 9, there will be old frameworks, such as Struts, that no longer work
