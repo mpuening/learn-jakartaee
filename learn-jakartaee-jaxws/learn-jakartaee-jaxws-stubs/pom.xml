@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>learn-jakartaee-jaxws-stubs</name>
-	<description>Learn Jakarta EE Test JAX-WS Stubs</description>
+	<description>Learn Jakarta EE JAX-WS Stubs</description>
 
 	<parent>
 		<groupId>io.github.learnjakartaee</groupId>

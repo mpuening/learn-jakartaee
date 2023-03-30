@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<name>learn-jakartaee-jaxws-server</name>
-	<description>Learn Jakarta EE Test JAX-WS Server</description>
+	<description>Learn Jakarta EE JAX-WS Server</description>
 
 	<parent>
 		<groupId>io.github.learnjakartaee</groupId>
