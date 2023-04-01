@@ -1,12 +1,13 @@
 package io.github.learnjakartaee.spring;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import io.github.learnjakartaee.spring.config.ComponentsConfiguration;
-import io.github.learnjakartaee.spring.config.WebMvcConfiguration;
-
+@Configuration
+@ComponentScan(basePackageClasses = AppInitializer.class)
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -24,7 +25,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] {
 
-				WebMvcConfiguration.class, ComponentsConfiguration.class
+				AppInitializer.class
 
 		};
 	}
