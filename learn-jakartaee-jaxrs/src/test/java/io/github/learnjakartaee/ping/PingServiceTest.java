@@ -25,6 +25,16 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+/**
+ * When running within Eclipse/IntelliJ, make sure to add VM args:
+ *
+ * --add-opens java.base/java.lang=ALL-UNNAMED
+ * --add-opens=java.base/java.io=ALL-UNNAMED
+ * --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+ *
+ * In Eclipse, the JRE configuration had a field for default VM args, so you
+ * need only to set it once and apply it for all test cases.
+ */
 @ExtendWith(ArquillianExtension.class)
 public class PingServiceTest extends BaseTestCase {
 
