@@ -23,6 +23,7 @@ public class FlywayMigration {
 				Flyway flyway = Flyway
 						.configure(loader)
 						.dataSource(dataSource)
+						.connectRetries(5)
 						.baselineOnMigrate(true)
 						.load();
 				MigrateResult result = flyway.migrate();

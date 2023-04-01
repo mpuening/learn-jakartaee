@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.zaxxer.hikari.HikariDataSource;
 
 /**
@@ -14,7 +17,7 @@ import com.zaxxer.hikari.HikariDataSource;
  * name. For example: $DB_USERNAME:username
  *
  * Much more could be added to this class such as supporting values from
- * Microprofile Config sources, JNDI names, or encryption. Also, not added to
+ * Micro-profile Config sources, JNDI names, or encryption. Also, not added to
  * this class are setters to externalize the connection pool settings, or having
  * a validation SQL statement. But all that should be fairly easy to add. I just
  * don't need it for this project.
@@ -22,6 +25,12 @@ import com.zaxxer.hikari.HikariDataSource;
  * See the test DataSourceConfiguration class for example usage.
  */
 public class EnvironmentAwareDataSource extends HikariDataSource {
+
+	private final Logger LOG = LoggerFactory.getLogger(EnvironmentAwareDataSource.class);
+
+	public EnvironmentAwareDataSource() {
+		this.setMinimumIdle(3);
+	}
 
 	@Override
 	public void setDriverClassName(String driverClassName) {
@@ -66,14 +75,14 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	// Bootstrap logic
 	// ==========================================
 
-	private static boolean isPoolStarted = false;
 	private static int tries = 3;
 
 	protected void bootstrapConnectionPool() {
-		while (!isPoolStarted && tries > 0) {
+		while (!isRunning() && tries > 0) {
+			LOG.info("HIKARI DB CONNECTION POOL FILLING...");
 			try (Connection connection = super.getConnection()) {
 				connection.getMetaData();
-				isPoolStarted = true;
+				LOG.info("HIKARI DB CONNECTION POOL RUNNING? {}", isRunning());
 			} catch (SQLException e) {
 			}
 			tries--;
