@@ -19,15 +19,8 @@ So what is in this project?
 
 Here are the sub projects:
 
-## [`learn-jakartaee-jsp`](./learn-jakartaee-jsp)
-
-This project contains simple Servlet and JSP app. It is just a simple demo of a servlet 
-that supports GET and POST.
-
-## [`learn-jakartaee-jpa`](./learn-jakartaee-jpa)
-
-This project focuses on accessing a database using JPA. The user interface allows one 
-to store new records in the database.
+Web Service Examples
+====================
 
 ## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
 
@@ -38,6 +31,19 @@ But at least it shows how Swagger UI is built-in to Open Liberty.
 
 This project implements a SOAP-based Web Service. It uses a WSDL-first philosphy and
 includes a projects to creates the stubs that is used in server and client project.
+
+Web Application Examples
+========================
+
+## [`learn-jakartaee-jsp`](./learn-jakartaee-jsp)
+
+This project contains simple Servlet and JSP app. It is just a simple demo of a servlet 
+that supports GET and POST.
+
+## [`learn-jakartaee-jpa`](./learn-jakartaee-jpa)
+
+This project focuses on accessing a database using JPA. The user interface allows one 
+to store new records in the database.
 
 ## [`learn-jakartaee-struts`](./learn-jakartaee-struts)
 
@@ -68,6 +74,19 @@ on the Jakarta EE APIs, and still how easy it is to configure an application wit
 Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerInitializer`
 which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
 EE API. It's actually quite simple.
+
+Playground Projects
+===================
+
+## [`learn-jakartaee-cdi`](./learn-jakartaee-cdi)
+
+This project was used to better understand the differences between Spring and CDI
+Dependency Injection. One can imagine the controller/service/repository design
+pattern, so how is it implemented in both Spring and CDI.
+
+
+Utility Projects
+================
 
 ## [`learn-jakartaee-datasource`](./learn-jakartaee-datasource)
 
@@ -200,6 +219,8 @@ Ideas
 * learn-jakartaee-auth-server
 * learn-jakartaee-jms
 * YAML Config
+* Apache DeltaSpike
+* Logging
 
 Learn from
 * https://github.com/OpenLiberty/liberty-bikes and https://openliberty.io/blog/2021/09/24/liberty-bikes.html

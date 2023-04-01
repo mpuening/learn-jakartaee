@@ -64,6 +64,7 @@
 		<module>learn-jakartaee-jsf</module>
 		<module>learn-jakartaee-struts</module>
 		<module>learn-jakartaee-spring</module>
+		<module>learn-jakartaee-cdi</module>
 		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-legacy-support</module>
 		<module>learn-jakartaee-test</module>
@@ -210,6 +211,9 @@
 					</systemPropertyVariables>
 					<argLine>
 						--add-opens java.base/java.lang=ALL-UNNAMED
+						--add-opens java.base/java.util=ALL-UNNAMED
+						--add-opens java.base/java.io=ALL-UNNAMED
+						--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
 					</argLine>
 				</configuration>
 			</plugin>

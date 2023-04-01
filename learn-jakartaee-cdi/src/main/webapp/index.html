@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Hello World Jakarta EE</title>
+<style type="text/css">
+table, th, td {
+	border: 1px solid black;
+}
+
+th, td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+td {
+	vertical-align: top;
+}
+</style>
+</head>
+<body>
+	<h1>CDI versus Spring Comparison</h1>
+	<br>
+	<table>
+		<tr>
+			<th>CDI</th>
+			<th>Spring</th>
+		</tr>
+		<tr>
+			<td>
+			
+				<a href="cdi/clicks/app-click-count">App Click Count</a>
+				<br> <br>
+				<a href="cdi/clicks/request-click-count">Request Click Count</a>
+				<br> <br>
+				<a href="cdi/clicks/session-click-count">Session Click Count</a>
+				<br> <br>
+				<br> <br>
+				<a href="cdi/posts">Posts</a>
+				<br> <br>
+				<form action="cdi/posts" method="POST">
+					<input type="text" name="message">
+					<br>
+					<input type="submit" value="Post New Message">
+				</form>
+
+			</td>
+			<td>
+
+				<a href="spring/app-click-count">App Click Count</a>
+				<br> <br>
+				<a href="spring/request-click-count">Request Click Count</a>
+				<br> <br>
+				<a href="spring/session-click-count">Session Click Count</a>
+				<br> <br>
+				<br> <br>
+				<a href="spring/posts">Posts</a>
+				<br> <br>
+				<form action="spring/posts" method="POST">
+					<input type="text" name="message">
+					<br>
+					<input type="submit" value="Post New Message">
+				</form>
+
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
