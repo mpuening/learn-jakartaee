@@ -21,6 +21,7 @@
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
