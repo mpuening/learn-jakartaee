@@ -64,6 +64,7 @@
 		<module>learn-jakartaee-jsf</module>
 		<module>learn-jakartaee-struts</module>
 		<module>learn-jakartaee-spring</module>
+		<module>learn-jakartaee-ear</module>
 		<module>learn-jakartaee-cdi</module>
 		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-legacy-support</module>

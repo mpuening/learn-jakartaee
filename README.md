@@ -75,6 +75,14 @@ Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerIn
 which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
 EE API. It's actually quite simple.
 
+EAR Projects
+===================
+
+## [`learn-jakartaee-ear`](./learn-jakartaee-ear)
+
+This project is intended to eventually contain the above web projects. As is, it
+only currently contains the `learn-jakartaee-spring` project.
+
 Playground Projects
 ===================
 
@@ -83,7 +91,6 @@ Playground Projects
 This project was used to better understand the differences between Spring and CDI
 Dependency Injection. One can imagine the controller/service/repository design
 pattern, so how is it implemented in both Spring and CDI.
-
 
 Utility Projects
 ================

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>learn-jakartaee-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<name>learn-jakartaee-ear</name>
+	<description>Learn Jakarta EE - EAR</description>
+
+	<parent>
+		<groupId>io.github.learnjakartaee</groupId>
+		<artifactId>learn-jakartaee</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<!-- ================================================ -->
+	<dependencies>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-spring</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+	<!-- ================================================ -->
+
+	<!-- To run application: -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-spring/ -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-spring -->
+	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-spring -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-spring -->
+
+</project>
