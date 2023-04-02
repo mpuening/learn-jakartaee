@@ -17,7 +17,9 @@ NOTE! If you are looking for examples of Jakarta EE 8,
 So what is in this project?
 ===========================
 
-Here are the sub projects:
+Here are the sub projects as shown in this (To-Be) deployment diagram:
+
+![alt text](learn-jakartaee-docs/deployment.png "Deployment Diagram")
 
 Web Service Examples
 ====================

@@ -69,6 +69,7 @@
 		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-legacy-support</module>
 		<module>learn-jakartaee-test</module>
+		<!-- module>learn-jakartaee-docs</module -->
 	</modules>
 
 	<dependencyManagement>

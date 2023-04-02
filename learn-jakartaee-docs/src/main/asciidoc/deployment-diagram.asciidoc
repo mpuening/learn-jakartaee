@@ -1,0 +1,66 @@
+Learn Jakarta EE Deployment Model
+=================================
+////
+This file documents this projects deployment diagram that demonstrates various Jakara EE APIs.
+
+To install graphviz on a Mac, run: "brew install graphviz"
+
+PlantUML Documentation: http://plantuml.com/class-diagram
+
+////
+:description: Learn Jakarta EE Deployment Model
+:library: Asciidoctor
+ifdef::asciidoctor[]
+:source-highlighter: coderay
+endif::asciidoctor[]
+:idprefix:
+//:stylesheet: asciidoc.css
+:imagesdir: images
+//:backend: docbook45
+:backend: html5
+//:doctype: book
+//:sectids!:
+:plus: &#43;
+
+[role='lead']
+Below is the Learn Jakarta EE Deployment Model:
+
+## Deployment Diagram
+
+[plantuml,"deployment",png]
+----
+@startuml
+title Deployment Model
+actor "User" as user
+component learn-jakartaee-ear {
+	component learn-jakartaee-jsp as jsp {
+	}
+	component learn-jakartaee-jsf as jsf {
+	}
+	component learn-jakartaee-struts as struts {
+	}
+	component learn-jakartaee-spring as spring {
+	}
+	component "learn-jakartaee-jaxrs" as jaxrs {
+	}
+	component learn-jakartaee-jaxws as jaxws {
+	}
+	component "learn-jakartaee-ejb" as ejb {
+	}
+}
+database Database as db {
+}
+
+user --> spring
+user --> jsf
+user --> jsp
+user --> struts
+spring ------> jaxrs : REST
+jsf    ------> jaxws : SOAP
+struts ------> ejb : EJB
+jsp    ------> ejb : EJB
+jaxrs --> ejb : EJB
+jaxws --> ejb : EJB
+ejb   --> db : JPA/JDBC
+@enduml
+----
