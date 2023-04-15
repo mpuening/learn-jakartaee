@@ -10,6 +10,7 @@ import jakarta.ejb.Stateless;
 
 import io.github.learnjakartaee.model.Person;
 
+@Deprecated
 @Stateless
 public class PeopleService implements Serializable {
 

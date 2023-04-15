@@ -19,8 +19,10 @@ public class PeopleServiceTest {
 
 	@Deployment(testable = true)
 	public static JavaArchive createTestDeployment() {
-		return new EjbJarBuilder("learn-jakartaee-ejb")
+		return new EjbJarBuilder("learn-jakartaee-ejb.jar")
 				.packages("io.github.learnjakartaee")
+				.beansXml()
+				.persistenceXml()
 				.build();
 	}
 

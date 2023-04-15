@@ -34,41 +34,64 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 
 	@Override
 	public void setDriverClassName(String driverClassName) {
-		super.setDriverClassName(lookupValue(driverClassName));
+		if (driverClassName != null) {
+			super.setDriverClassName(evaluateExpression("driver", driverClassName));
+		}
 	}
 
 	@Override
 	public void setJdbcUrl(String jdbcUrl) {
-		super.setJdbcUrl(lookupValue(jdbcUrl));
+		if (jdbcUrl != null) {
+			super.setJdbcUrl(evaluateExpression("url", jdbcUrl));
+		}
 	}
 
+	/**
+	 * For GlassFish support, the username may appear as a delimited
+	 * username/password string. GlassFish does not invoke the setPassword setter
+	 * but instead call getConnection(u,p) which is not supported by Hikari.
+	 * Doubling up the username as a username/password pair allows us to check the
+	 * username and password in the getConnection(u,p) method against the configured
+	 * credentials.
+	 */
 	@Override
 	public void setUsername(String username) {
-		super.setUsername(lookupValue(username));
+		if (username != null && username.contains("/")) {
+			// Username appears as username/password pair
+			String[] credentials = username.split("/");
+			super.setUsername(evaluateExpression("username1/2", credentials[0]));
+			super.setPassword(evaluateExpression("password2/2", credentials.length > 1 ? credentials[1] : ""));
+		} else if (username != null) {
+			super.setUsername(evaluateExpression("username", username));
+		}
 	}
 
 	@Override
 	public void setPassword(String password) {
-		super.setPassword(lookupValue(password));
+		if (password != null) {
+			super.setPassword(evaluateExpression("password", password));
+		}
 	}
 
-	protected String lookupValue(String value) {
-		if (value != null && value.startsWith("$")) {
-			String key = value.substring(1);
+	protected String evaluateExpression(String property, String expression) {
+		LOG.info("Evaluate " + property + ": " + expression);
+		System.out.println("Evaluate " + property + ": " + expression);
+		if (expression != null && expression.startsWith("$")) {
+			String key = expression.substring(1);
 			String defaultValue = key;
-			int hasDefault = value.indexOf(':');
+			int hasDefault = expression.indexOf(':');
 			if (hasDefault >= 0) {
-				key = value.substring(1, hasDefault);
-				defaultValue = value.substring(hasDefault + 1);
+				key = expression.substring(1, hasDefault);
+				defaultValue = expression.substring(hasDefault + 1);
 			}
 			String envValue = System.getenv(key);
 			if (envValue != null) {
-				value = envValue;
+				expression = envValue;
 			} else {
-				value = System.getProperty(key, defaultValue);
+				expression = System.getProperty(key, defaultValue);
 			}
 		}
-		return value;
+		return expression;
 	}
 
 	// ==========================================
@@ -98,10 +121,18 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 
 	@Override
 	public Connection getConnection(String username, String password) throws SQLException {
-		// Hikari doesn't support new auth connections (called by Wildfly)
+		// Hikari doesn't support new auth connections (called by Wildfly/GlassFish)
 
-		username = lookupValue(username);
-		password = lookupValue(password);
+		if (username != null && username.contains("/")) {
+			// Username appears as username/password
+			String[] credentials = username.split("/");
+			username = evaluateExpression("username", credentials[0]);
+			password = evaluateExpression("password", credentials.length > 1 ? credentials[1] : "");
+		} else {
+			username = evaluateExpression("username", username);
+			password = evaluateExpression("password", password);
+		}
+		
 		if (Objects.equals(username, getUsername()) && Objects.equals(password, getPassword())) {
 			// Allow it if same from initial config
 			return getConnection();

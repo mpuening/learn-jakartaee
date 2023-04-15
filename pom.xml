@@ -108,6 +108,7 @@
 								<type>zip</type>
 							</runtimeArtifact>
 							<stripVersion>true</stripVersion>
+							<looseApplication>false</looseApplication>
 						</configuration>
 					</plugin>
 				</plugins>

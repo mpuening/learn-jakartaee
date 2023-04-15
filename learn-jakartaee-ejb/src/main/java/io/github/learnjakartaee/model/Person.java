@@ -3,6 +3,7 @@ package io.github.learnjakartaee.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Deprecated
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 3345968133996920537L;

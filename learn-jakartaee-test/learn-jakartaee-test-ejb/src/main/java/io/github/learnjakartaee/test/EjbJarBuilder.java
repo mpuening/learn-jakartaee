@@ -3,6 +3,7 @@ package io.github.learnjakartaee.test;
 import java.io.PrintStream;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 public class EjbJarBuilder {
@@ -15,6 +16,16 @@ public class EjbJarBuilder {
 
 	public EjbJarBuilder packages(String... packages) {
 		this.archive = archive.addPackages(true, packages);
+		return this;
+	}
+
+	public EjbJarBuilder beansXml() {
+		this.archive = archive.addAsManifestResource(new ClassLoaderAsset("META-INF/beans.xml"), "beans.xml");
+		return this;
+	}
+
+	public EjbJarBuilder persistenceXml() {
+		this.archive = archive.addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
 		return this;
 	}
 
