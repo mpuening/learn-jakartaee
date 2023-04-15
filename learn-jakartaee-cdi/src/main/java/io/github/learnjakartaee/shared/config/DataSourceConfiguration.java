@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import io.github.learnjakartaee.flyway.FlywayMigration;
 import io.github.learnjakartaee.sql.AppDataSource;
+import jakarta.annotation.ManagedBean;
 import jakarta.annotation.Resource;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -21,6 +22,7 @@ import jakarta.enterprise.inject.Produces;
 				"driverClassName=$DB_DRIVER:org.apache.derby.jdbc.EmbeddedDriver"
 		})
 @ApplicationScoped
+@ManagedBean
 public class DataSourceConfiguration {
 
 	@Resource(lookup = "java:app/env/jdbc/appDataSource")

@@ -22,7 +22,7 @@ public class JpaConfiguration {
 
 	@Bean
 	public EntityManager entityManager() throws NamingException {
-		// JNDI named defined in web.xml
+		// JNDI name defined in web.xml
 		Object entityManager = new JndiTemplate().lookup("java:comp/env/persistence/appPersistenceUnit");
 		return (EntityManager) entityManager;
 	}

@@ -28,7 +28,7 @@ public class PostRepository {
 		return query.getResultList();
 	}
 
-	public void publishPost(Post newPost) {
+	public void save(Post newPost) {
 		entityManager.persist(newPost);
 	}
 }

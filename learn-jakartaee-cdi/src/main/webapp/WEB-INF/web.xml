@@ -8,6 +8,7 @@
 		<welcome-file>/index.html</welcome-file>
 	</welcome-file-list>
 
+	<!-- Allow Spring to lookup persistence context -->
 	<persistence-context-ref>
 		<persistence-context-ref-name>persistence/appPersistenceUnit</persistence-context-ref-name>
 		<persistence-unit-name>appPersistenceUnit</persistence-unit-name>

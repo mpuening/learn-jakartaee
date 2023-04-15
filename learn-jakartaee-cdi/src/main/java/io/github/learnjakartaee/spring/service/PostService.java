@@ -29,6 +29,6 @@ public class PostService {
 		Post newPost = new Post();
 		newPost.setMessage(message);
 		newPost.setPublishDate(LocalDate.now());
-		postRepository.publishPost(newPost);
+		postRepository.save(newPost);
 	}
 }
