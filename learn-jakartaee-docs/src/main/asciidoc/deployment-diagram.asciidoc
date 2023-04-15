@@ -55,12 +55,12 @@ user --> spring
 user --> jsf
 user --> jsp
 user --> struts
-spring ------> jaxrs : REST
-jsf    ------> jaxws : SOAP
-struts ------> ejb : EJB
-jsp    ------> ejb : EJB
+spring ---> jaxrs : REST
+jsf    ---> jaxws : SOAP
+struts ---> ejb : EJB
+jsp    ---> ejb : EJB
 jaxrs --> ejb : EJB
 jaxws --> ejb : EJB
-ejb   --> db : JPA/JDBC
+ejb   --> db : JPA
 @enduml
 ----
