@@ -39,6 +39,8 @@ component learn-jakartaee-ear {
 	}
 	component learn-jakartaee-struts as struts {
 	}
+	component learn-jakartaee-mvc as mvc {
+	}
 	component learn-jakartaee-spring as spring {
 	}
 	component "learn-jakartaee-jaxrs" as jaxrs {
@@ -52,10 +54,12 @@ database Database as db {
 }
 
 user --> spring
+user --> mvc
 user --> jsf
 user --> jsp
 user --> struts
 spring ---> jaxrs : REST
+mvc    ---> jaxrs : REST
 jsf    ---> jaxws : SOAP
 struts ---> ejb : EJB
 jsp    ---> ejb : EJB

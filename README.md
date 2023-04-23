@@ -21,19 +21,6 @@ Here are the sub projects as shown in this (To-Be) deployment diagram:
 
 ![alt text](learn-jakartaee-docs/deployment.png "Deployment Diagram")
 
-Web Service Examples
-====================
-
-## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
-
-This Microprofile 5 project is a super simple REST API containing just a ping service.
-But at least it shows how Swagger UI is built-in to Open Liberty.
-
-## [`learn-jakartaee-jaxws`](./learn-jakartaee-jaxws)
-
-This project implements a SOAP-based Web Service. It uses a WSDL-first philosphy and
-includes a projects to creates the stubs that is used in server and client project.
-
 Web Application Examples
 ========================
 
@@ -63,6 +50,10 @@ Faces. Likewise, it features:
 3. Layout with navigation bar and side menus using Twitter Bootstrap CSS
 4. JSF Form Validation
 
+## [`learn-jakartaee-mvc`](./learn-jakartaee-mvc)
+
+TODO
+
 ## [`learn-jakartaee-spring`](./learn-jakartaee-spring)
 
 I did not want to include an example application that uses Spring, but in a conversation 
@@ -71,6 +62,19 @@ on the Jakarta EE APIs, and still how easy it is to configure an application wit
 Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerInitializer`
 which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
 EE API. It's actually quite simple.
+
+Web Service Examples
+====================
+
+## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
+
+This Microprofile 5 project is a super simple REST API containing just a ping service.
+But at least it shows how Swagger UI is built-in to Open Liberty.
+
+## [`learn-jakartaee-jaxws`](./learn-jakartaee-jaxws)
+
+This project implements a SOAP-based Web Service. It uses a WSDL-first philosphy and
+includes a projects to creates the stubs that is used in server and client project.
 
 EAR Projects
 ===================
@@ -218,9 +222,9 @@ TODO
 ====
 
 Ideas
-* learn-jakartaee-jpa-ejb
 * learn-jakartaer-ldap-server
 * learn-jakartaee-auth-server
+* learn-jakartaee-mvc
 * learn-jakartaee-jms
 * YAML Config
 * Apache DeltaSpike
