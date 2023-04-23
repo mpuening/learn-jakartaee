@@ -42,11 +42,6 @@ Web Application Examples
 This project contains simple Servlet and JSP app. It is just a simple demo of a servlet 
 that supports GET and POST.
 
-## [`learn-jakartaee-jpa`](./learn-jakartaee-jpa)
-
-This project focuses on accessing a database using JPA. The user interface allows one 
-to store new records in the database.
-
 ## [`learn-jakartaee-struts`](./learn-jakartaee-struts)
 
 This project is an Apache Struts 1.3 application. Even though Apache Struts is no longer 
