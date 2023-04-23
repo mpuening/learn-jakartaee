@@ -20,12 +20,13 @@ import jakarta.enterprise.inject.Produces;
  */
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.EnvironmentAwareDataSource",
-		url = "$DB_URL:jdbc:derby:memory:appdb;create=true",
-		user = "$DB_USERNAME:APP/$DB_PASSWORD:",
-		password = "$DB_PASSWORD:",
+		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
+		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
+		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP' / "
+				+ "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
 		properties = {
-				"driverClassName=$DB_DRIVER:org.apache.derby.jdbc.EmbeddedDriver"
+				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
 		})
 @ApplicationScoped
 @ManagedBean

@@ -17,6 +17,10 @@
 		<file name="${derbyclientpath}" />
 		<file name="${derbytoolspath}" />
 		<file name="${derbysharedpath}" />
+		<file name="${datasourceutil}" />
+		<file name="${hikaricp}" />
+		<file name="${ognl}" />
+		<file name="${slf4j}" />
 	</library>
 
 </server>

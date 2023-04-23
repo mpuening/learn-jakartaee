@@ -101,7 +101,7 @@ Utility Projects
 
 This project contains the database drivers along with an implementation of the Hikari
 Connection Pool that can be configured via environment variables or system properties.
-The named of the `DataSource` is `EnvironmentAwareDataSource` and is used in the projects
+The named of the `DataSource` is `SpelConfiguredDataSource` and is used in the projects
 that use a database.
 
 ## [`learn-jakartaee-legacy-support`](./learn-jakartaee-legacy-support)

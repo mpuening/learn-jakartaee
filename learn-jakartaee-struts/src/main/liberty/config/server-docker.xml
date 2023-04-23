@@ -11,4 +11,17 @@
 	<httpEndpoint id="defaultHttpEndpoint"
 		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
 
+	<library id="global">
+		<file name="${derbypath}" />
+		<file name="${derbyclientpath}" />
+		<file name="${derbytoolspath}" />
+		<file name="${derbysharedpath}" />
+		<file name="${datasourceutil}" />
+		<file name="${springexpression}" />
+		<file name="${springcore}" />
+		<file name="${springjcl}" />
+		<file name="${hikaricp}" />
+		<file name="${slf4j}" />
+	</library>
+
 </server>

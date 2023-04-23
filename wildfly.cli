@@ -3,10 +3,10 @@
 #
 # System Properties
 #
-/system-property=DB_DRIVER:add(value="org.apache.derby.jdbc.EmbeddedDriver")
-/system-property=DB_URL:add(value="jdbc:derby:memory:appdb;create=true")
-/system-property=DB_USERNAME:add(value="APP")
-/system-property=DB_PASSWORD:add(value="")
+#/system-property=db.driver:add(value="org.apache.derby.jdbc.EmbeddedDriver")
+#/system-property=db.url:add(value="jdbc:derby:memory:appdb;create=true")
+#/system-property=db.user:add(value="APP")
+#/system-property=db.password:add(value="")
 
 /system-property=spring.profiles.active:add(value="local")
 

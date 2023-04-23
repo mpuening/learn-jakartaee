@@ -1,5 +1,8 @@
 package io.github.learnjakartaee.sql;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -11,24 +14,21 @@ import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * This is an Hikari DataSource extension that is capable of looking up database
- * connection information from environment variables or system properties.
- * Variable names are indicated by starting with '$'. Default values are
- * supported by having a value coming after a ":" that is after the variable
- * name. For example: $DB_USERNAME:username
+ * connection information from various implementations such as environment
+ * variables, system properties, micro-profile config sources, JNDI names.
+ * Encryption could even be supported.
  *
- * Much more could be added to this class such as supporting values from
- * Micro-profile Config sources, JNDI names, or encryption. Also, not added to
- * this class are setters to externalize the connection pool settings, or having
- * a validation SQL statement. But all that should be fairly easy to add. I just
- * don't need it for this project.
+ * Not (yet) added to this class are setters to externalize the connection pool
+ * settings, or having a validation SQL statement. But all that should be fairly
+ * easy to add. I just don't need it for this project.
  *
  * See the test DataSourceConfiguration class for example usage.
  */
-public class EnvironmentAwareDataSource extends HikariDataSource {
+public abstract class AbstractConfiguredDataSource extends HikariDataSource {
 
-	private final Logger LOG = LoggerFactory.getLogger(EnvironmentAwareDataSource.class);
+	protected final Logger LOG = LoggerFactory.getLogger(AbstractConfiguredDataSource.class);
 
-	public EnvironmentAwareDataSource() {
+	public AbstractConfiguredDataSource() {
 		this.setMinimumIdle(3);
 	}
 
@@ -39,10 +39,20 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 		}
 	}
 
+	/**
+	 * WildFly requires an encoded URL in the source code. Otherwise, URL parameters
+	 * get truncated.
+	 */
 	@Override
 	public void setJdbcUrl(String jdbcUrl) {
 		if (jdbcUrl != null) {
-			super.setJdbcUrl(evaluateExpression("url", jdbcUrl));
+			jdbcUrl = evaluateExpression("url", jdbcUrl);
+			try {
+				jdbcUrl = URLDecoder.decode(jdbcUrl, StandardCharsets.UTF_8.toString());
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			super.setJdbcUrl(jdbcUrl);
 		}
 	}
 
@@ -53,6 +63,8 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	 * Doubling up the username as a username/password pair allows us to check the
 	 * username and password in the getConnection(u,p) method against the configured
 	 * credentials.
+	 *
+	 * This causes a limitation in that '/' is a reserved character.
 	 */
 	@Override
 	public void setUsername(String username) {
@@ -71,27 +83,6 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 		if (password != null) {
 			super.setPassword(evaluateExpression("password", password));
 		}
-	}
-
-	protected String evaluateExpression(String property, String expression) {
-		LOG.info("Evaluate " + property + ": " + expression);
-		System.out.println("Evaluate " + property + ": " + expression);
-		if (expression != null && expression.startsWith("$")) {
-			String key = expression.substring(1);
-			String defaultValue = key;
-			int hasDefault = expression.indexOf(':');
-			if (hasDefault >= 0) {
-				key = expression.substring(1, hasDefault);
-				defaultValue = expression.substring(hasDefault + 1);
-			}
-			String envValue = System.getenv(key);
-			if (envValue != null) {
-				expression = envValue;
-			} else {
-				expression = System.getProperty(key, defaultValue);
-			}
-		}
-		return expression;
 	}
 
 	// ==========================================
@@ -132,7 +123,7 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 			username = evaluateExpression("username", username);
 			password = evaluateExpression("password", password);
 		}
-		
+
 		if (Objects.equals(username, getUsername()) && Objects.equals(password, getPassword())) {
 			// Allow it if same from initial config
 			return getConnection();
@@ -148,7 +139,7 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	public void setDatabaseName(String databaseName) {
 		// Open Liberty wants to invoke this method
 	}
-	
+
 	public void setServerName(String serverName) {
 		// Open Liberty wants to invoke this method
 	}
@@ -157,7 +148,7 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 		// Open Liberty wants to invoke this method
 		setUsername(user);
 	}
-	
+
 	public void setURL(String url) {
 		// Open Liberty wants to invoke this method
 		setJdbcUrl(url);
@@ -166,4 +157,13 @@ public class EnvironmentAwareDataSource extends HikariDataSource {
 	public void setCreate(String create) {
 		// GlassFish wants to invoke this method
 	}
+
+	/**
+	 * Sub-classes are responsible for the implementation
+	 *
+	 * @param property
+	 * @param expression
+	 * @return
+	 */
+	protected abstract String evaluateExpression(String property, String expression);
 }

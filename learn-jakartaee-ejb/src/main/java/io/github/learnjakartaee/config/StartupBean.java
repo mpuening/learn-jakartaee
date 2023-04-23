@@ -26,6 +26,8 @@ public class StartupBean {
 
 	@PostConstruct
 	public void onStartup() {
+		// It's not good practice to have an app be responsible to run migrations.
+		// But it is quite convenient.
 		FlywayMigration.run(dataSource, DataSourceConfiguration.class.getClassLoader());
 	}
 }

@@ -18,6 +18,12 @@
 		<file name="${derbyclientpath}" />
 		<file name="${derbytoolspath}" />
 		<file name="${derbysharedpath}" />
+		<file name="${datasourceutil}" />
+		<file name="${hikaricp}" />
+		<file name="${springexpression}" />
+		<file name="${springcore}" />
+		<file name="${springjcl}" />
+		<file name="${slf4j}" />
 	</library>
 
 </server>

@@ -342,9 +342,15 @@ Furthermore, their Entity Manager Factory system is not implemented to have visi
 to the `resource-ref` names in `web.xml`. This make GlassFish a thorn in the side of
 anyone trying to create an app that can work in any app server.
 
-Is it for this reason, that this project went with the `@DataSourceConfiguration` with a
+On top of that, GlassFish seems to configure data sources differently in the EJB
+classpath versus a webapp classpath. It seems as though in the EJB side, the setPassword()
+method is not called on the DataSource, but instead invokes getConnection(u,p) as if
+there is no connection pool. I don't know.
+
+Is it for these reasons, that this project went with the `@DataSourceConfiguration` with a
 custom `DataSource` approach (see below) so that people wanting to run the code need not
-change any code.
+change any code. It has a bunch of logic that smooths over all the differences between
+the app servers.
 
 Connecting the Dots
 -------------------
@@ -405,17 +411,18 @@ The `server.xml` has a `derbypath` variable that is set in `pom.xml`
 ======================================================
 This approach gives developers the most control over how the DataSource is built.
 In other words, developers implement the `DataSource` interface and do what is needed.
-The `@DataSourceDefinition` annotation would reference that implementation like so:
+The `@DataSourceDefinition` annotation would reference that implementation like so
+(this is for web apps):
 
 ```
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.EnvironmentAwareDataSource",
-		url = "$DB_URL:jdbc:derby:memory:appdb;create=true",
-		user = "$DB_USERNAME:APP",
-		password = "$DB_PASSWORD:",
+		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
+		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
+		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP'",
+		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
 		properties = {
-				"driverClassName=$DB_DRIVER:org.apache.derby.jdbc.EmbeddedDriver"
+				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
 		})
 @ApplicationScoped
 public class DataSourceConfiguration {
@@ -434,16 +441,16 @@ public class DataSourceConfiguration {
 and the `DataSource` class might look as follows:
 
 ```
-public class EnvironmentAwareDataSource extends HikariDataSource {
+public class SpelConfiguredDataSource extends HikariDataSource {
 }
 ```
 
-In this case, the `EnvironmentAwareDataSource` class that is in the '`learn-jakartaee-datasource`
+In this case, the `SpelConfiguredDataSource` class that is in the '`learn-jakartaee-datasource`
 project gives one a Hikari Connection Pool that can be configured across all app servers
 with connection information stored consistently in environment variables or system properties.
 Default values are also supported.
 
-As an example, see `wildfly.cli` how it set system properties to be used. No one needs
+As an example, see `wildfly.cli` how it sets system properties to be used. No one needs
 to re-compile the code to use a different database, assuming the app contains the 
 proper database drivers.
 
@@ -451,9 +458,47 @@ But that is just one implementation. Another implementation might be to delegate
 another DataSource looked up via JNDI. This approach would be useful to get around the
 GlassFish conundrum mentioned above.
 
-An important Open Liberty note is that the data source class must exist in its global
+An important note is that the WildFly wants the URL to be encoded. Otherwise, the
+URL parameters may be truncated and leave the app in a non-working state. Note the
+semicolon encoding in the above example.
+
+An Open Liberty note is that the data source class must exist in its global
 library path, and not just WEB-INF lib. So one will need to reference the datasource
 project along with the Hikari and SLF4J jar files in the server.xml.
 
 As far as Hikari goes, I did not fully complete the data source class to have support
 for the Hikari connection pool configuration properties. But that is not a difficult task.
+
+On the EJB side of things. GlassFish offers up a few more wrinkles that get solved this way:
+
+```
+@DataSourceDefinition(
+		name = "java:app/env/jdbc/appDataSource",
+		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
+		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
+		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP' / "
+				+ "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		properties = {
+				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
+		})
+@ApplicationScoped
+@ManagedBean
+public class DataSourceConfiguration {
+
+	@Produces
+	@AppDataSource
+	public DataSource getDataSource() {
+		return lookupDataSource();
+	}
+
+	public static DataSource lookupDataSource() {
+		// JNDI Lookup here
+	}
+}
+```
+
+To consistently create a data source on the EJB side of things, GlassFish wants
+a managed bean to hold the `@DataSourceDefinition`. And furthermore, to expose that
+DataSource as a CDI bean, one must directly do a JNDI lookup. Look at the 
+`DataSourceConfiguration` class in the EJB project as an example.
