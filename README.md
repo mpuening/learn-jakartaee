@@ -21,7 +21,7 @@ Here are the sub projects as shown in this (To-Be) deployment diagram:
 
 ![alt text](learn-jakartaee-docs/deployment.png "Deployment Diagram")
 
-Web Application Examples
+Web Application Projects
 ========================
 
 ## [`learn-jakartaee-jsp`](./learn-jakartaee-jsp)
@@ -63,7 +63,7 @@ Spring Boot. The `AppInitializer` is discovered by the `SpringServletContainerIn
 which itself is an instance of `ServletContainerInitializer` which is part of the Jakarta 
 EE API. It's actually quite simple.
 
-Web Service Examples
+Web Service Projects
 ====================
 
 ## [`learn-jakartaee-jaxrs`](./learn-jakartaee-jaxrs)
@@ -76,6 +76,14 @@ But at least it shows how Swagger UI is built-in to Open Liberty.
 This project implements a SOAP-based Web Service. It uses a WSDL-first philosphy and
 includes a projects to creates the stubs that is used in server and client project.
 
+EJB Projects
+============
+
+## [`learn-jakartaee-ejb`](./learn-jakartaee-ejb)
+
+This project is an EJB JAR project. It has an EJB that uses JPA to access data in a
+database.
+
 EAR Projects
 ===================
 
@@ -84,17 +92,13 @@ EAR Projects
 This project is intended to eventually contain the above web projects. As is, it
 only currently contains the `learn-jakartaee-spring` project.
 
-Playground Projects
-===================
-
-## [`learn-jakartaee-cdi`](./learn-jakartaee-cdi)
-
-This project was used to better understand the differences between Spring and CDI
-Dependency Injection. One can imagine the controller/service/repository design
-pattern, so how is it implemented in both Spring and CDI.
-
 Utility Projects
 ================
+
+## [`learn-jakartaee-index`](./learn-jakartaee-index)
+
+This project is a simple web app used in the EAR project. Its `index.html` file
+contains links to the other applications in the EAR file.
 
 ## [`learn-jakartaee-datasource`](./learn-jakartaee-datasource)
 
@@ -120,6 +124,15 @@ remote test cases needed. There are three sub-projects. The first is the simples
 OpenEJB. The two other are used for micro-profile and web profile projects. These projects clean up
 old dependencies and add additional support forEmbedded TomEE that is not included by default, for example
 security and micro-profile support.
+
+Playground Projects
+===================
+
+## [`learn-jakartaee-cdi`](./learn-jakartaee-cdi)
+
+This project was used to better understand the differences between Spring and CDI
+Dependency Injection. One can imagine the controller/service/repository design
+pattern, so how is it implemented in both Spring and CDI.
 
 Building
 ========

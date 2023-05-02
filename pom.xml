@@ -62,6 +62,8 @@
 	</properties>
 
 	<modules>
+<!-- 		<module>learn-jakartaee-security</module> -->
+		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-ejb</module>
 		<module>learn-jakartaee-jaxrs</module>
 		<module>learn-jakartaee-jaxws</module>
@@ -70,9 +72,9 @@
 		<module>learn-jakartaee-struts</module>
 		<module>learn-jakartaee-spring</module>
 		<module>learn-jakartaee-ldap-server</module>
+		<module>learn-jakartaee-index</module>
 		<module>learn-jakartaee-ear</module>
 		<module>learn-jakartaee-cdi</module>
-		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-legacy-support</module>
 		<module>learn-jakartaee-test</module>
 		<!-- module>learn-jakartaee-docs</module -->
