@@ -17,6 +17,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<!-- ================================================ -->
+	<properties>
+		<tomcat.scope>provided</tomcat.scope>
+	</properties>
+	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -32,7 +36,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
+			<scope>${tomcat.scope}</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -49,6 +53,25 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<!-- mvn -P springboot package / java -jar target/learn-jakartaee-ldap-server-0.0.1-SNAPSHOT.war -->
+			<id>springboot</id>
+			<properties>
+				<tomcat.scope>compile</tomcat.scope>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<!-- ================================================ -->
 
 	<!-- To run application: -->

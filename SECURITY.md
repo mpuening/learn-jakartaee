@@ -16,3 +16,27 @@ is that the attributes on the annotation do not support parameter values in a st
 way (i.e. references to another CDI bean.)
 
 More information: https://developer.ibm.com/tutorials/j-javaee8-security-api-3/
+
+The `learn-jakartaee-security` contains classes for test users and integration to an
+LDAP system. These classes use Spel Expressions to make it easier to configure for
+different environments. There is also a `CredentialValidatorChain` class to allow
+one to hook up various validators depending on configuration. For example, an
+application might define its `IdentityStore` as follows:
+
+```
+@ApplicationScoped
+public class AppIdentityStore implements IdentityStore {
+
+	private CredentialValidator credentialValidator = new CredentialValidatorChain(
+			new TestCredentialValidator(),
+			new LDAPCredentialValidator());
+
+	@Override
+	public CredentialValidationResult validate(Credential credential) {
+		return credentialValidator.validate(credential);
+	}
+}
+```
+
+If "Test Users" are enabled, then developers can easily log into the application
+as various types of users. When disabled, LDAP integration is used.

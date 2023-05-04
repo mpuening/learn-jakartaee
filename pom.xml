@@ -62,7 +62,7 @@
 	</properties>
 
 	<modules>
-<!-- 		<module>learn-jakartaee-security</module> -->
+		<module>learn-jakartaee-security</module>
 		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-ejb</module>
 		<module>learn-jakartaee-jaxrs</module>
@@ -117,6 +117,7 @@
 							</runtimeArtifact>
 							<stripVersion>true</stripVersion>
 							<looseApplication>false</looseApplication>
+							<!-- See server.env for env variables -->
 						</configuration>
 					</plugin>
 				</plugins>
@@ -167,6 +168,7 @@
 								<containerId>${cargo-glassfish-runtime}</containerId>
 								<systemProperties>
 									<spring.profiles.active>local</spring.profiles.active>
+									<test.users.enabled>true</test.users.enabled>
 								</systemProperties>
 							</container>
 							<configuration>
@@ -201,6 +203,7 @@
 								<!-- TomEE does not use the usual location -->
 								<mp.openapi.servers>/${artifactId}</mp.openapi.servers>
 								<openapi.ui.yamlUrl>/${artifactId}/openapi</openapi.ui.yamlUrl>
+								<test.users.enabled>true</test.users.enabled>
 							</systemVariables>
 							<context>${project.artifactId}</context>
 						</configuration>

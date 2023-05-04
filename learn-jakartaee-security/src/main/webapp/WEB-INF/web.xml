@@ -15,27 +15,6 @@
 		</auth-constraint>
 	</security-constraint>
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Main JSF Views</web-resource-name>
-			<url-pattern>/views/main/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>admin</role-name>
-			<role-name>user</role-name>
-		</auth-constraint>
-	</security-constraint>
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Admin JSF Views</web-resource-name>
-			<url-pattern>/views/admin/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>admin</role-name>
-		</auth-constraint>
-	</security-constraint>
-
 	<security-role>
 		<role-name>user</role-name>
 	</security-role>
@@ -65,18 +44,5 @@
 	<welcome-file-list>
 		<welcome-file>/index.xhtml</welcome-file>
 	</welcome-file-list>
-
-	<error-page>
-		<error-code>403</error-code>
-		<location>/views/errors/403.xhtml</location>
-	</error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/views/errors/404.xhtml</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/views/errors/500.xhtml</location>
-	</error-page>
 
 </web-app>

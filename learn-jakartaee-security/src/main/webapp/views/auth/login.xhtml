@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
+		<ui:param name="pageTitle" value="Login" />
+		<ui:param name="disableSideMenu" value="true" />
+
+		<ui:define name="body">
+			<div class="row">
+				<div class="col-sm-6 offset-sm-3 text-center">
+					<h1 class="display-4">Welcome</h1>
+					<div>
+						<h:form method="post" class="text-center border border-light p-5">
+							<p id="loginMessage" class="h4 mb-4">Please sign in...</p>
+							<div id="global-errors"><h:messages globalOnly="true" errorClass="alert alert-danger"/></div>
+							<h:outputText rendered="#{param['logout'] != null}">You have been logged out</h:outputText>
+							<label for="username" class="sr-only">Username</label>
+							<h:inputText id="username" name="username" label="Username"
+								required="true" value="#{loginBean.username}" class="form-control mb-2"
+								a:placeholder="Username" />
+							<h:message for="username" style="color:red" />
+							<label for="password" class="sr-only">Password</label>
+							<h:inputSecret id="password" name="password" label="Password"
+								required="true" value="#{loginBean.password}" class="form-control mb-2"
+								a:placeholder="Password" />
+							<h:message for="password" style="color:red" />
+							<h:commandButton value="Sign In" action="#{loginBean.login}"
+								class="btn btn-info btn-block my-4" />
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

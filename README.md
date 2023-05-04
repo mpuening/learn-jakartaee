@@ -100,6 +100,13 @@ Utility Projects
 This project is a simple web app used in the EAR project. Its `index.html` file
 contains links to the other applications in the EAR file.
 
+## [`learn-jakartaee-security`](./learn-jakartaee-security)
+
+This project contains the credential validators. It contains a validator
+for testing purposes and another one for LDAP support. There is also a
+chain version that encapsulates the others and uses the correct one
+based on configuration.
+
 ## [`learn-jakartaee-datasource`](./learn-jakartaee-datasource)
 
 This project contains the database drivers along with an implementation of the Hikari
