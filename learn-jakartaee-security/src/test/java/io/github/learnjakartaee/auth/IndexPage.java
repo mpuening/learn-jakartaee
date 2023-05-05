@@ -17,7 +17,7 @@ public class IndexPage {
 	}
 
 	public void assertIndexPageLoaded(WebDriver driver) {
-		// Since not logged in, login page displays
+		// Now logged in, banner displays
 		WebElement banner = driver.findElement(By.id("banner"));
 		assertEquals("Welcome", banner.getText());
 	}
