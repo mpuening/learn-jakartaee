@@ -1,5 +1,11 @@
-create table aircraft (
-    id char(36) not null,
-    name varchar(50) not null,
-    primary key (id)
+CREATE TABLE AIRCRAFT (
+    ID CHAR(36) NOT NULL,
+    DESIGNATION VARCHAR(50) NOT NULL,
+    NAME VARCHAR(50) NOT NULL,
+    NICKNAME VARCHAR(50),
+    MANUFACTURER VARCHAR(50),
+    PRODUCED INTEGER,
+    FIRST_FLIGHT DATE,
+    PRIMARY KEY (ID),
+    UNIQUE (DESIGNATION)
 );
