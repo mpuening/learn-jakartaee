@@ -17,10 +17,32 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<!-- ================================================ -->
+	<properties>
+		<liberty.loose-application>false</liberty.loose-application>
+	</properties>
+	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-index</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-ldap-server</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-struts</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-jsf</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
@@ -35,11 +57,6 @@
 			<artifactId>learn-jakartaee-ejb</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>io.github.learnjakartaee</groupId>
-			<artifactId>learn-jakartaee-datasource</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

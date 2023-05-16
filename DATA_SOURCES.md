@@ -349,7 +349,7 @@ there is no connection pool. I don't know.
 
 Is it for these reasons, that this project went with the `@DataSourceConfiguration` with a
 custom `DataSource` approach (see below) so that people wanting to run the code need not
-change any code. It has a bunch of logic that smooths over all the differences between
+change any code. It has a bunch of logic that smoothes over all the differences between
 the app servers.
 
 Connecting the Dots
@@ -502,3 +502,38 @@ To consistently create a data source on the EJB side of things, GlassFish wants
 a managed bean to hold the `@DataSourceDefinition`. And furthermore, to expose that
 DataSource as a CDI bean, one must directly do a JNDI lookup. Look at the 
 `DataSourceConfiguration` class in the EJB project as an example.
+
+Spring Note:
+
+The above example shows DataSource configurations using a Spring Expression Language (Spel)
+configured definition. However, when building the EAR project, class path issues occurred
+with the Spring Boot LDAP Server which has spring-core dependencies at its heart. The
+"skinny-modules" setting of the maven-ear-plugin causes these JAR file dependency to be moved
+to the shared `lib` directory. And that somehow prevented Spring Boot from started the application.
+
+To remedy the situation, a new implementation based oin Jakarata Expression Language was built.
+An example follows:
+
+```
+@DataSourceDefinition(
+		name = "java:app/env/jdbc/appDataSource",
+		className = "io.github.learnjakartaee.sql.ELConfiguredDataSource",
+		url = "not empty env.get('DB_URL') ? env.get('DB_URL') : "
+				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
+		user = "not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
+				+ "properties.getOrDefault('db.user', 'APP') / "
+				+ "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', '')",
+		password = "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', '')",
+		properties = {
+				"driverClassName=not empty env.get('DB_DRIVER') ? env.get('DB_DRIVER') : "
+						+ "properties.getOrDefault('db.driver', 'org.apache.derby.jdbc.EmbeddedDriver')"
+		})
+@ApplicationScoped
+@ManagedBean
+public class DataSourceConfiguration {
+}
+```
+It is not as concise as Spel, but does not have external dependencies. As is, users of the
+data source project must now provide language dependencies of their choosing. Sigh.

@@ -1,4 +1,8 @@
 spring:
+  # Jersey metrics fail on WildFly
+  autoconfigure:
+    exclude: >
+      org.springframework.boot.actuate.autoconfigure.metrics.jersey.JerseyServerMetricsAutoConfiguration
   ldap:
     embedded:
       base-dn: dc=example,dc=org
@@ -10,5 +14,14 @@ spring:
       validation:
         enabled: false
 
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 server:
   port: 8081
+
+logging:
+  level:
+    root: info

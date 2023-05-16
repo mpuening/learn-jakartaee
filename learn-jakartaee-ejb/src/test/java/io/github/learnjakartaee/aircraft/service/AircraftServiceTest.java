@@ -50,6 +50,7 @@ public class AircraftServiceTest {
 		assertEquals("Northrop Grumman", aircraft.get(0).getManufacturer());
 		assertEquals(0 , aircraft.get(0).getProduced());
 		assertEquals(null, aircraft.get(0).getFirstFlight());
+		assertEquals("", aircraft.get(0).getFirstFlightAsString());
 	}
 
 	@Test
@@ -69,7 +70,7 @@ public class AircraftServiceTest {
 
 	@Test
 	@Order(3)
-	public void testAircraftServiceCreate() throws AppException {
+	public void testAircraftServiceCreate() throws AircraftException {
 		assertNotNull(aircraftService);
 
 		Aircraft f16 = new Aircraft();
@@ -80,31 +81,31 @@ public class AircraftServiceTest {
 		f16.setProduced(4604);
 		f16.setFirstFlight(LocalDate.of(1974, 1, 20));
 		
-		f16 = aircraftService.createNewAircraft(f16);
+		f16 = aircraftService.createAircraft(f16);
 		assertNotNull(f16);
 		assertNotNull(f16.getId());
 	}
 
 	@Test
 	@Order(4)
-	public void testAircraftServiceUpdate() throws AppException {
+	public void testAircraftServiceUpdate() throws AircraftException {
 		assertNotNull(aircraftService);
 		
 		Aircraft b21 = aircraftService.findByDesignation("B-21").get();
 		assertNotNull(b21);
 		b21.setProduced(1);
-		b21 = aircraftService.updateExistingAircraft(b21);
+		b21 = aircraftService.updateAircraft(b21);
 		assertEquals(1, b21.getProduced());
 	}
 
 	@Test
 	@Order(5)
-	public void testAircraftServiceDelete() throws AppException {
+	public void testAircraftServiceDelete() throws AircraftException {
 		assertNotNull(aircraftService);
 		
 		Aircraft b21 = aircraftService.findByDesignation("B-21").get();
 		assertNotNull(b21);
-		aircraftService.deleteExistingAircraft(b21);
+		aircraftService.deleteAircraft(b21);
 		
 		Optional<Aircraft> check = aircraftService.findByDesignation("B-21");
 		assertEquals(false, check.isPresent());

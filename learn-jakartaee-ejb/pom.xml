@@ -28,6 +28,11 @@
 			<artifactId>learn-jakartaee-datasource</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-el</artifactId>
+			<optional>true</optional>
+		</dependency>
 
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>

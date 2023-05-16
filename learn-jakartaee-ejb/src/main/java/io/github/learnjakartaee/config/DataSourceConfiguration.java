@@ -20,13 +20,18 @@ import jakarta.enterprise.inject.Produces;
  */
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
-		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
-		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP' / "
-				+ "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
-		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		className = "io.github.learnjakartaee.sql.ELConfiguredDataSource",
+		url = "not empty env.get('DB_URL') ? env.get('DB_URL') : "
+				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
+		user = "not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
+				+ "properties.getOrDefault('db.user', 'APP') / "
+				+ "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', '')",
+		password = "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', '')",
 		properties = {
-				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
+				"driverClassName=not empty env.get('DB_DRIVER') ? env.get('DB_DRIVER') : "
+						+ "properties.getOrDefault('db.driver', 'org.apache.derby.jdbc.EmbeddedDriver')"
 		})
 @ApplicationScoped
 @ManagedBean

@@ -1,11 +1,13 @@
 package io.github.learnjakartaee.aircraft.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "AIRCRAFT")
@@ -89,4 +91,10 @@ public class Aircraft extends AbstractEntity<String> {
 	public void setFirstFlight(LocalDate firstFlight) {
 		this.firstFlight = firstFlight;
 	}
+
+	@Transient
+	public String getFirstFlightAsString() {
+		return firstFlight != null ? firstFlight.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : "";
+	}
+	
 }

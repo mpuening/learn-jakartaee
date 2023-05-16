@@ -30,7 +30,7 @@
 
 		<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Reference+Guide.html -->
 		<!-- https://codehaus-cargo.github.io/cargo/Configuration+properties.html -->
-		<cargo-maven-plugin.version>1.10.5</cargo-maven-plugin.version>
+		<cargo-maven-plugin.version>1.10.6</cargo-maven-plugin.version>
 		<cargo-wildfly-runtime>wildfly27x</cargo-wildfly-runtime>
 		<!-- Property is intended to be used in module dirs -->
 		<cargo-wildfly-script.dir>${project.basedir}/..</cargo-wildfly-script.dir>
@@ -47,7 +47,7 @@
 		<!-- Odds and ends -->
 		<ognl.version>3.3.4</ognl.version>
 
-		<!-- Derby support for Open Liberty -->
+		<!-- Library support for Open Liberty -->
 		<repo.dir>${user.home}/.m2/repository</repo.dir>
 		<liberty.var.derbypath>${repo.dir}/org/apache/derby/derby/${derby.version}/derby-${derby.version}.jar</liberty.var.derbypath>
 		<liberty.var.derbyclientpath>${repo.dir}/org/apache/derby/derbyclient/${derby.version}/derbyclient-${derby.version}.jar</liberty.var.derbyclientpath>
@@ -59,6 +59,8 @@
 		<liberty.var.springjcl>${repo.dir}/org/springframework/spring-jcl/${spring-framework.version}/spring-jcl-${spring-framework.version}.jar</liberty.var.springjcl>
 		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
 		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
+
+		<liberty.loose-application>true</liberty.loose-application>
 	</properties>
 
 	<modules>
@@ -116,7 +118,7 @@
 								<type>zip</type>
 							</runtimeArtifact>
 							<stripVersion>true</stripVersion>
-							<looseApplication>false</looseApplication>
+							<looseApplication>${liberty.loose-application}</looseApplication>
 							<!-- See server.env for env variables -->
 						</configuration>
 					</plugin>
@@ -145,6 +147,7 @@
 										--add-opens java.base/java.lang=ALL-UNNAMED
 										--add-opens java.base/java.util=ALL-UNNAMED
 										--add-opens java.base/java.io=ALL-UNNAMED
+										--add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED
 									</cargo.start.jvmargs>
 									<cargo.wildfly.script.cli.embedded>${cargo-wildfly-script.dir}/wildfly.cli</cargo.wildfly.script.cli.embedded>
 								</properties>
@@ -201,8 +204,8 @@
 							<systemVariables>
 								<tomee.mp.scan>all</tomee.mp.scan>
 								<!-- TomEE does not use the usual location -->
-								<mp.openapi.servers>/${artifactId}</mp.openapi.servers>
-								<openapi.ui.yamlUrl>/${artifactId}/openapi</openapi.ui.yamlUrl>
+								<mp.openapi.servers>/${project.artifactId}</mp.openapi.servers>
+								<openapi.ui.yamlUrl>/${project.artifactId}/openapi</openapi.ui.yamlUrl>
 								<test.users.enabled>true</test.users.enabled>
 							</systemVariables>
 							<context>${project.artifactId}</context>

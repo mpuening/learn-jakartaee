@@ -1,7 +1,7 @@
 package io.github.learnjakartaee.config;
 
 import jakarta.ejb.EJB;
-
+import io.github.learnjakartaee.aircraft.service.AircraftService;
 import io.github.learnjakartaee.service.PeopleService;
 
 /**
@@ -15,6 +15,13 @@ public class ActionServlet extends org.apache.struts.action.ActionServlet {
 
 	public ActionServlet() {
 		ActionServlet.singleton = this;
+	}
+
+	@EJB
+	protected AircraftService aircraftService;
+
+	public static AircraftService getAircraftService() {
+		return ActionServlet.singleton.aircraftService;
 	}
 
 	@EJB

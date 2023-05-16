@@ -25,7 +25,7 @@
 			directories for the deployment setup (yet?) and thus we need to keep our 
 			files there . -->
 		<!-- xdoclet.web.dest.dir>${project.build.directory}/m2e-wtp/web-resources/WEB-INF</xdoclet.web.dest.dir -->
-		<!-- xdoclet.web.dest.dir>${project.build.directory}/${artifactId}-${version}/WEB-INF</xdoclet.web.dest.dir -->
+		<!-- xdoclet.web.dest.dir>${project.build.directory}/${project.artifactId}-${version}/WEB-INF</xdoclet.web.dest.dir -->
 		<xdoclet.web.dest.dir>${project.basedir}/src/main/webapp/WEB-INF</xdoclet.web.dest.dir>
 	</properties>
 	<!-- ================================================ -->

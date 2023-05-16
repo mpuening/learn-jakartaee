@@ -56,12 +56,12 @@ public class AircraftService implements Serializable {
 		return Optional.ofNullable(results.size() > 0 ? results.get(0) : null);
 	}
 
-	public Aircraft createNewAircraft(Aircraft aircraft) throws AppException {
+	public Aircraft createAircraft(Aircraft aircraft) throws AircraftException {
 		if (aircraft == null || !aircraft.isNew()) {
-			throw new AppException("Please provide a new unsaved aircraft to save");
+			throw new AircraftException("Please provide a new unsaved aircraft to save");
 		}
 		if (aircraft.getDesignation() == null || aircraft.getName() == null) {
-			throw new AppException("Please provide a name and designation for the aircraft");
+			throw new AircraftException("Please provide a name and designation for the aircraft");
 		}
 		// Buy a lottery ticket if an id collision occurs
 		String id = UUID.randomUUID().toString();
@@ -70,13 +70,13 @@ public class AircraftService implements Serializable {
 		return aircraft;
 	}
 	
-	public Aircraft updateExistingAircraft(Aircraft update) throws AppException {
+	public Aircraft updateAircraft(Aircraft update) throws AircraftException {
 		if (update == null || update.isNew()) {
-			throw new AppException("Please provide an existing aircraft to update");
+			throw new AircraftException("Please provide an existing aircraft to update");
 		}
 		Optional<Aircraft> existing = findById(update.getId());
 		if (existing.isEmpty()) {
-			throw new AppException("Provided aircraft to update does not exist");
+			throw new AircraftException("Provided aircraft to update does not exist");
 		}
 		if (update.getNickname() != null) {
 			existing.get().setNickname(update.getNickname());
@@ -94,9 +94,9 @@ public class AircraftService implements Serializable {
 		return existing.get();
 	}
 
-	public void deleteExistingAircraft(Aircraft delete) throws AppException {
+	public void deleteAircraft(Aircraft delete) throws AircraftException {
 		if (delete == null || delete.isNew()) {
-			throw new AppException("Please provide an existing aircraft to delete");
+			throw new AircraftException("Please provide an existing aircraft to delete");
 		}
 		// CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		// CriteriaDelete<Aircraft> query = criteriaBuilder.createCriteriaDelete(Aircraft.class);
@@ -108,7 +108,7 @@ public class AircraftService implements Serializable {
 	    		.setParameter("id", delete.getId())
 	    		.executeUpdate();
 		if (numberOfRowsUpdated != 1) {
-			throw new AppException("Expected to delete one record, got " + numberOfRowsUpdated);
+			throw new AircraftException("Expected to delete one record, got " + numberOfRowsUpdated);
 		}
 	}
 }

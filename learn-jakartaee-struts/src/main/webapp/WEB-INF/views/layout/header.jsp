@@ -6,7 +6,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link <c:if test="${mainNavBarSelected == 'true'}">active</c:if>" href="<c:url value="/people.do"/>">Main <c:if test="${mainNavBarSelected == 'true'}"><span class="sr-only">(current)</span></c:if></a>
+      <a class="nav-item nav-link <c:if test="${mainNavBarSelected == 'true'}">active</c:if>" href="<c:url value="/aircraft.do"/>">Main <c:if test="${mainNavBarSelected == 'true'}"><span class="sr-only">(current)</span></c:if></a>
       <a class="nav-item nav-link <c:if test="${adminNavBarSelected == 'true'}">active</c:if>" href="<c:url value="/events.do"/>">Admin <c:if test="${adminNavBarSelected == 'true'}"><span class="sr-only">(current)</span></c:if></a>
     </div>
   </div>
