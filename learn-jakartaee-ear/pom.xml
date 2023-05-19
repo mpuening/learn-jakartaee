@@ -54,6 +54,18 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-jaxws-server</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-jaxrs</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-ejb</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
