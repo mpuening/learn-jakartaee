@@ -29,7 +29,7 @@ public class WebConfiguration {
 	@Produces(MediaType.TEXT_HTML)
 	@Operation(hidden = true)
 	public Response indexHtml() {
-		InputStream indexHtml = this.getClass().getResourceAsStream("/index.html");
+		InputStream indexHtml = this.getClass().getResourceAsStream("/public/index.html");
 		return Response.ok().entity(indexHtml).build();
 	}
 }

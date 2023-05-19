@@ -21,8 +21,7 @@ public abstract class BaseTestCase {
 		return new RestApiWarBuilder("learn-jakartaee-jaxrs.war")
 				.packages("io.github.learnjakartaee")
 				.beansXml()
-				.persistenceXml()
-				.indexHtml()
+				.publicIndexHtml()
 				.build();
 	}
 

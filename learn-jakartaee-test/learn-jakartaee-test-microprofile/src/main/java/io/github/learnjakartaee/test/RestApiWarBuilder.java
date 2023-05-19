@@ -34,6 +34,11 @@ public class RestApiWarBuilder {
 		return this;
 	}
 
+	public RestApiWarBuilder publicIndexHtml() {
+		this.archive = archive.addAsWebInfResource(new ClassLoaderAsset("public/index.html"), "classes/public/index.html");
+		return this;
+	}
+
 	public WebArchive build(boolean displayContents) {
 		return displayContents ? build(System.out) : build();
 	}
