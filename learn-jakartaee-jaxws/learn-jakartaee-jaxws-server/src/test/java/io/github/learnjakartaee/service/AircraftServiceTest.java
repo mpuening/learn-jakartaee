@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import io.github.learnjakartaee.security.TestCredentialValidator;
 import io.github.learnjakartaee.test.WebAppWarBuilder;
 import io.github.learnjakartaee.ws.AircraftInterface;
 import io.github.learnjakartaee.ws.AircraftService;
@@ -33,9 +34,13 @@ import jakarta.xml.ws.BindingProvider;
 public class AircraftServiceTest {
 
 	@Deployment
-	public static WebArchive createTestDeployment() {		
+	public static WebArchive createTestDeployment() {
+
+		System.setProperty(TestCredentialValidator.TEST_USERS_ENABLED_SYS_PROP, "true");
+
 		return new WebAppWarBuilder("learn-jakartaee-jaxws.war")
 				.packages("io.github.learnjakartaee")
+				.beansXml()
 				.webXml()
 				.mavenDependencies()
 				.build();
@@ -46,7 +51,7 @@ public class AircraftServiceTest {
 
 	@Test
 	public void testAircraftService() {
-		String endpoint = baseURL.toString() + "ws/AircraftService";
+		String endpoint = baseURL.toString() + "AircraftService";
 		AircraftInterface aircraftInterface = createInterface(endpoint);
 		String message = "Hello";
 		String response = aircraftInterface.ping(message);
@@ -60,10 +65,12 @@ public class AircraftServiceTest {
 		AircraftInterface aircraftInterface = aircraftService.getAircraftInterfaceBinding();
 
 		// Basic HTTP Authentication
+		String username = "admin";
+		String password = "password";
 		Map<String, Object> requestContext = ((BindingProvider) aircraftInterface).getRequestContext();
 		requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpoint);
-		// requestContext.put(BindingProvider.USERNAME_PROPERTY, username);
-		// requestContext.put(BindingProvider.PASSWORD_PROPERTY, password);
+		requestContext.put(BindingProvider.USERNAME_PROPERTY, username);
+		requestContext.put(BindingProvider.PASSWORD_PROPERTY, password);
 		return aircraftInterface;
 	}
 }

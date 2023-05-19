@@ -19,7 +19,9 @@ import io.github.learnjakartaee.ws.schemas.AircraftType;
 import io.github.learnjakartaee.ws.schemas.ManufacturerType;
 import jakarta.jws.WebService;
 
-@WebService(endpointInterface = "io.github.learnjakartaee.ws.AircraftInterface")
+// TODO Move auth check to EJB
+//@RolesAllowed({ "user", "admin" })
+@WebService(serviceName = "AircraftService", endpointInterface = "io.github.learnjakartaee.ws.AircraftInterface")
 public class AircraftService implements AircraftInterface {
 
 	@Override
@@ -49,7 +51,7 @@ public class AircraftService implements AircraftInterface {
 		response.setStatus("SUCCESS");
 		return response;
 	}
-
+	
 	protected final Map<String, AircraftType> aircrafts = new ConcurrentHashMap<>();
 
 	public AircraftService() {

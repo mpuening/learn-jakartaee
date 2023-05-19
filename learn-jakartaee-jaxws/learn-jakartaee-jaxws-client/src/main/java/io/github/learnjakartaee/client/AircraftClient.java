@@ -12,7 +12,8 @@ import jakarta.xml.ws.BindingProvider;
 public class AircraftClient {
 
 	public static void main(String[] args) {
-		String endpoint = "http://localhost:8080/learn-jakartaee-jaxws-server/ws/AircraftService";
+		// When testing with Liberty, change port to 9080
+		String endpoint = "http://localhost:8080/learn-jakartaee-jaxws-server/AircraftService";
 		AircraftInterface aircraftInterface = createInterface(endpoint);
 
 		String pong = aircraftInterface.ping("Hello");
@@ -25,11 +26,11 @@ public class AircraftClient {
 				new QName("https://learnjaxws.github.io/learn/webservice/soap", "AircraftService"));
 		AircraftInterface aircraftInterface = aircraftService.getAircraftInterfaceBinding();
 
-		// Basic HTTP Authentication
+		// Basic HTTP Authentication, credentials match TestCredentialValidator
 		Map<String, Object> requestContext = ((BindingProvider) aircraftInterface).getRequestContext();
 		requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpoint);
-		// requestContext.put(BindingProvider.USERNAME_PROPERTY, username);
-		// requestContext.put(BindingProvider.PASSWORD_PROPERTY, password);
+		requestContext.put(BindingProvider.USERNAME_PROPERTY, "admin");
+		requestContext.put(BindingProvider.PASSWORD_PROPERTY, "password");
 		return aircraftInterface;
 	}
 }

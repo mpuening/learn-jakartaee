@@ -31,7 +31,12 @@
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-jaxws-stubs</artifactId>
 			<version>${project.version}</version>
-		</dependency>	
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
@@ -40,5 +45,12 @@
 			<scope>test</scope>
 		</dependency>	
 	</dependencies>
+	<!-- ================================================ -->
+
+	<!-- To run application: -->
+	<!-- mvn -P liberty liberty:run / Run learn-jakartaee-jaxws-client main app -->
+	<!-- mvn -P wildfly cargo:run / Run learn-jakartaee-jaxws-client main app -->
+	<!-- mvn -P glassfish cargo:run / Run learn-jakartaee-jaxws-client main app -->
+	<!-- mvn -P tomee tomee:run / Run learn-jakartaee-jaxws-client main app -->
 
 </project>

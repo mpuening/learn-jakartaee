@@ -4,6 +4,8 @@
 	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 	version="5.0">
 
+	<!-- GlassFish does not support this configuration -->
+	<!-- 
 	<servlet>
 		<display-name>AircraftService</display-name>
 		<servlet-name>AircraftService</servlet-name>
@@ -13,5 +15,6 @@
 		<servlet-name>AircraftService</servlet-name>
 		<url-pattern>/ws/AircraftService</url-pattern>
 	</servlet-mapping>
+	-->
 
 </web-app>
