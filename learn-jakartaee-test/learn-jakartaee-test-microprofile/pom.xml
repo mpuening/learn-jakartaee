@@ -76,6 +76,18 @@
 			<artifactId>mp-common</artifactId>
 			<version>${tomee-runtime.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tomee</groupId>
+			<artifactId>tomee-security</artifactId>
+			<version>${tomee-runtime.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.myfaces.core</groupId>
+					<artifactId>myfaces-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 	</dependencies>
 
 </project>

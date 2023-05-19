@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Base64;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -75,8 +76,11 @@ public class PingServiceTest extends BaseTestCase {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(new URL(baseURL, "api/ping").toExternalForm());
-
-		try (final Response response = target.request().accept(MediaType.APPLICATION_JSON).get()) {
+		String authorization = "Basic " + Base64.getEncoder().encodeToString("admin:password".getBytes());
+		try (final Response response = target.request()
+				.header("Authorization", authorization)
+				.accept(MediaType.APPLICATION_JSON)
+				.get()) {
 			assertEquals(200, response.getStatus());
 			with(response.readEntity(String.class)).assertThat("$.greeting", is("HelloTest"));
 		}

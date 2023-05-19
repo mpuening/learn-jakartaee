@@ -5,6 +5,7 @@ import java.util.Map;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -15,7 +16,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-@Path("api/ping")@Named
+@RolesAllowed({ "user", "admin" })
+@Path("api/ping")
+@Named
 @ApplicationScoped
 public class PingService {
 
