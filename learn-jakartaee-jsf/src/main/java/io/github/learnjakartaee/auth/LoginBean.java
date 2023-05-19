@@ -82,5 +82,4 @@ public class LoginBean {
 	public Principal getPrincipal() {
 		return securityContext.getCallerPrincipal();
 	}
-
 }

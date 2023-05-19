@@ -11,6 +11,7 @@
 
 		<ui:define name="body">
 			<h1 id="banner">Welcome</h1>
+			<h:link rendered="#{loginBean.principal == null}" outcome="/views/auth/login" styleClass="nav-item nav-link">Sign In</h:link>
 		</ui:define>
 	</ui:composition>
 

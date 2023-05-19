@@ -1,7 +1,7 @@
 package io.github.learnjakartaee.auth;
 
 import io.github.learnjakartaee.security.CredentialValidator;
-import io.github.learnjakartaee.security.LDAPCredentialValidator;
+import io.github.learnjakartaee.security.SpelConfiguredLDAPCredentialValidator;
 import io.github.learnjakartaee.security.TestCredentialValidator;
 import io.github.learnjakartaee.security.CredentialValidatorChain;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -14,7 +14,7 @@ public class AppIdentityStore implements IdentityStore {
 
 	private CredentialValidator credentialValidator = new CredentialValidatorChain(
 			new TestCredentialValidator(),
-			new LDAPCredentialValidator());
+			new SpelConfiguredLDAPCredentialValidator());
 
 	@Override
 	public CredentialValidationResult validate(Credential credential) {

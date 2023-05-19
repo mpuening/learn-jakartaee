@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import javax.naming.AuthenticationException;
@@ -15,12 +13,6 @@ import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
-
-import org.springframework.expression.EvaluationContext;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
-import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import jakarta.security.enterprise.CallerPrincipal;
 import jakarta.security.enterprise.credential.Credential;
@@ -61,29 +53,6 @@ public class LDAPCredentialValidator implements CredentialValidator {
 
 	public LDAPCredentialValidator(String ldapUrl, String userBaseDn, String groupBaseDn) {
 		this(ldapUrl, userBaseDn, "uid", groupBaseDn, "uniqueMember", "cn");
-	}
-
-	/**
-	 * These defaults match the learn-jakartaee-ldap-server project
-	 */
-	public LDAPCredentialValidator() {
-		this(new SpelContext().evaluateExpression("ldapUrl",
-						"env['LDAP_URL'] ?: properties['ldap.url'] ?: 'ldap://localhost:8389'"),
-
-				new SpelContext().evaluateExpression("userBaseDn",
-						"env['LDAP_USER_BASE_DN'] ?: properties['ldap.user.basedn'] ?: 'ou=people,dc=example,dc=org'"),
-
-				new SpelContext().evaluateExpression("userNameAttribute",
-						"env['LDAP_USER_NAME_ATTR'] ?: properties['ldap.user.nameattr'] ?: 'uid'"),
-
-				new SpelContext().evaluateExpression("groupBaseDn",
-						"env['LDAP_GROUP_BASE_DN'] ?: properties['ldap.group.basedn'] ?: 'ou=groups,dc=example,dc=org'"),
-
-				new SpelContext().evaluateExpression("groupMemberAttribute",
-						"env['LDAP_GROUP_MEMBER_ATTR'] ?: properties['ldap.group.memberattr'] ?: 'uniqueMember'"),
-
-				new SpelContext().evaluateExpression("groupNameAttribute",
-						"env['LDAP_GROUP_NAME_ATTR'] ?: properties['ldap.group.nameattr'] ?: 'cn'"));
 	}
 
 	@Override
@@ -188,29 +157,6 @@ public class LDAPCredentialValidator implements CredentialValidator {
 			return Collections.list(searchResult.getAttributes().get(attributeName).getAll());
 		} catch (NamingException e) {
 			throw new IllegalStateException(e);
-		}
-	}
-
-	// ==========================================
-
-	public static class SpelContext {
-
-		public String evaluateExpression(String property, String expression) {
-			// LOG.debug("Evaluate " + property + ": " + expression);
-			ExpressionParser expressionParser = new SpelExpressionParser();
-			Expression parsed = expressionParser.parseExpression(expression);
-
-			EvaluationContext context = new StandardEvaluationContext(this);
-			String value = String.valueOf(parsed.getValue(context));
-			return value;
-		}
-
-		public Map<String, String> getEnv() {
-			return System.getenv();
-		}
-
-		public Properties getProperties() {
-			return System.getProperties();
 		}
 	}
 }

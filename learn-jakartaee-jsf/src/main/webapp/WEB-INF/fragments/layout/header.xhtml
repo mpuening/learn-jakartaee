@@ -47,6 +47,7 @@
 					</ui:fragment>
 				</div>
 			</div>
+			<h:outputText rendered="#{loginBean.principal != null}" value="Welcome #{loginBean.principal.name}" styleClass="text-white"/>
 			<h:form method="post">
 				<h:commandLink action="#{logoutBean.logout}" value="Sign Out"
 					styleClass="nav-item nav-link" />
