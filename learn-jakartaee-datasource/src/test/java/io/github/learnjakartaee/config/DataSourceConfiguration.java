@@ -14,7 +14,7 @@ import jakarta.enterprise.inject.Produces;
 //@DataSourceDefinition(
 //		name = "java:app/env/jdbc/appDataSource",
 //		className = "io.github.learnjakartaee.sql.EnvConfiguredDataSource",
-//		url = "$DB_URL:jdbc:derby:memory:appdb;create=true",
+//		url = "$DB_URL:jdbc:derby:memory:appdb%3Bcreate=true",
 //		user = "$DB_USERNAME:APP",
 //		password = "$DB_PASSWORD:",
 //		properties = {
@@ -25,7 +25,7 @@ import jakarta.enterprise.inject.Produces;
 //		name = "java:app/env/jdbc/appDataSource",
 //		className = "io.github.learnjakartaee.sql.OgnlConfiguredDataSource",
 //		url = "env.get('DB_URL') != null ? env.get('DB_URL') : "
-//				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb;create=true')",
+//				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
 //		user = "env.get('DB_USERNAME') != null ? env.get('DB_USERNAME') : "
 //				+ "properties.getOrDefault('db.user', 'APP')",
 //		password = "env.get('DB_PASSWORD') != null ? env.get('DB_PASSWORD') : "
@@ -49,7 +49,7 @@ import jakarta.enterprise.inject.Produces;
 		name = "java:app/env/jdbc/appDataSource",
 		className = "io.github.learnjakartaee.sql.ELConfiguredDataSource",
 		url = "not empty env.get('DB_URL') ? env.get('DB_URL') : "
-				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb;create=true')",
+				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
 		user = "not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
 				+ "properties.getOrDefault('db.user', 'APP') / "
 				+ "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
