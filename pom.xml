@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.4</version>
+		<version>3.1.1</version>
 	</parent>
 
 	<properties>
@@ -26,7 +26,8 @@
 
 		<!-- https://github.com/OpenLiberty/ci.maven -->
 		<liberty-maven-plugin.version>3.7.1</liberty-maven-plugin.version>
-		<liberty-runtime.version>23.0.0.1</liberty-runtime.version>
+		<liberty-runtime.version>23.0.0.2</liberty-runtime.version>
+		<liberty.loose-application>true</liberty.loose-application>
 
 		<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Reference+Guide.html -->
 		<!-- https://codehaus-cargo.github.io/cargo/Configuration+properties.html -->
@@ -38,10 +39,10 @@
 		<cargo-glassfish-runtime>glassfish7x</cargo-glassfish-runtime>
 
 		<!-- https://tomee.apache.org/master/docs/tomee-maven-plugin.html -->
-		<tomee-maven-plugin.version>9.0.0</tomee-maven-plugin.version>
-		<tomee-runtime.version>9.0.0</tomee-runtime.version>
+		<tomee-maven-plugin.version>9.1.0</tomee-maven-plugin.version>
+		<tomee-runtime.version>9.1.0</tomee-runtime.version>
 
-		<!-- Newer versions deprecate and remove code needed by Arquillian -->
+		<!-- Use this version. Newer versions deprecate and remove code needed by Arquillian -->
 		<selenium.version>4.1.1</selenium.version>
 
 		<!-- Odds and ends -->
@@ -60,7 +61,6 @@
 		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
 		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
 
-		<liberty.loose-application>true</liberty.loose-application>
 	</properties>
 
 	<modules>
@@ -84,6 +84,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-bom</artifactId>
+				<version>${jakartaee.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-web-api</artifactId>

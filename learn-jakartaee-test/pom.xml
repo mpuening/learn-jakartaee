@@ -21,7 +21,7 @@
 		<arquillian.version>1.7.0.Final</arquillian.version>
 		<arquillian-drone.version>3.0.0-alpha.7</arquillian-drone.version>
 		<arquillian-graphene.version>3.0.0-alpha.3</arquillian-graphene.version>
-		<resteasy.version>6.2.3.Final</resteasy.version>
+		<resteasy.version>6.2.4.Final</resteasy.version>
 	</properties>
 
 	<modules>
