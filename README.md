@@ -11,8 +11,12 @@ can be found [here](https://jakarta.ee/specifications/).
 The projects in this repository focus on different areas, and some take inspiration
 from the [Open Liberty Guides](https://openliberty.io/guides/).
 
-NOTE! If you are looking for examples of Jakarta EE 8, 
+If you are looking for examples of Jakarta EE 8, 
 [click here](https://github.com/mpuening/learn-jakartaee/tree/jakartaee8).
+
+> **Note**
+> There are Maven Archetypes of some of these projects available at
+> https://github.com/mpuening/maven-archetypes
 
 So what is in this project?
 ===========================
