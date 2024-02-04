@@ -104,6 +104,12 @@ Utility Projects
 This project is a simple web app used in the EAR project. Its `index.html` file
 contains links to the other applications in the EAR file.
 
+## [`learn-jakartaee-env`](./learn-jakartaee-env)
+
+This project contains the an `Environment` class that is able to read properties
+from files on the classpath. It has support for profiles and evaluating
+expressions  using values from environment variables and system properties.
+
 ## [`learn-jakartaee-security`](./learn-jakartaee-security)
 
 This project contains the credential validators. It contains a validator

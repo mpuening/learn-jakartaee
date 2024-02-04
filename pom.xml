@@ -61,9 +61,12 @@
 		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
 		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
 
+		<!-- default profile, also see wildfly.cli, server.env -->
+		<active.profiles>local</active.profiles>
 	</properties>
 
 	<modules>
+		<module>learn-jakartaee-env</module>
 		<module>learn-jakartaee-security</module>
 		<module>learn-jakartaee-datasource</module>
 		<module>learn-jakartaee-ejb</module>
@@ -177,7 +180,8 @@
 							<container>
 								<containerId>${cargo-glassfish-runtime}</containerId>
 								<systemProperties>
-									<spring.profiles.active>local</spring.profiles.active>
+									<spring.profiles.active>${active.profiles}</spring.profiles.active>
+									<app.profiles.active>${active.profiles}</app.profiles.active>
 									<test.users.enabled>true</test.users.enabled>
 								</systemProperties>
 							</container>
@@ -207,12 +211,14 @@
 						<configuration>
 							<tomeeVersion>${tomee-runtime.version}</tomeeVersion>
 							<tomeeClassifier>plus</tomeeClassifier>
-							<args>-Dspring.profiles.active=local --add-opens java.base/java.lang=ALL-UNNAMED</args>
+							<args>--add-opens java.base/java.lang=ALL-UNNAMED</args>
 							<systemVariables>
 								<tomee.mp.scan>all</tomee.mp.scan>
 								<!-- TomEE does not use the usual location -->
 								<mp.openapi.servers>/${project.artifactId}</mp.openapi.servers>
 								<openapi.ui.yamlUrl>/${project.artifactId}/openapi</openapi.ui.yamlUrl>
+								<spring.profiles.active>${active.profiles}</spring.profiles.active>
+								<app.profiles.active>${active.profiles}</app.profiles.active>
 								<test.users.enabled>true</test.users.enabled>
 							</systemVariables>
 							<context>${project.artifactId}</context>

@@ -10,6 +10,8 @@
 
 /system-property=test.users.enabled:add(value="true")
 
+/system-property=app.profiles.active:add(value="local")
+
 /system-property=spring.profiles.active:add(value="local")
 
 #
