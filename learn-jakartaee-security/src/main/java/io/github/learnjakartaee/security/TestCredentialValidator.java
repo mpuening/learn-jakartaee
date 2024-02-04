@@ -58,7 +58,7 @@ public class TestCredentialValidator implements CredentialValidator {
 	protected boolean checkIfEnabled() {
 		// Load properties from this project
 		ExpressionEvaluator evaluator = new ELExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(TestCredentialValidator.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment("security", TestCredentialValidator.class.getClassLoader(), evaluator);
 
 		String testUsersEnabled = environment
 				.getProperty(TEST_USERS_ENABLED_PROPERTY, TEST_USERS_ENABLED_PROPERTY, "false");
