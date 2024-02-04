@@ -7,7 +7,17 @@ import org.flywaydb.core.api.output.MigrateResult;
 
 public class FlywayMigration {
 
+	private static boolean flywayMigrationSkipped = false;
+
 	private static boolean flywayMigrationComplete = false;
+
+	public static boolean isFlywayMigrationSkipped() {
+		return flywayMigrationSkipped;
+	}
+
+	public static void setFlywayMigrationSkipped() {
+		flywayMigrationSkipped = true;
+	}
 
 	public static boolean isFlywayMigrationComplete() {
 		return flywayMigrationComplete;

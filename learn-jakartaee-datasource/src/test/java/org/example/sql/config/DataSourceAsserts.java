@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.config;
+package org.example.sql.config;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,33 +10,11 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
 import io.github.learnjakartaee.flyway.FlywayMigration;
-import io.github.learnjakartaee.sql.AppDataSource;
-import io.github.learnjakartaee.test.WebAppWarBuilder;
-import jakarta.inject.Inject;
 
-@ExtendWith(ArquillianExtension.class)
-public class DataSourceConfigTest {
+public class DataSourceAsserts {
 
-	@Deployment(testable = true)
-	public static WebArchive createTestDeployment() {
-		return new WebAppWarBuilder("learn-jakartaee-datasource")
-				.packages("io.github.learnjakartaee")
-				.build();
-	}
-
-	@Inject
-	@AppDataSource
-	DataSource dataSource;
-
-	@Test
-	public void testDataSourceConfig() throws SQLException {
+	public static void assertDataSource(DataSource dataSource) throws SQLException {
 		assertNotNull(dataSource);
 		assertTrue(FlywayMigration.isFlywayMigrationComplete());
 		
