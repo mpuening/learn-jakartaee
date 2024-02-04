@@ -12,7 +12,7 @@ import jakarta.enterprise.inject.Produces;
 
 /**
  * Set up a data source for the application. Because this is in an EJB class
- * loader GlassFish behaves oddly and differently from WebApp class loaders, as
+ * loader, GlassFish behaves oddly and differently from WebApp class loaders, as
  * well as differently from other application servers. It does not call the
  * setPassword() method on the data source, but instead uses getConnection(u,p)
  * which our DataSource implementation does not support. Hence, you see the
@@ -20,18 +20,12 @@ import jakarta.enterprise.inject.Produces;
  */
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.ELConfiguredDataSource",
-		url = "not empty env.get('DB_URL') ? env.get('DB_URL') : "
-				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
-		user = "not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
-				+ "properties.getOrDefault('db.user', 'APP') / "
-				+ "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
-				+ "properties.getOrDefault('db.password', '')",
-		password = "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
-				+ "properties.getOrDefault('db.password', '')",
+		className = "io.github.learnjakartaee.config.ELConfigurableDataSource",
+		url = "ENV(db.url)",
+		user = "ENV(db.user)/ENV(db.password)",
+		password = "ENV(db.password)",
 		properties = {
-				"driverClassName=not empty env.get('DB_DRIVER') ? env.get('DB_DRIVER') : "
-						+ "properties.getOrDefault('db.driver', 'org.apache.derby.jdbc.EmbeddedDriver')"
+				"driverClassName=ENV(db.driver)"
 		})
 @ApplicationScoped
 @ManagedBean
