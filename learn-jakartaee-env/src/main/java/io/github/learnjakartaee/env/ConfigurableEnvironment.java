@@ -26,26 +26,34 @@ public class ConfigurableEnvironment implements Environment, ExpressionEvaluator
 
 	protected final ExpressionEvaluator evaluator;
 
-	public ConfigurableEnvironment(ClassLoader classLoader, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
+	public ConfigurableEnvironment(String baseFilename, ClassLoader classLoader, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
 		String activeProfiles = Environment.getActiveProfiles();
 
 		LOG.info("CURRENT ACTIVE PROFILES: " + activeProfiles);
 
 		Arrays.asList(activeProfiles.split(",")).stream().map(s -> s.trim()).forEach(profile -> {
 			// We are only supporting files on the classpath
-			String filename = String.format("application-%s.properties", profile);
+			String filename = String.format("%s-%s.properties", baseFilename, profile);
 			readProperties(classLoader, filename);
 		});
 		// Default values will be in this file
-		readProperties(classLoader, "application.properties");
+		readProperties(classLoader, baseFilename + ".properties");
 
 		this.evaluator = evaluator;
 		this.expressionPrefix = expressionPrefix;
 		this.expressionSuffix = expressionSuffix;
 	}
 
+	public ConfigurableEnvironment(ClassLoader classLoader, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
+		this("application", classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+	}
+
+	public ConfigurableEnvironment(String baseFilename, ClassLoader classLoader, ExpressionEvaluator evaluator) {
+		this(baseFilename, classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+	}
+
 	public ConfigurableEnvironment(ClassLoader classLoader, ExpressionEvaluator evaluator) {
-		this(classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+		this("application", classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
 	}
 
 	protected void readProperties(ClassLoader classLoader, String filename) {
