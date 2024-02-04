@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 
-import io.github.learnjakartaee.security.TestCredentialValidator;
+import io.github.learnjakartaee.env.Environment;
 import io.github.learnjakartaee.test.WebAppWarBuilder;
 
 @ExtendWith(ArquillianExtension.class)
@@ -23,7 +23,7 @@ public class LoginTest {
 	@Deployment
 	public static WebArchive createTestDeployment() {
 
-		System.setProperty(TestCredentialValidator.TEST_USERS_ENABLED_SYS_PROP, "true");
+		System.setProperty(Environment.PROFILES_PROPERTY_NAME, "unittest");
 
 		return new WebAppWarBuilder("learn-jakartaee-security.war")
 				.packages("io.github.learnjakartaee")

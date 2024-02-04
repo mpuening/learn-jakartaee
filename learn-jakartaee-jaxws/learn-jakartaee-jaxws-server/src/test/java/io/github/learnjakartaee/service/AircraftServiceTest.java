@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import io.github.learnjakartaee.security.TestCredentialValidator;
+import io.github.learnjakartaee.env.Environment;
 import io.github.learnjakartaee.test.WebAppWarBuilder;
 import io.github.learnjakartaee.ws.AircraftInterface;
 import io.github.learnjakartaee.ws.AircraftService;
@@ -36,7 +36,7 @@ public class AircraftServiceTest {
 	@Deployment
 	public static WebArchive createTestDeployment() {
 
-		System.setProperty(TestCredentialValidator.TEST_USERS_ENABLED_SYS_PROP, "true");
+		System.setProperty(Environment.PROFILES_PROPERTY_NAME, "unittest");
 
 		return new WebAppWarBuilder("learn-jakartaee-jaxws.war")
 				.packages("io.github.learnjakartaee")

@@ -3,6 +3,9 @@ package io.github.learnjakartaee.security;
 import java.util.Map;
 import java.util.Set;
 
+import io.github.learnjakartaee.env.ConfigurableEnvironment;
+import io.github.learnjakartaee.env.ExpressionEvaluator;
+import io.github.learnjakartaee.env.el.ELExpressionEvaluator;
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
@@ -16,9 +19,7 @@ import jakarta.security.enterprise.identitystore.CredentialValidationResult;
  */
 public class TestCredentialValidator implements CredentialValidator {
 
-	public static final String TEST_USERS_ENABLED_ENV_VAR = "TEST_USERS_ENABLED";
-
-	public static final String TEST_USERS_ENABLED_SYS_PROP = "test.users.enabled";
+	public static final String TEST_USERS_ENABLED_PROPERTY = "test.users.enabled";
 
 	private static Map<String, String> USERS = Map.of(
 
@@ -55,10 +56,12 @@ public class TestCredentialValidator implements CredentialValidator {
 	}
 
 	protected boolean checkIfEnabled() {
-		String testUsersEnabled = System.getenv(TEST_USERS_ENABLED_ENV_VAR);
-		if (testUsersEnabled == null) {
-			testUsersEnabled = System.getProperty(TEST_USERS_ENABLED_SYS_PROP, "false");
-		}
+		// Load properties from this project
+		ExpressionEvaluator evaluator = new ELExpressionEvaluator();
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(TestCredentialValidator.class.getClassLoader(), evaluator);
+
+		String testUsersEnabled = environment
+				.getProperty(TEST_USERS_ENABLED_PROPERTY, TEST_USERS_ENABLED_PROPERTY, "false");
 		return Boolean.valueOf(testUsersEnabled);
 	}
 

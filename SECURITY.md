@@ -18,7 +18,7 @@ way (i.e. references to another CDI bean.)
 More information: https://developer.ibm.com/tutorials/j-javaee8-security-api-3/
 
 The `learn-jakartaee-security` contains classes for test users and integration to an
-LDAP system. These classes use Spel Expressions to make it easier to configure for
+LDAP system. These classes use Environment profile to make it easier to configure for
 different environments. There is also a `CredentialValidatorChain` class to allow
 one to hook up various validators depending on configuration. For example, an
 application might define its `IdentityStore` as follows:
@@ -39,4 +39,6 @@ public class AppIdentityStore implements IdentityStore {
 ```
 
 If "Test Users" are enabled, then developers can easily log into the application
-as various types of users. When disabled, LDAP integration is used.
+as various types of users. When disabled, LDAP integration is used. Test users
+are enabled for `local` and `unittest` profiles.
+

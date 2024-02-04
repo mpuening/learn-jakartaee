@@ -8,8 +8,6 @@
 #/system-property=db.user:add(value="APP")
 #/system-property=db.password:add(value="")
 
-/system-property=test.users.enabled:add(value="true")
-
 /system-property=app.profiles.active:add(value="local")
 
 /system-property=spring.profiles.active:add(value="local")
