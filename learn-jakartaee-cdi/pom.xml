@@ -16,6 +16,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
+	<!-- ================================================ -->
+	<properties>
+		<!-- example profile, also see wildfly.cli, server.env -->
+		<active.profiles>local,cat</active.profiles>
+	</properties>
+
 	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
@@ -31,7 +38,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 		</dependency>		
-		
+
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-env</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-datasource</artifactId>
