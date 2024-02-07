@@ -29,7 +29,7 @@ public class NoProfileTest {
 	@Test
 	public void testEnv() {
 		ExpressionEvaluator evaluator = new EnvExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(EnvEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertEquals("default-value", environment.getProperty("SomeValue", "some.value"));
 		assertEquals("default-profile-value", environment.getProperty("SomeProfileValue", "some.profile.value"));
 		assertEquals("default-expression-value", environment.getProperty("SomeExpressionValue", "some.profile.expression"));

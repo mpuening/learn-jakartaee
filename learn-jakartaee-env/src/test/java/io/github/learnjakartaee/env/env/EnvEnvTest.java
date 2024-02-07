@@ -31,7 +31,7 @@ public class EnvEnvTest {
 	@Test
 	public void testEnvEnvironment() {
 		ExpressionEvaluator evaluator = new EnvExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(EnvEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertEquals("default-value", environment.getProperty("SomeValue", "some.value"));
 		assertEquals("env-value", environment.getProperty("SomeProfileValue", "some.profile.value"));
 		assertEquals("aaa-env-value", environment.getProperty("SomeExpressionValue", "some.profile.expression"));

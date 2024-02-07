@@ -31,7 +31,7 @@ public class SpelEnvTest {
 	@Test
 	public void testSpelEnvironment() {
 		ExpressionEvaluator evaluator = new SpelExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(SpelEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertEquals("default-value", environment.getProperty("SomeValue", "some.value"));
 		assertEquals("spel-value", environment.getProperty("SomeProfileValue", "some.profile.value"));
 		assertEquals("aaa-spel-value", environment.getProperty("SomeExpressionValue", "some.profile.expression"));

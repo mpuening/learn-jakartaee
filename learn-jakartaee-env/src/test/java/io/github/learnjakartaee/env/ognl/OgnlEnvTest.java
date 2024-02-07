@@ -31,7 +31,7 @@ public class OgnlEnvTest {
 	@Test
 	public void testOgnlEnvironment() {
 		ExpressionEvaluator evaluator = new OgnlExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(OgnlEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertEquals("default-value", environment.getProperty("SomeValue", "some.value"));
 		assertEquals("ognl-value", environment.getProperty("SomeProfileValue", "some.profile.value"));
 		assertEquals("aaa-ognl-value", environment.getProperty("SomeExpressionValue", "some.profile.expression"));

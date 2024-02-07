@@ -15,7 +15,7 @@ public class MPEnvTest {
 	public void testMPEnvironment() {
 		System.setProperty(Environment.PROFILES_PROPERTY_NAME, "mock,mp,dev");
 		ExpressionEvaluator evaluator = new MPExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(MPEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertNotNull(environment);
 		
 		String username = environment.getProperty("username", "db.user");

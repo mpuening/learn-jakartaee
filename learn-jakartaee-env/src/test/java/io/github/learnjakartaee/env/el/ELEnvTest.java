@@ -31,7 +31,7 @@ public class ELEnvTest {
 	@Test
 	public void testELEnvironment() {
 		ExpressionEvaluator evaluator = new ELExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(ELEnvTest.class.getClassLoader(), evaluator);
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 		assertEquals("default-value", environment.getProperty("SomeValue", "some.value"));
 		assertEquals("el-value", environment.getProperty("SomeProfileValue", "some.profile.value"));
 		assertEquals("aaa-el-value", environment.getProperty("SomeExpressionValue", "some.profile.expression"));

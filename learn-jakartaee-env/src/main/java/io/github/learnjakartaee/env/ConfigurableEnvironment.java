@@ -26,42 +26,49 @@ public class ConfigurableEnvironment implements Environment, ExpressionEvaluator
 
 	protected final ExpressionEvaluator evaluator;
 
-	public ConfigurableEnvironment(String baseFilename, ClassLoader classLoader, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
+	public ConfigurableEnvironment(String[] baseFilenames, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
 		String activeProfiles = Environment.getActiveProfiles();
+		
+		ClassLoader classLoader = this.getClass().getClassLoader();
 
 		LOG.info("CURRENT ACTIVE PROFILES: " + activeProfiles);
 
-		Arrays.asList(activeProfiles.split(",")).stream().map(s -> s.trim()).forEach(profile -> {
-			// We are only supporting files on the classpath
-			String filename = String.format("%s-%s.properties", baseFilename, profile);
-			readProperties(classLoader, filename);
-		});
-		// Default values will be in this file
-		readProperties(classLoader, baseFilename + ".properties");
+		for (String baseFilename : baseFilenames) {
+			Arrays.asList(activeProfiles.split(",")).stream().map(s -> s.trim()).forEach(profile -> {
+				// We are only supporting files on the classpath
+				String filename = String.format("%s-%s.properties", baseFilename, profile);
+				readProperties(classLoader, filename);
+			});
+			// Default values will be in this file
+			readProperties(classLoader, baseFilename + ".properties");
+		}
 
 		this.evaluator = evaluator;
 		this.expressionPrefix = expressionPrefix;
 		this.expressionSuffix = expressionSuffix;
 	}
 
-	public ConfigurableEnvironment(ClassLoader classLoader, ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
-		this("application", classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+	public ConfigurableEnvironment(String[] baseFilenames, ExpressionEvaluator evaluator) {
+		this(baseFilenames, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
 	}
 
-	public ConfigurableEnvironment(String baseFilename, ClassLoader classLoader, ExpressionEvaluator evaluator) {
-		this(baseFilename, classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+	public ConfigurableEnvironment(ExpressionEvaluator evaluator, String expressionPrefix, String expressionSuffix) {
+		this(new String[] { "application" }, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
 	}
 
-	public ConfigurableEnvironment(ClassLoader classLoader, ExpressionEvaluator evaluator) {
-		this("application", classLoader, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
+	public ConfigurableEnvironment(ExpressionEvaluator evaluator) {
+		this(new String[] { "application" }, evaluator, EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
 	}
 
 	protected void readProperties(ClassLoader classLoader, String filename) {
 		try (InputStream input = classLoader.getResourceAsStream(filename)) {
-			Properties profileProperties = new Properties();
 			if (input != null) {
+				LOG.info("LOADING PROFILE PROPERTIES FILE: " + filename);
+				Properties profileProperties = new Properties();
 				profileProperties.load(input);
 				properties.add(profileProperties);
+			} else {
+				LOG.info("MISSING PROFILE PROPERTIES FILE: " + filename);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
