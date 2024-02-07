@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.1</version>
+		<version>3.2.2</version>
 	</parent>
 
 	<properties>
@@ -41,9 +41,6 @@
 		<!-- https://tomee.apache.org/master/docs/tomee-maven-plugin.html -->
 		<tomee-maven-plugin.version>9.1.0</tomee-maven-plugin.version>
 		<tomee-runtime.version>9.1.0</tomee-runtime.version>
-
-		<!-- Use this version. Newer versions deprecate and remove code needed by Arquillian -->
-		<selenium.version>4.1.1</selenium.version>
 
 		<!-- Odds and ends -->
 		<ognl.version>3.3.4</ognl.version>
