@@ -1,32 +1,33 @@
 package io.github.learnjakartaee;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.WebDriverConditions.urlStartingWith;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.openqa.selenium.By.id;
 
 import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import com.codeborne.selenide.WebDriverRunner;
 
 import io.github.learnjakartaee.test.WebAppWarBuilder;
 
-/**
- * When running within Eclipse/IntelliJ, make sure to add VM args:
- *
- * --add-opens java.base/java.lang=ALL-UNNAMED
- * --add-opens=java.base/java.io=ALL-UNNAMED
- * --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
- *
- * In Eclipse, the JRE configuration had a field for default VM args, so you
- * need only to set it once and apply it for all test cases.
- */
 @ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(OrderAnnotation.class)
 public class HelloServletTest {
 
 	@Deployment
@@ -44,25 +45,34 @@ public class HelloServletTest {
 	@ArquillianResource
 	private URL baseURL;
 
-	@Drone
-	private WebDriver driver;
+	@BeforeAll
+	public static void setup() {
+		HtmlUnitDriver webDriver = new HtmlUnitDriver();
+		webDriver.setJavascriptEnabled(true);
+		WebDriverRunner.setWebDriver(webDriver);
+	}
 
 	@Test
+	@Order(1)
 	public void testArquillianBootedUp() {
 		assertNotNull(baseURL);
-		assertNotNull(driver);
 	}
 
 	@Test
+	@Order(2)
 	public void testHomePage() {
-		HomePage homePage = Graphene.goTo(HomePage.class);
-		//Graphene.waitGui().until().element(By.id("banner")).is().present();
-		homePage.assertPageLoaded();
+		open(baseURL + "index.jsp");
+		// System.out.println(WebDriverRunner.source());
+		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "index.jsp"));
+		$(id("banner")).shouldHave(text("Welcome"));
 	}
 
 	@Test
-	public void testHelloPage() {
-		HelloPage helloPage = Graphene.goTo(HelloPage.class);
-		helloPage.assertPageLoaded();
+	@Order(3)
+	public void testHelloServlet() {
+		open(baseURL + "hello");
+		// System.out.println(WebDriverRunner.source());
+		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "hello"));
+		$(id("banner")).shouldHave(text("Welcome, what is your name?"));
 	}
 }

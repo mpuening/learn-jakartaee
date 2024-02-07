@@ -20,16 +20,6 @@ import io.github.learnjakartaee.ws.AircraftInterface;
 import io.github.learnjakartaee.ws.AircraftService;
 import jakarta.xml.ws.BindingProvider;
 
-/**
- * When running within Eclipse/IntelliJ, make sure to add VM args:
- *
- * --add-opens java.base/java.lang=ALL-UNNAMED
- * --add-opens=java.base/java.io=ALL-UNNAMED
- * --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
- *
- * In Eclipse, the JRE configuration had a field for default VM args, so you
- * need only to set it once and apply it for all test cases.
- */
 @ExtendWith(ArquillianExtension.class)
 public class AircraftServiceTest {
 

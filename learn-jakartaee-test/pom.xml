@@ -18,9 +18,8 @@
 	</parent>
 
 	<properties>
-		<arquillian.version>1.7.0.Final</arquillian.version>
-		<arquillian-drone.version>3.0.0-alpha.7</arquillian-drone.version>
-		<arquillian-graphene.version>3.0.0-alpha.3</arquillian-graphene.version>
+		<arquillian.version>1.8.0.Final</arquillian.version>
+		<selenide.version>7.0.6</selenide.version>
 		<resteasy.version>6.2.4.Final</resteasy.version>
 	</properties>
 
@@ -36,13 +35,6 @@
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
 				<version>${arquillian.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.extension</groupId>
-				<artifactId>arquillian-drone-bom</artifactId>
-				<version>${arquillian-drone.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
