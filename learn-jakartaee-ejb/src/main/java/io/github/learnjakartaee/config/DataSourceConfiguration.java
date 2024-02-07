@@ -20,7 +20,7 @@ import jakarta.enterprise.inject.Produces;
  */
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.config.ELConfigurableDataSource",
+		className = "io.github.learnjakartaee.sql.ELConfigurableDataSource",
 		url = "ENV(db.url)",
 		user = "ENV(db.user)/ENV(db.password)",
 		password = "ENV(db.password)",

@@ -1,171 +1,73 @@
 package io.github.learnjakartaee.sql;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Objects;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.zaxxer.hikari.HikariDataSource;
+import io.github.learnjakartaee.env.Environment;
+import io.github.learnjakartaee.env.ExpressionEvaluator;
 
 /**
- * This is an Hikari DataSource extension that is capable of looking up database
- * connection information from various implementations such as environment
- * variables, system properties, micro-profile config sources, JNDI names.
- * Encryption could even be supported.
- *
- * Not (yet) added to this class are setters to externalize the connection pool
- * settings, or having a validation SQL statement. But all that should be fairly
- * easy to add.
- *
- * See the DataSourceConfiguration class for usage.
- *
- * QUESTIONABLE Does this place a connection pool on top of a connection pool?
+ * This is a compatibility DataSource extension that is capable of looking up
+ * database connection information from the environment, or evaluate the value
+ * as an expression.
  */
-public abstract class ConfigurableDataSource extends HikariDataSource {
+public class ConfigurableDataSource extends CompatibilityDataSource {
 
-	protected final Logger LOG = LoggerFactory.getLogger(ConfigurableDataSource.class);
+	public static final String ENV_PREFIX_DEFAULT = "ENV(";
+	public static final String ENV_SUFFIX_DEFAULT = ")";
 
-	public ConfigurableDataSource() {
-		this.setMinimumIdle(3);
+	public static final String EXPRESSION_PREFIX_DEFAULT = "EVAL(";
+	public static final String EXPRESSION_SUFFIX_DEFAULT = ")";
+
+	protected final String envPrefix;
+	protected final String envSuffix;
+
+	protected final String expressionPrefix;
+	protected final String expressionSuffix;
+
+	private final Environment environment;
+	private final ExpressionEvaluator evaluator;
+
+	public ConfigurableDataSource(Environment environment, ExpressionEvaluator evaluator,
+			String envPrefix, String envSuffix,
+			String expressionPrefix, String expressionSuffix) {
+		this.environment = environment;
+		this.evaluator = evaluator;
+		this.envPrefix = envPrefix;
+		this.envSuffix = envSuffix;
+		this.expressionPrefix = expressionPrefix;
+		this.expressionSuffix = expressionSuffix;
+	}
+
+	public ConfigurableDataSource(Environment environment, ExpressionEvaluator evaluator) {
+		this(environment, evaluator,
+				ENV_PREFIX_DEFAULT, ENV_SUFFIX_DEFAULT,
+				EXPRESSION_PREFIX_DEFAULT, EXPRESSION_SUFFIX_DEFAULT);
 	}
 
 	@Override
-	public void setDriverClassName(String driverClassName) {
-		if (driverClassName != null) {
-			super.setDriverClassName(evaluateValue("driver", driverClassName));
-		}
+	protected String evaluateValue(String description, String value) {
+		// LOG.debug("Evaluate " + description + ": " + value);
+		value = (value != null && isEnvProperty(value))
+				? environment.getProperty(description, peelEnvProperty(value))
+				: (value != null && isExpression(value))
+					? evaluator.evaluateExpression(description, peelExpression(value))
+					: value;
+		return value;
 	}
 
-	/**
-	 * WildFly requires an encoded URL in the source code. Otherwise, URL parameters
-	 * get truncated.
-	 */
-	@Override
-	public void setJdbcUrl(String jdbcUrl) {
-		if (jdbcUrl != null) {
-			jdbcUrl = evaluateValue("url", jdbcUrl);
-			try {
-				jdbcUrl = URLDecoder.decode(jdbcUrl, StandardCharsets.UTF_8.toString());
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			super.setJdbcUrl(jdbcUrl);
-		}
+	protected boolean isEnvProperty(String value) {
+		return value.startsWith(this.envPrefix) && value.endsWith(envSuffix);
 	}
 
-	/**
-	 * For GlassFish support, the username may appear as a delimited
-	 * username/password string. GlassFish does not invoke the setPassword setter
-	 * but instead calls getConnection(u,p) which is not supported by Hikari.
-	 * Doubling up the username as a username/password pair allows us to check the
-	 * username and password in the getConnection(u,p) method against the configured
-	 * credentials.
-	 *
-	 * This causes a limitation in that '/' is a reserved character.
-	 */
-	@Override
-	public void setUsername(String username) {
-		if (username != null && username.contains("/")) {
-			// Username appears as username/password pair
-			String[] credentials = username.split("/");
-			super.setUsername(evaluateValue("username1/2", credentials[0]));
-			super.setPassword(evaluateValue("password2/2", credentials.length > 1 ? credentials[1] : ""));
-		} else if (username != null) {
-			super.setUsername(evaluateValue("username", username));
-		}
+	protected String peelEnvProperty(String value) {
+		return value.substring(this.envPrefix.length(),
+				value.length() - envSuffix.length());
 	}
 
-	@Override
-	public void setPassword(String password) {
-		if (password != null) {
-			super.setPassword(evaluateValue("password", password));
-		}
+	protected boolean isExpression(String value) {
+		return value.startsWith(this.expressionPrefix) && value.endsWith(expressionSuffix);
 	}
 
-	// ==========================================
-	// Bootstrap logic
-	// ==========================================
-
-	private static int tries = 3;
-
-	protected void bootstrapConnectionPool() {
-		while (!isRunning() && tries > 0) {
-			LOG.info("HIKARI DB CONNECTION POOL FILLING...");
-			try (Connection connection = super.getConnection()) {
-				connection.getMetaData();
-				LOG.info("HIKARI DB CONNECTION POOL RUNNING? {}", isRunning());
-			} catch (SQLException e) {
-			}
-			tries--;
-		}
+	protected String peelExpression(String value) {
+		return value.substring(this.expressionPrefix.length(),
+				value.length() - expressionSuffix.length());
 	}
-
-	@Override
-	public Connection getConnection() throws SQLException {
-		// Try to bootstrap connection pool and not return bad connections.
-		bootstrapConnectionPool();
-		return super.getConnection();
-	}
-
-	@Override
-	public Connection getConnection(String username, String password) throws SQLException {
-		// Hikari doesn't support new auth connections (called by Wildfly/GlassFish)
-
-		if (username != null && username.contains("/")) {
-			// Username appears as username/password
-			String[] credentials = username.split("/");
-			username = evaluateValue("username", credentials[0]);
-			password = evaluateValue("password", credentials.length > 1 ? credentials[1] : "");
-		} else {
-			username = evaluateValue("username", username);
-			password = evaluateValue("password", password);
-		}
-
-		if (Objects.equals(username, getUsername()) && Objects.equals(password, getPassword())) {
-			// Allow it if same from initial config
-			return getConnection();
-		}
-		// This will likely fail
-		return super.getConnection(username, password);
-	}
-
-	// ==========================================
-	// Extra setters methods seen from App Servers
-	// ==========================================
-
-	public void setDatabaseName(String databaseName) {
-		// Open Liberty wants to invoke this method
-	}
-
-	public void setServerName(String serverName) {
-		// Open Liberty wants to invoke this method
-	}
-
-	public void setUser(String user) {
-		// Open Liberty wants to invoke this method
-		setUsername(user);
-	}
-
-	public void setURL(String url) {
-		// Open Liberty wants to invoke this method
-		setJdbcUrl(url);
-	}
-
-	public void setCreate(String create) {
-		// GlassFish wants to invoke this method
-	}
-
-	/**
-	 * Sub-classes are responsible for the implementation
-	 *
-	 * @param description Human-readable description of value
-	 * @param value       Value to evaluate
-	 * @return
-	 */
-	protected abstract String evaluateValue(String description, String value);
 }

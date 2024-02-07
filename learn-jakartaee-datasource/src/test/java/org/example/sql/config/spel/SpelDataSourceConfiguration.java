@@ -17,7 +17,7 @@ import jakarta.enterprise.inject.Produces;
 
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "org.example.sql.config.spel.SpelConfigurableDataSource",
+		className = "io.github.learnjakartaee.sql.SpelConfigurableDataSource",
 		url = "ENV(db.url)",
 		user = "ENV(db.user)/ENV(db.password)",
 		password = "ENV(db.password)",
@@ -40,7 +40,7 @@ public class SpelDataSourceConfiguration {
 		// It's not good practice to have an app be responsible to run migrations.
 		// But it is quite convenient for local development
 		ExpressionEvaluator evaluator = new SpelExpressionEvaluator();
-		Environment environment = new ConfigurableEnvironment(SpelDataSourceConfiguration.class.getClassLoader(), evaluator);
+		Environment environment = new ConfigurableEnvironment(evaluator);
 		if ("true".equalsIgnoreCase(environment.getProperty("FlyWay", "flyway.migration.enabled", "false"))) {
 			FlywayMigration.run(dataSource, SpelDataSourceConfiguration.class.getClassLoader());			
 		}

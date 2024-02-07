@@ -13,7 +13,7 @@ import jakarta.enterprise.inject.Produces;
 
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "org.example.sql.config.noenv.NonConfigurableDataSource",
+		className = "io.github.learnjakartaee.sql.CompatibilityDataSource",
 		url = "jdbc:derby:memory:appdb%3Bcreate=true",
 		user = "APP",
 		password = "",

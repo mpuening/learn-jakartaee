@@ -14,7 +14,7 @@ import jakarta.enterprise.inject.Produces;
 
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.shared.config.SpelConfigurableDataSource",
+		className = "io.github.learnjakartaee.sql.SpelConfigurableDataSource",
 		url = "EVAL(env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true')",
 		user = "EVAL(env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP')",
 		password = "EVAL(env['DB_PASSWORD'] ?: properties['db.password'] ?: '')",
