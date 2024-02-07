@@ -19,11 +19,12 @@
 						<h:form method="post" class="text-center border border-light p-5">
 							<p id="loginMessage" class="h4 mb-4">Please sign in...</p>
 							<div id="global-errors"><h:messages globalOnly="true" errorClass="alert alert-danger"/></div>
+							<h:outputText rendered="#{param['error'] != null}">Invalid username and password</h:outputText>
 							<h:outputText rendered="#{param['logout'] != null}">You have been logged out</h:outputText>
 							<label for="username" class="sr-only">Username</label>
 							<h:inputText id="username" name="username" label="Username"
 								required="true" value="#{loginBean.username}" class="form-control mb-2"
-								a:placeholder="Username" />
+								a:placeholder="Username" a:autofocus="true"/>
 							<h:message for="username" style="color:red" />
 							<label for="password" class="sr-only">Password</label>
 							<h:inputSecret id="password" name="password" label="Password"

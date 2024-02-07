@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
+		<ui:param name="pageTitle" value="Logged Out" />
+		<ui:param name="disableSideMenu" value="true" />
+
+		<ui:define name="body">
+			<div class="row">
+				<div class="col-sm-6 offset-sm-3 text-center">
+					<h1 class="display-4">Goodbye</h1>
+					<p>
+						You have been logged out
+					</p>
+					<p>
+						<h:link outcome="/index" styleClass="nav-item nav-link">Sign In</h:link>
+					</p>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

@@ -77,6 +77,8 @@ public class TestCredentialValidator implements CredentialValidator {
 		String password = users.get(login.getCaller());
 		if (password != null && password.equals(login.getPasswordAsString())) {
 			return new CredentialValidationResult(login.getCaller(), roles.get(login.getCaller()));
+		} else if (password != null && !password.equals(login.getPasswordAsString())) {
+			return CredentialValidationResult.INVALID_RESULT;
 		} else {
 			return CredentialValidationResult.NOT_VALIDATED_RESULT;
 		}
