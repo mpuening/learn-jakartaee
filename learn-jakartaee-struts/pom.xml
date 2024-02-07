@@ -31,11 +31,6 @@
 	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
-			<groupId>io.github.learnjakartaee</groupId>
-			<artifactId>learn-jakartaee-ejb</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
 			<scope>provided</scope>
@@ -89,20 +84,23 @@
 
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-test-webprofile</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
-
-	<!-- ================================================ -->
-
-	<!-- To run application: -->
-	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-struts -->
-	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-struts -->
-	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-struts -->
-	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-struts -->
 
 	<!-- ================================================ -->
 	<build>
@@ -180,4 +178,13 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<!-- ================================================ -->
+
+	<!-- To run application: -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-struts -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-struts -->
+	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-struts -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-struts -->
+
 </project>

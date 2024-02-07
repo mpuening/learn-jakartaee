@@ -12,16 +12,23 @@
 		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
 
 	<library id="global">
+		<!-- Application Code -->
+		<file name="${config}" />
+		<file name="${envutil}" />
+		<file name="${datasourceutil}" />
+		<!-- Logging Libraries -->
+		<file name="${slf4j}" />
+		<file name="${slf4jjdk14}" />
+		<!-- DataSource / Driver Libraries -->
 		<file name="${derbypath}" />
 		<file name="${derbyclientpath}" />
 		<file name="${derbytoolspath}" />
 		<file name="${derbysharedpath}" />
-		<file name="${datasourceutil}" />
+		<file name="${hikaricp}" />
+		<!-- Spring Exression Libraries -->
 		<file name="${springexpression}" />
 		<file name="${springcore}" />
 		<file name="${springjcl}" />
-		<file name="${hikaricp}" />
-		<file name="${slf4j}" />
 	</library>
 
 </server>

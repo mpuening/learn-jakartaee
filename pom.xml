@@ -50,22 +50,30 @@
 
 		<!-- Library support for Open Liberty -->
 		<repo.dir>${user.home}/.m2/repository</repo.dir>
+		<!-- Application Code -->
+		<liberty.var.config>${repo.dir}/io/github/learnjakartaee/learn-jakartaee-config/${project.version}/learn-jakartaee-config-${project.version}.jar</liberty.var.config>
+		<liberty.var.envutil>${repo.dir}/io/github/learnjakartaee/learn-jakartaee-env/${project.version}/learn-jakartaee-env-${project.version}.jar</liberty.var.envutil>
+		<liberty.var.datasourceutil>${repo.dir}/io/github/learnjakartaee/learn-jakartaee-datasource/${project.version}/learn-jakartaee-datasource-${project.version}.jar</liberty.var.datasourceutil>
+		<!-- Logging Libraries -->
+		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
+		<liberty.var.slf4jjdk14>${repo.dir}/org/slf4j/slf4j-jdk14/${slf4j.version}/slf4j-jdk14-${slf4j.version}.jar</liberty.var.slf4jjdk14>
+		<!-- DataSource / Driver Libraries -->
+		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
 		<liberty.var.derbypath>${repo.dir}/org/apache/derby/derby/${derby.version}/derby-${derby.version}.jar</liberty.var.derbypath>
 		<liberty.var.derbyclientpath>${repo.dir}/org/apache/derby/derbyclient/${derby.version}/derbyclient-${derby.version}.jar</liberty.var.derbyclientpath>
 		<liberty.var.derbytoolspath>${repo.dir}/org/apache/derby/derbytools/${derby.version}/derbytools-${derby.version}.jar</liberty.var.derbytoolspath>
 		<liberty.var.derbysharedpath>${repo.dir}/org/apache/derby/derbyshared/${derby.version}/derbyshared-${derby.version}.jar</liberty.var.derbysharedpath>
-		<liberty.var.datasourceutil>${repo.dir}/io/github/learnjakartaee/learn-jakartaee-datasource/${project.version}/learn-jakartaee-datasource-${project.version}.jar</liberty.var.datasourceutil>
+		<!-- Spring Exression Libraries (CDI project) -->
 		<liberty.var.springexpression>${repo.dir}/org/springframework/spring-expression/${spring-framework.version}/spring-expression-${spring-framework.version}.jar</liberty.var.springexpression>
 		<liberty.var.springcore>${repo.dir}/org/springframework/spring-core/${spring-framework.version}/spring-core-${spring-framework.version}.jar</liberty.var.springcore>
 		<liberty.var.springjcl>${repo.dir}/org/springframework/spring-jcl/${spring-framework.version}/spring-jcl-${spring-framework.version}.jar</liberty.var.springjcl>
-		<liberty.var.hikaricp>${repo.dir}/com/zaxxer/HikariCP/${hikaricp.version}/HikariCP-${hikaricp.version}.jar</liberty.var.hikaricp>
-		<liberty.var.slf4j>${repo.dir}/org/slf4j/slf4j-api/${slf4j.version}/slf4j-api-${slf4j.version}.jar</liberty.var.slf4j>
 
 		<!-- default profile, also see wildfly.cli, server.env -->
 		<active.profiles>local</active.profiles>
 	</properties>
 
 	<modules>
+		<module>learn-jakartaee-config</module>
 		<module>learn-jakartaee-env</module>
 		<module>learn-jakartaee-security</module>
 		<module>learn-jakartaee-datasource</module>
