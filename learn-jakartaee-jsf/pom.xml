@@ -60,9 +60,9 @@
 	<!-- ================================================ -->
 
 	<!-- To run application: -->
-	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-jsf -->
-	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-jsf -->
-	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-jsf -->
-	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-jsf -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-jsf/index.xhtml -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-jsf/index.xhtml -->
+	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-jsf/index.xhtml -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-jsf/index.xhtml -->
 
 </project>
