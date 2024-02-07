@@ -9,7 +9,7 @@ import io.github.learnjakartaee.shared.model.Animal;
 @Configuration
 public class AnimalConfiguration {
 
-	@Value("${animal.classname}")
+	@Value("${animal.classname:io.github.learnjakartaee.shared.model.Dog}")
 	String animalClassName;
 	
 	@Bean

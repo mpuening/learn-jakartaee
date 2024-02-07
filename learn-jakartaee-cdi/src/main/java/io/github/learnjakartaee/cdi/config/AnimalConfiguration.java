@@ -13,8 +13,8 @@ public class AnimalConfiguration {
 	@Produces
 	public Animal animal() throws Exception {
 		ExpressionEvaluator evaluator = new ELExpressionEvaluator();
-		ConfigurableEnvironment environment = new ConfigurableEnvironment(AnimalConfiguration.class.getClassLoader(), evaluator);
-		String animalClassName = environment.getProperty("AnimalName", "animal.classname");
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
+		String animalClassName = environment.getProperty("AnimalName", "animal.classname", "io.github.learnjakartaee.shared.model.Dog");
 		return (Animal) Class.forName(animalClassName).getDeclaredConstructor().newInstance();
 	}
 }
