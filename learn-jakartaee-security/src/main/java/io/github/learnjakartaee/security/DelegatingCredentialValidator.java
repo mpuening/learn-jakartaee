@@ -9,11 +9,11 @@ import jakarta.security.enterprise.identitystore.CredentialValidationResult;
  * validator in the list gets a chance. First validator to decides it applies
  * gets to decide result.
  */
-public class CredentialValidatorChain implements CredentialValidator {
+public class DelegatingCredentialValidator implements CredentialValidator {
 
 	private final CredentialValidator[] credentialValidators;
 
-	public CredentialValidatorChain(CredentialValidator... credentialValidators) {
+	public DelegatingCredentialValidator(CredentialValidator... credentialValidators) {
 		this.credentialValidators = credentialValidators;
 	}
 
