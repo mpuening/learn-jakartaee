@@ -417,12 +417,12 @@ The `@DataSourceDefinition` annotation would reference that implementation like 
 ```
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
-		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
-		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP'",
-		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		className = "io.github.learnjakartaee.sql.SpelConfigurableDataSource",
+		url = "EVAL(env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true')",
+		user = "EVAL(env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP')",
+		password = "EVAL(env(['DB_PASSWORD'] ?: properties['db.password'] ?: '')",
 		properties = {
-				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
+				"driverClassName=EVAL(env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver')"
 		})
 @ApplicationScoped
 public class DataSourceConfiguration {
@@ -441,11 +441,11 @@ public class DataSourceConfiguration {
 and the `DataSource` class might look as follows:
 
 ```
-public class SpelConfiguredDataSource extends HikariDataSource {
+public class SpelConfigurableDataSource extends HikariDataSource {
 }
 ```
 
-In this case, the `SpelConfiguredDataSource` class that is in the '`learn-jakartaee-datasource`
+In this case, the `SpelConfigurableDataSource` class that is in the '`learn-jakartaee-datasource`
 project gives one a Hikari Connection Pool that can be configured across all app servers
 with connection information stored consistently in environment variables or system properties.
 Default values are also supported.
@@ -474,13 +474,13 @@ On the EJB side of things. GlassFish offers up a few more wrinkles that get solv
 ```
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.SpelConfiguredDataSource",
-		url = "env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true'",
-		user = "env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP' / "
-				+ "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
-		password = "env['DB_PASSWORD'] ?: properties['db.password'] ?: ''",
+		className = "io.github.learnjakartaee.sql.SpelConfigurableDataSource",
+		url = "EVAL(env['DB_URL'] ?: properties['db.url'] ?: 'jdbc:derby:memory:appdb%3Bcreate=true')",
+		user = "EVAL(env['DB_USERNAME'] ?: properties['db.user'] ?: 'APP')/"
+				+ "EVAL(env['DB_PASSWORD'] ?: properties['db.password'] ?: '')",
+		password = "EVAL(env['DB_PASSWORD'] ?: properties['db.password'] ?: '')",
 		properties = {
-				"driverClassName=env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver'"
+				"driverClassName=EVAL(env['DB_DRIVER'] ?: properties['db.driver'] ?: 'org.apache.derby.jdbc.EmbeddedDriver')"
 		})
 @ApplicationScoped
 @ManagedBean
@@ -511,29 +511,55 @@ with the Spring Boot LDAP Server which has spring-core dependencies at its heart
 "skinny-modules" setting of the maven-ear-plugin causes these JAR file dependency to be moved
 to the shared `lib` directory. And that somehow prevented Spring Boot from started the application.
 
-To remedy the situation, a new implementation based oin Jakarata Expression Language was built.
+To remedy the situation, a new implementation based on Jakarata Expression Language was built.
 An example follows:
 
 ```
 @DataSourceDefinition(
 		name = "java:app/env/jdbc/appDataSource",
-		className = "io.github.learnjakartaee.sql.ELConfiguredDataSource",
-		url = "not empty env.get('DB_URL') ? env.get('DB_URL') : "
-				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true')",
-		user = "not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
-				+ "properties.getOrDefault('db.user', 'APP') / "
-				+ "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
-				+ "properties.getOrDefault('db.password', '')",
-		password = "not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
-				+ "properties.getOrDefault('db.password', '')",
+		className = "io.github.learnjakartaee.sql.ELConfigurableDataSource",
+		url = "EVAL(not empty env.get('DB_URL') ? env.get('DB_URL') : "
+				+ "properties.getOrDefault('db.url', 'jdbc:derby:memory:appdb%3Bcreate=true'))",
+		user = "EVAL(not empty env.get('DB_USERNAME') ? env.get('DB_USERNAME') : "
+				+ "properties.getOrDefault('db.user', 'APP'))/"
+				+ "EVAL(not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', ''))",
+		password = "EVAL(not empty env.get('DB_PASSWORD') ? env.get('DB_PASSWORD') : "
+				+ "properties.getOrDefault('db.password', ''))",
 		properties = {
-				"driverClassName=not empty env.get('DB_DRIVER') ? env.get('DB_DRIVER') : "
-						+ "properties.getOrDefault('db.driver', 'org.apache.derby.jdbc.EmbeddedDriver')"
+				"driverClassName=EVAL(not empty env.get('DB_DRIVER') ? env.get('DB_DRIVER') : "
+						+ "properties.getOrDefault('db.driver', 'org.apache.derby.jdbc.EmbeddedDriver'))"
 		})
 @ApplicationScoped
 @ManagedBean
 public class DataSourceConfiguration {
 }
 ```
+
 It is not as concise as Spel, but does not have external dependencies. As is, users of the
 data source project must now provide language dependencies of their choosing. Sigh.
+
+Finally, I created one based on `Environment` properties, as appears in the EJB project:
+
+```
+@DataSourceDefinition(
+		name = "java:app/env/jdbc/appDataSource",
+		className = "io.github.learnjakartaee.sql.ELConfigurableDataSource",
+		url = "ENV(db.url)",
+		user = "ENV(db.user)/ENV(db.password)",
+		password = "ENV(db.password)",
+		properties = {
+				"driverClassName=ENV(db.driver)"
+		})
+@ApplicationScoped
+@ManagedBean
+public class DataSourceConfiguration {
+
+	@Produces
+	@AppDataSource
+	public DataSource getDataSource() {
+		return lookupDataSource();
+	}
+
+}
+```

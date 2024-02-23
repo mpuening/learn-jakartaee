@@ -19,7 +19,7 @@ More information: https://developer.ibm.com/tutorials/j-javaee8-security-api-3/
 
 The `learn-jakartaee-security` contains classes for test users and integration to an
 LDAP system. These classes use Environment profile to make it easier to configure for
-different environments. There is also a `CredentialValidatorChain` class to allow
+different environments. There is also a `DelegatingCredentialValidator` class to allow
 one to hook up various validators depending on configuration. For example, an
 application might define its `IdentityStore` as follows:
 
@@ -27,7 +27,7 @@ application might define its `IdentityStore` as follows:
 @ApplicationScoped
 public class AppIdentityStore implements IdentityStore {
 
-	private CredentialValidator credentialValidator = new CredentialValidatorChain(
+	private CredentialValidator credentialValidator = new DelegatingCredentialValidator(
 			new TestCredentialValidator(),
 			new LDAPCredentialValidator());
 

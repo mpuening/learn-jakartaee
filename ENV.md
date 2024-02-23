@@ -14,7 +14,7 @@ including:
 * Micro-profile
 * Expression Language
 
-Instead of using the variable or property `SPRING_PROFILES_ACTIVE` and  `spring.profiles.active`,
+Instead of using the variable or property `SPRING_PROFILES_ACTIVE` and `spring.profiles.active`,
 this library uses `APP_PROFILES_ACTIVE` and `app.profiles.active`.
 
 Imagine two files:
@@ -35,7 +35,7 @@ The following code, using the default profile, would return `bar`:
 
 ```
 ExpressionEvaluator evaluator = new EnvExpressionEvaluator();
-ConfigurableEnvironment environment = new ConfigurableEnvironment(SomeApp.class.getClassLoader(), evaluator);
+ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 String value = environment.getProperty("FooValue", "foo")); // bar
 ```
 
@@ -45,7 +45,7 @@ But if the `unittest` profile is set, another value is retrieved:
 System.setProperty(Environment.PROFILES_PROPERTY_NAME, "unitttest");
 
 ExpressionEvaluator evaluator = new EnvExpressionEvaluator();
-ConfigurableEnvironment environment = new ConfigurableEnvironment(SomeApp.class.getClassLoader(), evaluator);
+ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 String value = environment.getProperty("FooValue", "foo")); // test-bar
 ```
 
@@ -66,7 +66,7 @@ The following code shows getting the value of the above using an EL Environment:
 
 ```
 ExpressionEvaluator evaluator = new ELExpressionEvaluator();
-ConfigurableEnvironment environment = new ConfigurableEnvironment(SomeApp.class.getClassLoader(), evaluator);
+ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
 String value = environment.getProperty("FooValue", "foo")); 
 ```
 
