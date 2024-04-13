@@ -10,7 +10,11 @@ public class AircraftClientTest {
 
 	@Test
 	public void testAircraftClent() {
-		AircraftInterface aircraftInterface = AircraftClient.createInterface("http://localhost:8080/test");
+		String test = "http://localhost:8080/learn-jakartaee-jaxws-server/AircraftService";
+		AircraftInterface aircraftInterface = AircraftClient.createInterface(test);
 		assertNotNull(aircraftInterface);
+		//String pong = aircraftInterface.ping("ping");
+		//assertEquals("ping", pong);
+		//System.out.println(pong);
 	}
 }

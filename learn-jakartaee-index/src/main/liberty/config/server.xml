@@ -2,7 +2,7 @@
 <server description="ldap">
 
 	<featureManager>
-		<feature>jakartaee-9.1</feature>
+		<feature>jakartaee-10.0</feature>
 	</featureManager>
 
 	<variable name="default.http.port" defaultValue="9080" />

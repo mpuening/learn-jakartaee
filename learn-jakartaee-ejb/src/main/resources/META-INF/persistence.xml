@@ -8,6 +8,10 @@
 
 		<jta-data-source>java:app/env/jdbc/appDataSource</jta-data-source>
 
+		<properties>
+			<property name="hibernate.jdbc.lob.non_contextual_creation" value="true"/>
+		</properties>
+
 	</persistence-unit>
 	
 </persistence>

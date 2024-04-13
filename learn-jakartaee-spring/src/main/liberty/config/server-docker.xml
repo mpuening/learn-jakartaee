@@ -2,7 +2,7 @@
 <server description="spring">
 
 	<featureManager>
-		<feature>jakartaee-9.1</feature>
+		<feature>jakartaee-10.0</feature>
 		<feature>jndi-1.0</feature>
 	</featureManager>
 
@@ -13,16 +13,24 @@
 		httpPort="${default.http.port}" httpsPort="${default.https.port}" />
 
 	<library id="global">
-		<file name="${derbypath}" />
-		<file name="${derbyclientpath}" />
-		<file name="${derbytoolspath}" />
-		<file name="${derbysharedpath}" />
+		<!-- Application Code -->
+		<file name="${configutil}" />
+		<file name="${envutil}" />
 		<file name="${datasourceutil}" />
+		<!-- Logging Libraries -->
+		<file name="${slf4j}" />
+		<file name="${slf4jjdk14}" />
+		<!-- DataSource / Driver Libraries -->
+		<file name="${hikaricp}" />
+		<file name="${h2}" />
+		<file name="${derby}" />
+		<file name="${derbyclient}" />
+		<file name="${derbytools}" />
+		<file name="${derbyshared}" />
+		<!-- Spring Expression Libraries -->
 		<file name="${springexpression}" />
 		<file name="${springcore}" />
 		<file name="${springjcl}" />
-		<file name="${hikaricp}" />
-		<file name="${slf4j}" />
 	</library>
 
 </server>

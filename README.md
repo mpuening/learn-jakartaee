@@ -14,6 +14,9 @@ from the [Open Liberty Guides](https://openliberty.io/guides/).
 If you are looking for examples of Jakarta EE 8, 
 [click here](https://github.com/mpuening/learn-jakartaee/tree/jakartaee8).
 
+Currently, this project is at Jakarta EE 10 (milestone) specification. TomEE is not complete
+yet. One feature I am waiting for is updated JSP taglib name spaces (jakarta.tags.core).
+
 > **Note**
 > There are Maven Archetypes of some of these projects available at
 > https://github.com/mpuening/maven-archetypes

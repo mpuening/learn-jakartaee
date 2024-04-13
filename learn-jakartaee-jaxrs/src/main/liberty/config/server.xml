@@ -15,19 +15,20 @@
 
 	<library id="global">
 		<!-- Application Code -->
-		<file name="${config}" />
+		<file name="${configutil}" />
 		<file name="${envutil}" />
 		<file name="${datasourceutil}" />
 		<!-- Logging Libraries -->
 		<file name="${slf4j}" />
 		<file name="${slf4jjdk14}" />
 		<!-- DataSource / Driver Libraries -->
-		<file name="${derbypath}" />
-		<file name="${derbyclientpath}" />
-		<file name="${derbytoolspath}" />
-		<file name="${derbysharedpath}" />
 		<file name="${hikaricp}" />
-		<!-- Spring Exression Libraries -->
+		<file name="${h2}" />
+		<file name="${derby}" />
+		<file name="${derbyclient}" />
+		<file name="${derbytools}" />
+		<file name="${derbyshared}" />
+		<!-- Spring Expression Libraries -->
 		<file name="${springexpression}" />
 		<file name="${springcore}" />
 		<file name="${springjcl}" />
