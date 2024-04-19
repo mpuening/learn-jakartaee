@@ -81,7 +81,7 @@
 		<module>learn-jakartaee-jaxws</module>
 		<module>learn-jakartaee-jsp</module>
 		<module>learn-jakartaee-jsf</module>
-<!--		<module>learn-jakartaee-mvc</module>-->
+		<module>learn-jakartaee-mvc</module>
 		<module>learn-jakartaee-struts</module>
 		<module>learn-jakartaee-spring</module>
 		<module>learn-jakartaee-ldap-server</module>

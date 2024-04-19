@@ -59,7 +59,11 @@ Faces. Likewise, it features:
 
 ## [`learn-jakartaee-mvc`](./learn-jakartaee-mvc)
 
-TODO
+Jakarta MVC is technically not part of the specification. It seems only GlassFish comes
+out of the box ready to run a MVC project. There is the krazos implementation, but I
+could not get it to work across all the  application servers. So I decided to side with
+how MVC will look when (if?) it does become part of the specification.
+
 
 ## [`learn-jakartaee-spring`](./learn-jakartaee-spring)
 

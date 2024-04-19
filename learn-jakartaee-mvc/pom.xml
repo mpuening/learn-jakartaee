@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>learn-jakartaee-mvc</artifactId>
+	<packaging>war</packaging>
+
+	<name>learn-jakartaee-mvc</name>
+	<description>Learn Jakarta EE - MVC</description>
+
+	<parent>
+		<groupId>io.github.learnjakartaee</groupId>
+		<artifactId>learn-jakartaee</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<!-- ================================================ -->
+	<dependencies>
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.mvc</groupId>
+			<artifactId>jakarta.mvc-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+
+		<!--
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+-->
+
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-test-webprofile</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<!-- ================================================ -->
+
+	<!-- To run application: -->
+	<!-- mvn -P glassfish cargo:run / http://localhost:8080/learn-jakartaee-mvc -->
+
+	<!-- broken -->
+	<!-- mvn -P liberty liberty:run / http://localhost:9080/learn-jakartaee-mvc -->
+	<!-- mvn -P wildfly cargo:run / http://localhost:8080/learn-jakartaee-mvc -->
+	<!-- mvn -P tomee tomee:run / http://localhost:8080/learn-jakartaee-mvc -->
+
+</project>
