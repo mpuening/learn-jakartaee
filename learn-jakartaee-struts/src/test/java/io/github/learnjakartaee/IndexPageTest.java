@@ -32,7 +32,7 @@ public class IndexPageTest {
 
 	@Deployment
 	public static WebArchive createTestDeployment() {
-		return new WebAppWarBuilder("learn-jakartaee-jpa.war")
+		return new WebAppWarBuilder("learn-jakartaee-struts.war")
 				.packages("io.github.learnjakartaee")
 				.jsps()
 				.css()
