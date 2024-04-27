@@ -43,12 +43,6 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
-			<artifactId>learn-jakartaee-legacy-struts-core</artifactId>
-			<version>${project.version}</version>
-			<classifier>jakartaee</classifier>
-		</dependency>
-		<dependency>
-			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-legacy-struts-extras</artifactId>
 			<version>${project.version}</version>
 			<classifier>jakartaee</classifier>
@@ -124,6 +118,7 @@
 									<strutsconfigxml version="1.2"
 										mergedir="src/main/xdoclet/merge/struts" />
 									<strutsvalidationxml version="1.1"
+										destinationFile="validation-config.xml"
 										mergedir="src/main/xdoclet/merge/struts" />
 									<fileset dir="${project.build.sourceDirectory}">
 										<patternset id="struts.sources">
