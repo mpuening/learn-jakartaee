@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.security;
+package io.github.learnjakartaee.security.identity;
 
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;

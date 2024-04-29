@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.security;
+package io.github.learnjakartaee.security.identity;
 
 import java.util.Collections;
 import java.util.Hashtable;

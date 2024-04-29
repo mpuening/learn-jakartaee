@@ -1,4 +1,4 @@
-package io.github.learnjakartaee.security;
+package io.github.learnjakartaee.security.identity;
 
 import java.util.Map;
 import java.util.Set;

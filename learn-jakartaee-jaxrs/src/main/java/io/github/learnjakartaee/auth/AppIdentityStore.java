@@ -1,9 +1,9 @@
 package io.github.learnjakartaee.auth;
 
-import io.github.learnjakartaee.security.CredentialValidator;
-import io.github.learnjakartaee.security.TestCredentialValidator;
-import io.github.learnjakartaee.security.DelegatingCredentialValidator;
-import io.github.learnjakartaee.security.ELConfiguredLDAPCredentialValidator;
+import io.github.learnjakartaee.security.identity.CredentialValidator;
+import io.github.learnjakartaee.security.identity.DelegatingCredentialValidator;
+import io.github.learnjakartaee.security.identity.ELConfiguredLDAPCredentialValidator;
+import io.github.learnjakartaee.security.identity.TestCredentialValidator;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
