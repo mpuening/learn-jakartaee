@@ -1,10 +1,12 @@
 package io.github.learnjakartaee.test;
 
+import java.io.File;
 import java.io.PrintStream;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 public class RestApiWarBuilder {
 
@@ -36,6 +38,17 @@ public class RestApiWarBuilder {
 
 	public RestApiWarBuilder publicIndexHtml() {
 		this.archive = archive.addAsWebInfResource(new ClassLoaderAsset("public/index.html"), "classes/public/index.html");
+		return this;
+	}
+
+	public RestApiWarBuilder mavenDependencies() {
+		File[] dependencies = Maven.resolver()
+				.loadPomFromFile("pom.xml")
+				.importCompileAndRuntimeDependencies()
+				.resolve()
+				.withTransitivity()
+				.asFile();
+		archive = archive.addAsLibraries(dependencies);
 		return this;
 	}
 

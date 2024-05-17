@@ -2,6 +2,7 @@ package io.github.learnjakartaee.aircraft.model;
 
 import java.io.Serializable;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Transient;
 
 /**
@@ -23,6 +24,7 @@ public abstract class AbstractEntity<PK extends Serializable> {
 	public abstract PK getId();
 
 	@Transient
+	@JsonbTransient
 	public boolean isNew() {
 		return getId() == null;
 	}

@@ -3,6 +3,8 @@ package io.github.learnjakartaee.aircraft.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import jakarta.json.bind.annotation.JsonbPropertyOrder;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,6 +13,7 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "AIRCRAFT")
+@JsonbPropertyOrder({"id", "designation", "name", "nickname", "manufacturer", "produced", "firstFlight"})
 public class Aircraft extends AbstractEntity<String> {
 
 	@Id
@@ -93,6 +96,7 @@ public class Aircraft extends AbstractEntity<String> {
 	}
 
 	@Transient
+	@JsonbTransient
 	public String getFirstFlightAsString() {
 		return firstFlight != null ? firstFlight.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : "";
 	}

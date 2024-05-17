@@ -13,8 +13,7 @@ public class ReadyCheck implements HealthCheck {
 	@Override
 	public HealthCheckResponse call() {
 		String name = "Learn Jakarta EE Ready Check";
-		boolean flywayComplete = true; //FlywayMigration.isFlywayMigrationComplete();
-		boolean isUp = flywayComplete;
-		return HealthCheckResponse.named(name).withData("flyway", flywayComplete).status(isUp).build();
+		boolean isUp = true;
+		return HealthCheckResponse.named(name).status(isUp).build();
 	}
 }
