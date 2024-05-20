@@ -13,7 +13,9 @@
 			<xsd:element name="PingMessage" type="xsd:string" />
 			<xsd:element name="GetAircraftType" type="msg:GetAircraftType" />
 			<xsd:element name="ShowAircraftType" type="msg:ShowAircraftType" />
+			<xsd:element name="CreateAircraftType" type="msg:CreateAircraftType" />
 			<xsd:element name="UpdateAircraftType" type="msg:UpdateAircraftType" />
+			<xsd:element name="DeleteAircraftType" type="msg:DeleteAircraftType" />
 			<xsd:element name="AcknowledgeAircraftType" type="msg:AcknowledgeAircraftType" />
 		</xsd:schema>
 	</wsdl:types>
@@ -33,9 +35,17 @@
 	<wsdl:message name="ShowAircraftResponse">
 		<wsdl:part name="ShowAircraftType" element="svc:ShowAircraftType" />
 	</wsdl:message>
-	
+
+	<wsdl:message name="CreateAircraftRequest">
+		<wsdl:part name="CreateAircraftType" element="svc:CreateAircraftType" />
+	</wsdl:message>
+
 	<wsdl:message name="UpdateAircraftRequest">
 		<wsdl:part name="UpdateAircraftType" element="svc:UpdateAircraftType" />
+	</wsdl:message>
+
+	<wsdl:message name="DeleteAircraftRequest">
+		<wsdl:part name="DeleteAircraftType" element="svc:DeleteAircraftType" />
 	</wsdl:message>
 
 	<wsdl:message name="AcknowledgeAircraftResponse">
@@ -51,8 +61,16 @@
 			<wsdl:input message="svc:GetAircraftRequest" />
 			<wsdl:output message="svc:ShowAircraftResponse" />
 		</wsdl:operation>
+		<wsdl:operation name="CreateAircraft">
+			<wsdl:input message="svc:CreateAircraftRequest" />
+			<wsdl:output message="svc:AcknowledgeAircraftResponse" />
+		</wsdl:operation>
 		<wsdl:operation name="UpdateAircraft">
 			<wsdl:input message="svc:UpdateAircraftRequest" />
+			<wsdl:output message="svc:AcknowledgeAircraftResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="DeleteAircraft">
+			<wsdl:input message="svc:DeleteAircraftRequest" />
 			<wsdl:output message="svc:AcknowledgeAircraftResponse" />
 		</wsdl:operation>
 	</wsdl:portType>
@@ -82,8 +100,30 @@
 					use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
+		<wsdl:operation name="CreateAircraft">
+			<soap:operation soapAction="CreateAircraft" style="document"/>
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="UpdateAircraft">
 			<soap:operation soapAction="UpdateAircraft" style="document"/>
+			<wsdl:input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteAircraft">
+			<soap:operation soapAction="DeleteAircraft" style="document"/>
 			<wsdl:input>
 				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
 					use="literal" />
