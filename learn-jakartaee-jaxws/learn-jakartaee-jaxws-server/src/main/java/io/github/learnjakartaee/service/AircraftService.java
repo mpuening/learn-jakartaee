@@ -2,8 +2,10 @@ package io.github.learnjakartaee.service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.github.learnjakartaee.aircraft.model.Aircraft;
@@ -33,7 +35,23 @@ public class AircraftService implements AircraftInterface {
 	public ShowAircraftType getAircraft(GetAircraftType getAircraftType) {
 		//Optional<String> designation = Optional.of(getAircraftType.getDesignation());
 		//Optional<String> name = Optional.of(getAircraftType.getName());
-		List<Aircraft> aircrafts = aircraftService.findAll();
+		List<Aircraft> aircrafts = new ArrayList<>();
+		if (getAircraftType.getId() != null) {
+			Optional<Aircraft> aircraft = aircraftService.findById(getAircraftType.getId());
+			if (aircraft.isPresent()) {
+				aircrafts.add(aircraft.get());
+			}
+		}
+		else if (getAircraftType.getDesignation() != null) {
+			Optional<Aircraft> aircraft = aircraftService.findByDesignation(getAircraftType.getDesignation());
+			if (aircraft.isPresent()) {
+				aircrafts.add(aircraft.get());
+			}
+		}
+		else  {
+			// TODO find by name
+			aircrafts = aircraftService.findAll();
+		}
 		List<AircraftType> searchResults = aircrafts.stream()
 				.map(a -> {
 					AircraftType aircraft = new AircraftType();

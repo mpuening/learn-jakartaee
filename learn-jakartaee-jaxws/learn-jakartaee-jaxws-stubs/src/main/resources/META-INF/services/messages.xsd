@@ -18,8 +18,8 @@
 
 	<xsd:complexType name="GetAircraftType">
 		<xsd:sequence>
-			<xsd:element name="designation" type="xsd:string"
-				minOccurs="0" />
+			<xsd:element name="id" type="xsd:string" minOccurs="0" />
+			<xsd:element name="designation" type="xsd:string" minOccurs="0" />
 			<xsd:element name="name" type="xsd:string" minOccurs="0" />
 		</xsd:sequence>
 	</xsd:complexType>

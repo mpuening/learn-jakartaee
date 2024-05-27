@@ -11,7 +11,7 @@ public class AircraftClientTest {
 	@Test
 	public void testAircraftClent() {
 		String test = "http://localhost:8080/learn-jakartaee-jaxws-server/AircraftService";
-		AircraftInterface aircraftInterface = AircraftClient.createInterface(test);
+		AircraftInterface aircraftInterface = AircraftClient.createInterface(test, "admin", "password");
 		assertNotNull(aircraftInterface);
 		//String pong = aircraftInterface.ping("ping");
 		//assertEquals("ping", pong);
