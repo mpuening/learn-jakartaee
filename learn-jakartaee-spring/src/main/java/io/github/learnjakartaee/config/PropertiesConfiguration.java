@@ -29,9 +29,9 @@ public class PropertiesConfiguration {
 	}
 
 	@Configuration
-	@Profile("prod")
-	@PropertySource(value = { "classpath:application.properties", "classpath:application-prod.properties" })
-	public static class ProdConfiguration {
+	@Profile("devliberty")
+	@PropertySource(value = { "classpath:application.properties", "classpath:application-devliberty.properties" })
+	public static class LibertyConfiguration {
 
 	}
 }
