@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets">
+<h:body>
+
+	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
+		<ui:param name="pageTitle" value="Aircraft" />
+		<ui:param name="mainNavBarSelected" value="true" />
+
+		<ui:define name="sidemenu">
+			<ui:include src="/WEB-INF/fragments/main/sidemenu.xhtml" />
+		</ui:define>
+
+		<ui:define name="body">
+			<h:form class="needs-validation">
+				<h2>Add Aircraft</h2>
+				<div class="container-fluid">
+					<h:messages globalOnly="true" errorClass="alert alert-danger" layout="table"/>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:outputLabel for="designation">Designation</h:outputLabel>
+						<h:inputText id="designation" label="Designation"
+							value="#{aircraftBean.designation}" class="form-control"
+							required="true">
+							<f:validateLength for="designation" minimum="2" maximum="20" />
+						</h:inputText>
+						<h:message for="designation" style="color:red" />
+					</div>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:outputLabel for="name">Name</h:outputLabel>
+						<h:inputText id="name" label="Name"
+							value="#{aircraftBean.name}" class="form-control"
+							required="true">
+							<f:validateLength minimum="2" maximum="50" for="name" />
+						</h:inputText>
+						<h:message for="name" style="color:red" />
+					</div>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:outputLabel for="nickname">Nickname</h:outputLabel>
+						<h:inputText id="nickname" label="Nickname"
+							value="#{aircraftBean.nickname}" class="form-control"
+							required="false">
+							<f:validateLength minimum="2" maximum="50" for="nickname" />
+						</h:inputText>
+						<h:message for="nickname" style="color:red" />
+					</div>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:commandButton value="Add"
+							action="#{aircraftBean.addAircraft}"
+							class="btn btn-primary" />
+						<span><h:outputText value="&#160;" /></span>
+						<h:outputLink value="add-aircraft.xhtml" class="btn btn-secondary">Reset</h:outputLink>
+					</div>
+				</div>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

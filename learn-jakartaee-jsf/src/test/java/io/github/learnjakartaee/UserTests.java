@@ -98,7 +98,7 @@ public class UserTests {
 	@Order(3)
 	public void testMainLink() {
 		$(partialLinkText("Main")).click();
-		webdriver().shouldHave(urlStartingWith(baseURL + "views/main/people.xhtml"));
+		webdriver().shouldHave(urlStartingWith(baseURL + "views/main/aircraft.xhtml"));
 		$(tagName("body")).shouldHave(text("Welcome alice"));
 	}
 
@@ -119,7 +119,7 @@ public class UserTests {
 		$(tagName("body")).shouldHave(text("You have been logged out"));
 
 		// Re-open hello page should display login page
-		open(baseURL + "views/main/people.xhtml");
+		open(baseURL + "views/main/aircraft.xhtml");
 		$(id("loginMessage")).shouldHave(text("Please sign in..."));
 	}
 }

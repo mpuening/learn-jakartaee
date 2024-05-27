@@ -7,7 +7,7 @@
 <h:body>
 
 	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
-		<ui:param name="pageTitle" value="People" />
+		<ui:param name="pageTitle" value="Aircraft" />
 		<ui:param name="mainNavBarSelected" value="true" />
 
 		<ui:define name="sidemenu">
@@ -17,33 +17,37 @@
 		<ui:define name="body">
 
 			<h:form>
-				<h2>People Listing</h2>
+				<h2>Aircraft Listing</h2>
 				<div class="container-fluid">
 					<h:messages globalOnly="true" errorClass="alert alert-danger" layout="table"/>
 					<div class="form-group row py-sm-3 mb-0">
-						<h:outputLink value="add-person.xhtml" class="btn btn-primary">Add New</h:outputLink>
+						<h:outputLink value="add-aircraft.xhtml" class="btn btn-primary">Add New</h:outputLink>
 					</div>
 				</div>
-				<h:dataTable id="peopleTable" value="#{peopleBean.getPeople()}"
-					var="person" class="table table-striped" rendered="#{!peopleBean.getPeople().isEmpty()}">
+				<h:dataTable id="aircraftTable" value="#{aircraftBean.getAircraft()}"
+					var="aircraft" class="table table-striped" rendered="#{!aircraftBean.getAircraft().isEmpty()}">
 					<h:column>
 						<f:facet name="header">Id</f:facet>
-						<h:outputText value="#{person.id}" />
+						<h:outputText value="#{aircraft.id}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">First Name</f:facet>
-						<h:outputText value="#{person.firstName}" />
+						<f:facet name="header">Designation</f:facet>
+						<h:outputText value="#{aircraft.designation}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Last Name</f:facet>
-						<h:outputText value="#{person.lastName}" />
+						<f:facet name="header">Name</f:facet>
+						<h:outputText value="#{aircraft.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nickname</f:facet>
+						<h:outputText value="#{aircraft.nickname}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Action</f:facet>
-						<h:commandButton action="#{peopleBean.editPerson(person.id)}"
+						<h:commandButton action="#{aircraftBean.editAircraft(aircraft.id)}"
 							value="Edit" class="btn btn-info" />
 						<span></span>
-						<h:commandButton action="#{peopleBean.deletePerson(person.id)}"
+						<h:commandButton action="#{aircraftBean.deleteAircraft(aircraft.id)}"
 							value="Delete" class="btn btn-danger" />
 					</h:column>
 				</h:dataTable>

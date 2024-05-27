@@ -1,15 +1,20 @@
 package io.github.learnjakartaee.config;
 
+import io.github.learnjakartaee.aircraft.service.AppAircraftService;
+import io.github.learnjakartaee.env.ConfigurableEnvironment;
+import io.github.learnjakartaee.env.ExpressionEvaluator;
+import io.github.learnjakartaee.env.el.ELExpressionEvaluator;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.faces.annotation.FacesConfig;
-import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
-import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
+import jakarta.enterprise.inject.Produces;
 
-@FacesConfig
 @ApplicationScoped
-@CustomFormAuthenticationMechanismDefinition(
-		loginToContinue = @LoginToContinue(
-				loginPage = "/views/auth/login.xhtml", 
-				errorPage = "/views/auth/login.xhtml?error"))
 public class ApplicationConfiguration {
+
+	@Produces
+	public AppAircraftService aircraftService() throws Exception {
+		ExpressionEvaluator evaluator = new ELExpressionEvaluator();
+		ConfigurableEnvironment environment = new ConfigurableEnvironment(evaluator);
+		String serviceClassName = environment.getProperty("AircraftService", "jsf.aircraft.service.classname", "io.github.learnjakartaee.aircraft.service.MockAircraftService");
+		return (AppAircraftService) Class.forName(serviceClassName).getDeclaredConstructor().newInstance();
+	}
 }

@@ -18,14 +18,14 @@
 				<div class="navbar-nav">
 					<ui:fragment
 						rendered="#{mainNavBarSelected!=null and mainNavBarSelected=='true'}">
-						<h:link outcome="/views/main/people"
+						<h:link outcome="/views/main/aircraft"
 							styleClass="nav-item nav-link active">
 							Main<span class="sr-only">(current)</span>
 						</h:link>
 					</ui:fragment>
 					<ui:fragment
 						rendered="#{mainNavBarSelected==null or ainNavBarSelected=='false'}">
-						<h:link outcome="/views/main/people" styleClass="nav-item nav-link">
+						<h:link outcome="/views/main/aircraft" styleClass="nav-item nav-link">
 							Main
 						</h:link>
 					</ui:fragment>

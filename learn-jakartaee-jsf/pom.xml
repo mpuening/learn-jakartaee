@@ -19,6 +19,12 @@
 	<!-- ================================================ -->
 	<dependencies>
 		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
 			<artifactId>learn-jakartaee-config</artifactId>
 			<version>${project.version}</version>
@@ -30,14 +36,10 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>
-			<artifactId>learn-jakartaee-ejb</artifactId>
+			<artifactId>learn-jakartaee-jaxws-client</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-web-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>

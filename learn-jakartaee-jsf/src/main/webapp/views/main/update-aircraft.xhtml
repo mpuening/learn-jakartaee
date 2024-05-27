@@ -7,7 +7,7 @@
 <h:body>
 
 	<ui:composition template="/WEB-INF/fragments/layout/layout.xhtml">
-		<ui:param name="pageTitle" value="People" />
+		<ui:param name="pageTitle" value="Aircraft" />
 		<ui:param name="mainNavBarSelected" value="true" />
 
 		<ui:define name="sidemenu">
@@ -16,31 +16,40 @@
 
 		<ui:define name="body">
 			<h:form class="needs-validation">
-				<h2>Edit Person</h2>
+				<h2>Edit Aircraft</h2>
 				<div class="container-fluid">
 					<h:messages globalOnly="true" errorClass="alert alert-danger" layout="table"/>
 					<div class="form-group row py-sm-3 mb-0">
-						<h:outputLabel for="firstName">First Name</h:outputLabel>
-						<h:inputText id="firstName" label="First name"
-							value="#{peopleBean.firstName}" class="form-control"
+						<h:outputLabel for="designation">Designation</h:outputLabel>
+						<h:inputText id="designation" label="Designation"
+							value="#{aircraftBean.designation}" class="form-control"
 							required="true">
-							<f:validateLength for="firstName" minimum="2" maximum="20" />
+							<f:validateLength for="designation" minimum="2" maximum="20" />
 						</h:inputText>
-						<h:message for="firstName" style="color:red" />
+						<h:message for="designation" style="color:red" />
 					</div>
 					<div class="form-group row py-sm-3 mb-0">
-						<h:outputLabel for="firstName">Last Name</h:outputLabel>
-						<h:inputText id="lastName" label="Last name"
-							value="#{peopleBean.lastName}" class="form-control"
+						<h:outputLabel for="name">Name</h:outputLabel>
+						<h:inputText id="name" label="Name"
+							value="#{aircraftBean.name}" class="form-control"
 							required="true">
-							<f:validateLength minimum="2" maximum="50" for="lastName" />
+							<f:validateLength minimum="2" maximum="50" for="name" />
 						</h:inputText>
-						<h:message for="lastName" style="color:red" />
+						<h:message for="name" style="color:red" />
 					</div>
 					<div class="form-group row py-sm-3 mb-0">
-						<h:inputHidden id="id" value="#{peopleBean.id}"/>
+						<h:outputLabel for="nickname">Nickname</h:outputLabel>
+						<h:inputText id="nickname" label="Nickname"
+							value="#{aircraftBean.nickname}" class="form-control"
+							required="false">
+							<f:validateLength minimum="2" maximum="50" for="nickname" />
+						</h:inputText>
+						<h:message for="name" style="color:red" />
+					</div>
+					<div class="form-group row py-sm-3 mb-0">
+						<h:inputHidden id="id" value="#{aircraftBean.id}"/>
 						<h:commandButton value="Update"
-							action="#{peopleBean.updatePerson}"
+							action="#{aircraftBean.updateAircraft}"
 							class="btn btn-primary" />
 						<span><h:outputText value="&#160;" /></span>
 						<h:commandButton value="Reset" type="reset" class="btn btn-secondary"/>
