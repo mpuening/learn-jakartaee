@@ -42,3 +42,28 @@ If "Test Users" are enabled, then developers can easily log into the application
 as various types of users. When disabled, LDAP integration is used. Test users
 are enabled for `local` and `unittest` profiles.
 
+There are several "built-in" ways to initiate authentication:
+
+* @BasicAuthenticationMechanismDefinition
+* @FormAuthenticationMechanismDefinition
+* @CustomFormAuthenticationMechanismDefinition
+* @OpenIdAuthenticationMechanismDefinition
+
+One can also specify a custom mechaism by implementing the *HttpAuthenticationMechanism*.
+
+However, there is a problem....
+
+## Problem
+
+Not until Jakarta EE 11 will there be a way to control what happens when multiple
+authentication mechanisms are present within an application. As of now (Jakarta EE 10 and
+before as I write this), the specification does not define what to do about multiple 
+mechanisms. Here is the issue:
+
+https://github.com/jakartaee/security/issues/188
+
+This affects this application in the EAR project. The EAR project is where multiple
+mechanisms come into play: the custom form based authentication of the UIs, the basic
+authentications of the APIs. As of now as I write this, the EAR project is broken.
+
+

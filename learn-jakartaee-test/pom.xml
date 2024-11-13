@@ -18,9 +18,10 @@
 	</parent>
 
 	<properties>
-		<arquillian.version>1.8.0.Final</arquillian.version>
-		<selenide.version>7.0.6</selenide.version>
-		<resteasy.version>6.2.4.Final</resteasy.version>
+		<arquillian.version>1.9.0.Final</arquillian.version>
+		<shrinkwrap-resolver.version>3.3.0</shrinkwrap-resolver.version>
+		<selenide.version>7.3.3</selenide.version>
+		<resteasy.version>6.2.9.Final</resteasy.version>
 	</properties>
 
 	<modules>
@@ -35,6 +36,13 @@
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
 				<version>${arquillian.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-bom</artifactId>
+				<version>${shrinkwrap-resolver.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

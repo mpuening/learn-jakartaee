@@ -40,8 +40,8 @@
 		<cargo-glassfish-runtime>glassfish7x</cargo-glassfish-runtime>
 
 		<!-- https://tomee.apache.org/master/docs/tomee-maven-plugin.html -->
-		<tomee-maven-plugin.version>10.0.0-M1</tomee-maven-plugin.version>
-		<tomee-runtime.version>10.0.0-M1</tomee-runtime.version>
+		<tomee-maven-plugin.version>10.0.0-M3</tomee-maven-plugin.version>
+		<tomee-runtime.version>10.0.0-M3</tomee-runtime.version>
 
 		<!-- Odds and ends -->
 		<ognl.version>3.3.4</ognl.version>

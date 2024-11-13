@@ -19,6 +19,14 @@ management:
     health:
       show-details: ALWAYS
 
+  metrics:
+    enable:
+      all: false
+  prometheus:
+    metrics:
+      export:
+        enabled: false
+
 server:
   port: 8081
 
