@@ -29,17 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.dataformat</groupId>
-					<artifactId>jackson-dataformat-toml</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.apache.commons</groupId>
-					<artifactId>commons-text</artifactId>
-				</exclusion>
-			</exclusions>
+			<artifactId>flyway-database-derby</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>ognl</groupId>

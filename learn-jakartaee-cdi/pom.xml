@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-		</dependency>		
+		</dependency>
 
 		<dependency>
 			<groupId>io.github.learnjakartaee</groupId>

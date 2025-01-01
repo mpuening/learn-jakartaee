@@ -15,36 +15,42 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
+		<version>3.4.1</version>
 	</parent>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 
 		<jakartaee.version>10.0.0</jakartaee.version>
-		<microprofile.version>5.0</microprofile.version>
+		<microprofile.version>6.0</microprofile.version>
 
 		<!-- https://github.com/OpenLiberty/ci.maven -->
-		<liberty-maven-plugin.version>3.10.2</liberty-maven-plugin.version>
-		<liberty-runtime.version>24.0.0.3</liberty-runtime.version>
+		<liberty-maven-plugin.version>3.11.2</liberty-maven-plugin.version>
+		<liberty-runtime.version>24.0.0.12</liberty-runtime.version>
 		<liberty.loose-application>true</liberty.loose-application>
 
 		<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Reference+Guide.html -->
 		<!-- https://codehaus-cargo.github.io/cargo/Configuration+properties.html -->
-		<cargo-maven-plugin.version>1.10.12</cargo-maven-plugin.version>
+		<cargo-maven-plugin.version>1.10.16</cargo-maven-plugin.version>
 
-		<cargo-wildfly-runtime>wildfly31x</cargo-wildfly-runtime>
+		<cargo-wildfly-runtime>wildfly34x</cargo-wildfly-runtime>
 		<!-- Property is intended to be used in module dirs -->
 		<cargo-wildfly-script.dir>${project.basedir}/..</cargo-wildfly-script.dir>
 
 		<cargo-glassfish-runtime>glassfish7x</cargo-glassfish-runtime>
 
 		<!-- https://tomee.apache.org/master/docs/tomee-maven-plugin.html -->
-		<tomee-maven-plugin.version>10.0.0-M3</tomee-maven-plugin.version>
-		<tomee-runtime.version>10.0.0-M3</tomee-runtime.version>
+		<tomee-maven-plugin.version>10.0.0</tomee-maven-plugin.version>
+		<tomee-runtime.version>10.0.0</tomee-runtime.version>
 
 		<!-- Odds and ends -->
 		<ognl.version>3.3.4</ognl.version>
+
+		<!-- Overriding Derby Version for Flyway compatibility -->
+		<derby.version>10.17.1.0</derby.version>
+
+		<!-- Choose this version to match Apache TomEE -->
+		<opentelemetry.version>1.20.1</opentelemetry.version>
 
 		<!-- Library support for Open Liberty -->
 		<repo.dir>${user.home}/.m2/repository</repo.dir>
@@ -225,7 +231,7 @@
 						<configuration>
 							<tomeeVersion>${tomee-runtime.version}</tomeeVersion>
 							<tomeeClassifier>plus</tomeeClassifier>
-							<args>--add-opens java.base/java.lang=ALL-UNNAMED</args>
+							<args>-noverify --add-opens java.base/java.lang=ALL-UNNAMED</args>
 							<systemVariables>
 								<tomee.mp.scan>all</tomee.mp.scan>
 								<!-- TomEE does not use the usual location -->

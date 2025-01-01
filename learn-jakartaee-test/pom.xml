@@ -18,10 +18,11 @@
 	</parent>
 
 	<properties>
-		<arquillian.version>1.9.0.Final</arquillian.version>
-		<shrinkwrap-resolver.version>3.3.0</shrinkwrap-resolver.version>
-		<selenide.version>7.3.3</selenide.version>
-		<resteasy.version>6.2.9.Final</resteasy.version>
+		<arquillian.version>1.9.1.Final</arquillian.version>
+		<shrinkwrap-resolver.version>3.3.3</shrinkwrap-resolver.version>
+		<selenide.version>7.6.1</selenide.version>
+		<htmlunit.driver.version>4.13.0</htmlunit.driver.version>
+		<resteasy.version>6.2.11.Final</resteasy.version>
 	</properties>
 
 	<modules>
