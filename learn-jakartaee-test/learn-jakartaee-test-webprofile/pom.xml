@@ -30,8 +30,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>htmlunit-driver</artifactId>
-			<version>${htmlunit.driver.version}</version>
+			<artifactId>htmlunit3-driver</artifactId>
 		</dependency>
 
 
