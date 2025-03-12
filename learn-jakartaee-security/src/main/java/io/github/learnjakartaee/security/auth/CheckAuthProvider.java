@@ -14,9 +14,16 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class CheckAuthProvider implements AuthProvider {
 
+	private final String contextPath;
+
+	public CheckAuthProvider(String contextPath) {
+		this.contextPath = contextPath;
+	}
+
 	@Override
 	public boolean appliesTo(HttpServletRequest request) {
-		return true;
+		boolean matchesContextPath = this.contextPath.equals(request.getContextPath());
+		return matchesContextPath;
 	}
 
 	@Override

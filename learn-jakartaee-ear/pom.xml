@@ -20,6 +20,8 @@
 	<properties>
 		<liberty.loose-application>false</liberty.loose-application>
 
+		<cargo-wildfly-script.dir>${project.basedir}</cargo-wildfly-script.dir>
+
 		<active.profiles>dev</active.profiles>
 	</properties>
 	<!-- ================================================ -->
@@ -72,6 +74,14 @@
 			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
+
+		<!-- List shared JAR files here -->
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

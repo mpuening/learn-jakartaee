@@ -11,7 +11,7 @@ import io.github.learnjakartaee.env.env.EnvExpressionEvaluator;
 public class EnvConfigurableDataSource extends ConfigurableDataSource {
 
 	public EnvConfigurableDataSource() {
-		super(new ConfigurableEnvironment(new String[] { "application", "datasource" }, new EnvExpressionEvaluator()),
+		super(new ConfigurableEnvironment(new String[] { "application", "datasource", "security" }, new EnvExpressionEvaluator()),
 				new EnvExpressionEvaluator());
 	}
 }

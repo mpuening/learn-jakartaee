@@ -1,0 +1,73 @@
+# Example script to configure Wildfly
+
+#
+# System Properties
+#
+#/system-property=db.driver:add(value="org.apache.derby.jdbc.EmbeddedDriver")
+#/system-property=db.url:add(value="jdbc:derby:memory:appdb;create=true")
+#/system-property=db.user:add(value="APP")
+#/system-property=db.password:add(value="")
+
+/system-property=app.profiles.active:add(value="dev")
+
+/system-property=spring.profiles.active:add(value="dev")
+
+#
+# Disable integrated JASPI in the 'other' application security domain
+#
+/subsystem=undertow/application-security-domain=other:write-attribute(name=integrated-jaspi,value=false)
+
+#
+# Add Microprofile Health sub-system, which is not include by default anymore
+#
+/extension=org.wildfly.extension.microprofile.health-smallrye:add
+/subsystem=microprofile-health-smallrye:add
+/subsystem=microprofile-health-smallrye:write-attribute(name=security-enabled,value=false)
+
+#
+# Add Microprofile OpenAPI sub-system, which is not include by default
+#
+/extension=org.wildfly.extension.microprofile.openapi-smallrye:add
+/subsystem=microprofile-openapi-smallrye:add
+
+################
+#
+# In the example apps that use custom Identity Stores, Wildfly requires that the Integrated JASPI be
+# turned off. Here are examples of how that was done manually.
+#
+# Start and stop (ctrl-c) Wildfly to ensure WIldfly gets "installed" under the target directory with the
+# following command.
+#
+#      mvn -P wildfly cargo:run
+#
+# Once stopped, run the following command to create an 'admin' account:
+#
+#      sh ./target/cargo/installs/wildfly-27.0.1.Final/wildfly-27.0.1.Final/bin/add-user.sh
+#
+# Make sure you use the proper version number for the one Maven Cargo Plugin downloaded for you.
+#
+# Using the menu options to create a Mgmt User with these credentials: mgr/password.
+#
+# Now re-run the application server with this command again:
+#
+#     mvn -P wildfly cargo:run
+#
+# Now open the administration console at:
+#
+#     http://localhost:9990/
+#
+# Log in with the `mgr` user that you created above.
+#
+# In the admin app, navigate to Configuration > Subsystems > Web > Application Security Domain > Other > View
+#
+# Edit and change the value of `Enable JASPI` to `ON` and `Integrated JASPI` to `OFF`, then click Save.
+#
+# To finish the configuration change, click the `Reload Required` link in the top banner menu bar to reload the server.
+#
+# Finally, re-open your browser to the application URL
+#
+# Obviously it is better to automate the above.
+#
+# For more examples of cli, see:
+#
+# Example: https://github.com/wildfly/quickstart/blob/main/http-custom-mechanism/configure-elytron.cli

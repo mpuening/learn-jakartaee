@@ -32,7 +32,7 @@ public class LDAPApplicationTests {
 					}
 				});
 		assertNotNull(names);
-		assertEquals(3, names.size());
+		assertEquals(4, names.size());
 		assertEquals("Alice Aberdeen", names.get(0));
 	}
 

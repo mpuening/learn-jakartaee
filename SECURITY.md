@@ -1,6 +1,9 @@
 Learn Jakarta EE Security
 =========================
 
+*Note* This documentation needs to be improved. The TomEE project is still
+broken in the EAR deployment.
+
 There are several "built-in" ways to implement authentication:
 
 * @LdapIdentityStoreDefinition
@@ -49,7 +52,18 @@ There are several "built-in" ways to initiate authentication:
 * @CustomFormAuthenticationMechanismDefinition
 * @OpenIdAuthenticationMechanismDefinition
 
-One can also specify a custom mechaism by implementing the *HttpAuthenticationMechanism*.
+```
+@CustomFormAuthenticationMechanismDefinition(
+		loginToContinue = @LoginToContinue(
+				loginPage = "/views/auth/login.xhtml", 
+				errorPage = "/views/auth/login.xhtml?error"))
+@ApplicationScoped
+public class SecurityConfiguration {
+
+}
+```
+
+One can also specify a custom mechanism by implementing the *HttpAuthenticationMechanism*.
 
 However, there is a problem....
 
@@ -64,6 +78,13 @@ https://github.com/jakartaee/security/issues/188
 
 This affects this application in the EAR project. The EAR project is where multiple
 mechanisms come into play: the custom form based authentication of the UIs, the basic
-authentications of the APIs. As of now as I write this, the EAR project is broken.
+authentications of the APIs.
+
+## Solution
+
+This project has one *HttpAuthenticationMechanism* to rule them all as seen in
+*HttpAuthenticationMechanismChain*. Each application adds it own requirements to the chain
+keyed by the application ServletContext's context path.
+ 
 
 

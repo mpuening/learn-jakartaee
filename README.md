@@ -101,7 +101,10 @@ EAR Projects
 ## [`learn-jakartaee-ear`](./learn-jakartaee-ear)
 
 This project is intended to eventually contain the above web projects. As is, it
-only currently contains the `learn-jakartaee-spring` project.
+only currently contains a subset of projects.
+
+*Note* It is currently broken for TomEE because it does not correctly load the
+*HttpAuthenticationMechanismChain* bean.
 
 Utility Projects
 ================

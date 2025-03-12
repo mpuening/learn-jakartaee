@@ -11,9 +11,9 @@ import io.github.learnjakartaee.env.el.ELExpressionEvaluator;
 public class ELConfigurableDataSource extends ConfigurableDataSource {
 
 	public ELConfigurableDataSource() {
-		super(new ConfigurableEnvironment(new String[] { "application", "datasource" }, new ELExpressionEvaluator()),
+		super(new ConfigurableEnvironment(new String[] { "application", "datasource", "security" }, new ELExpressionEvaluator()),
 				new ELExpressionEvaluator());
 		
-		ConfigurableEnvironment env = new ConfigurableEnvironment(new String[] { "application", "datasource" }, new ELExpressionEvaluator());
+		ConfigurableEnvironment env = new ConfigurableEnvironment(new String[] { "application", "datasource" , "security" }, new ELExpressionEvaluator());
 	}
 }

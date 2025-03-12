@@ -11,7 +11,7 @@ import io.github.learnjakartaee.env.ognl.OgnlExpressionEvaluator;
 public class OgnlConfigurableDataSource extends ConfigurableDataSource {
 
 	public OgnlConfigurableDataSource() {
-		super(new ConfigurableEnvironment(new String[] { "application", "datasource" }, new OgnlExpressionEvaluator()),
+		super(new ConfigurableEnvironment(new String[] { "application", "datasource", "security" }, new OgnlExpressionEvaluator()),
 				new OgnlExpressionEvaluator());
 	}
 }

@@ -7,30 +7,30 @@ import io.github.learnjakartaee.security.identity.CredentialValidator;
 import io.github.learnjakartaee.security.identity.DelegatingCredentialValidator;
 import io.github.learnjakartaee.security.identity.ELConfiguredLDAPCredentialValidator;
 import io.github.learnjakartaee.security.identity.TestCredentialValidator;
-import jakarta.annotation.security.DeclareRoles;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.enterprise.context.Initialized;
+import jakarta.enterprise.event.Observes;
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
 import jakarta.security.enterprise.identitystore.IdentityStore;
+import jakarta.servlet.ServletContext;
 
-@DeclareRoles({ "admin", "user" })
 @ApplicationScoped
-public class SecurityConfiguration extends HttpAuthenticationMechanismChain implements HttpAuthenticationMechanism {
+public class JaxwsSecurityConfiguration {
 
-	/**
+    /**
 	 * Support Basic Auth
 	 */
-	public SecurityConfiguration() {
-		super(basicAuthProvider(), checkAuthProvider());
-	}
+    public void initialize(@Observes @Initialized(ApplicationScoped.class) ServletContext context) {
+    	HttpAuthenticationMechanismChain.registerAuthProviders(basicAuthProvider(context), checkAuthProvider(context));
+    }
 
 	/**
 	 * Configures an Auth Provider to supports Basic Auth for credentials that either
 	 * are in the TestCredentialValidator (when in Test Mode), or exists in an LDAP
 	 * system.
 	 */
-	protected static BasicAuthProvider basicAuthProvider() {
+	protected static BasicAuthProvider basicAuthProvider(ServletContext context) {
 
 		final CredentialValidator credentialValidator =
 
@@ -38,7 +38,7 @@ public class SecurityConfiguration extends HttpAuthenticationMechanismChain impl
 						new TestCredentialValidator(),
 						new ELConfiguredLDAPCredentialValidator());
 
-		return new BasicAuthProvider(new IdentityStore() {
+		return new BasicAuthProvider(context.getContextPath(), new IdentityStore() {
 			@Override
 			public CredentialValidationResult validate(Credential credential) {
 				return credentialValidator.validate(credential);
@@ -49,7 +49,8 @@ public class SecurityConfiguration extends HttpAuthenticationMechanismChain impl
 	/**
 	 * Provides an Auth Provider that informs users of required credentials.
 	 */
-	protected static CheckAuthProvider checkAuthProvider() {
-		return new CheckAuthProvider();
+	protected static CheckAuthProvider checkAuthProvider(ServletContext context) {
+		return new CheckAuthProvider(context.getContextPath());
 	}
+
 }

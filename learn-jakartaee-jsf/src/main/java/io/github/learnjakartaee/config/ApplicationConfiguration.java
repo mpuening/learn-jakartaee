@@ -6,7 +6,9 @@ import io.github.learnjakartaee.env.ExpressionEvaluator;
 import io.github.learnjakartaee.env.el.ELExpressionEvaluator;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
+import jakarta.faces.annotation.FacesConfig;
 
+@FacesConfig
 @ApplicationScoped
 public class ApplicationConfiguration {
 

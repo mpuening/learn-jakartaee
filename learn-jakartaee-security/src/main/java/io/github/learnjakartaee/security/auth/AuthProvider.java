@@ -9,6 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public interface AuthProvider {
 
 	/**
+	 * Request attribute to indicate the user should authenticate.
+	 */
+	public static final String REQUEST_USER_AUTHORIZATION = "REQUEST_USER_AUTHORIZATION";
+
+	/**
 	 * Request attribute to indicate the result of the authentication.
 	 */
 	public static final String AUTH_VALIDATION_RESULT = "AUTH_VALIDATION_RESULT";
@@ -16,20 +21,15 @@ public interface AuthProvider {
 	/**
 	 * See ErrorResponseFilter for how this is handled
 	 */
-	default void notifyContainerAboutFailedLogin(HttpServletRequest request) {
-		request.setAttribute(AUTH_VALIDATION_RESULT, "401");
+	default void notifyUserToAuthenticate(HttpServletRequest request) {
+		request.setAttribute(REQUEST_USER_AUTHORIZATION, true);
 	}
-
-	/**
-	 * Request attribute to indicate the user should authenticate.
-	 */
-	public static final String REQUEST_USER_AUTHORIZATION = "REQUEST_USER_AUTHORIZATION";
 
 	/**
 	 * See ErrorResponseFilter for how this is handled
 	 */
-	default void notifyUserToAuthenticate(HttpServletRequest request) {
-		request.setAttribute(REQUEST_USER_AUTHORIZATION, true);
+	default void notifyContainerAboutFailedLogin(HttpServletRequest request) {
+		request.setAttribute(AUTH_VALIDATION_RESULT, "401");
 	}
 
 	boolean appliesTo(HttpServletRequest request);

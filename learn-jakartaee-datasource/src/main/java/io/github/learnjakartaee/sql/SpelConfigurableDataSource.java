@@ -11,7 +11,7 @@ import io.github.learnjakartaee.env.spel.SpelExpressionEvaluator;
 public class SpelConfigurableDataSource extends ConfigurableDataSource {
 
 	public SpelConfigurableDataSource() {
-		super(new ConfigurableEnvironment(new String[] { "application", "datasource" }, new SpelExpressionEvaluator()),
+		super(new ConfigurableEnvironment(new String[] { "application", "datasource", "security" }, new SpelExpressionEvaluator()),
 				new SpelExpressionEvaluator());
 	}
 }

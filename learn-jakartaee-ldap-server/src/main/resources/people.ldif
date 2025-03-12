@@ -44,6 +44,16 @@ sn: Beerman
 uid: bob
 userPassword: bobspassword
 
+dn: uid=svcacct,ou=people,dc=example,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: SvcAcct
+sn: SvcAcct
+uid: svcacct
+userPassword: svcacctpassword
+
 dn: cn=admin,ou=groups,dc=example,dc=org
 objectclass: top
 objectclass: groupOfUniqueNames
@@ -51,6 +61,8 @@ cn: admin
 ou: admin
 uniqueMember: uid=pat,ou=people,dc=example,dc=org
 uniqueMember: uid=alice,ou=people,dc=example,dc=org
+uniqueMember: uid=svcacct,ou=people,dc=example,dc=org
+
 
 dn: cn=user,ou=groups,dc=example,dc=org
 objectclass: top

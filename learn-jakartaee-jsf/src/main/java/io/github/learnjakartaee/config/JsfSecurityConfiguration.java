@@ -1,25 +1,26 @@
-package io.github.learnjakartaee.auth;
+package io.github.learnjakartaee.config;
 
+import io.github.learnjakartaee.auth.AppIdentityStore;
 import io.github.learnjakartaee.security.auth.AuthProvider;
 import io.github.learnjakartaee.security.auth.FormBasedAuthProvider;
 import io.github.learnjakartaee.security.auth.HttpAuthenticationMechanismChain;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
-import jakarta.faces.annotation.FacesConfig;
 import jakarta.servlet.ServletContext;
 
-@FacesConfig
-@ApplicationScoped
+/**
+ * To support multiple of types of authentication, we transfer control to a
+ * single HttpAuthenticationMechanism, and not use
+ * a @CustomFormAuthenticationMechanismDefinition annotation.
+ */
 //@CustomFormAuthenticationMechanismDefinition(
 //		loginToContinue = @LoginToContinue(
 //				loginPage = "/views/auth/login.xhtml", 
 //				errorPage = "/views/auth/login.xhtml?error"))
-public class ApplicationConfiguration {
+@ApplicationScoped
+public class JsfSecurityConfiguration {
 
-    /**
-	 * Support Form Based Auth
-	 */
     public void initialize(@Observes @Initialized(ApplicationScoped.class) ServletContext context) {
     	HttpAuthenticationMechanismChain.registerAuthProviders(formBasedAuthProvider(context));
     }
@@ -28,4 +29,5 @@ public class ApplicationConfiguration {
 		return new FormBasedAuthProvider(context.getContextPath(),
 				"/views/auth/login.xhtml", "/views/auth/login.xhtml?error", new AppIdentityStore());
 	}
+
 }

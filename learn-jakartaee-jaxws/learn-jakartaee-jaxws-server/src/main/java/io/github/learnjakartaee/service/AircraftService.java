@@ -1,5 +1,6 @@
 package io.github.learnjakartaee.service;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -19,17 +20,27 @@ import io.github.learnjakartaee.ws.messages.ShowAircraftType;
 import io.github.learnjakartaee.ws.messages.UpdateAircraftType;
 import io.github.learnjakartaee.ws.schemas.AircraftType;
 import io.github.learnjakartaee.ws.schemas.ManufacturerType;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
 import jakarta.jws.WebService;
+import jakarta.security.enterprise.SecurityContext;
 
-@RolesAllowed({ "user", "admin" })
+// Because this isn't the servlet, we define security in web.xml
+//
+//@RolesAllowed({ "user", "admin" })
+//@ServletSecurity(
+//		value = @HttpConstraint(rolesAllowed = { "user", "admin" }),
+//		httpMethodConstraints = {
+//				@HttpMethodConstraint(value = "POST", rolesAllowed = { "user", "admin" }
+//		)})
 @WebService(serviceName = "AircraftService", endpointInterface = "io.github.learnjakartaee.ws.AircraftInterface")
 public class AircraftService implements AircraftInterface {
 
 	@Inject @EJB
 	protected io.github.learnjakartaee.aircraft.service.AircraftService aircraftService;
+	
+	@Inject
+	private SecurityContext securityContext;
 
 	@Override
 	public ShowAircraftType getAircraft(GetAircraftType getAircraftType) {
@@ -174,7 +185,18 @@ public class AircraftService implements AircraftInterface {
 
 	@Override
 	public String ping(String message) {
+		//assertAuth();
 		return message;
 	}
 
+	protected void assertAuth() {
+		Principal principal = securityContext.getCallerPrincipal();
+		if (principal == null) {
+			throw new RuntimeException("Invalid user");
+		}
+		boolean isCallerInRole = securityContext.isCallerInRole("adminxxxx");
+		if (!isCallerInRole) {
+			throw new RuntimeException("Invalid role");
+		}
+	}
 }

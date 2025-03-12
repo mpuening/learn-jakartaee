@@ -9,7 +9,7 @@ import io.github.learnjakartaee.ws.AircraftInterface;
 public class AircraftClientTest {
 
 	@Test
-	public void testAircraftClent() {
+	public void testAircraftClient() {
 		String test = "http://localhost:8080/learn-jakartaee-jaxws-server/AircraftService";
 		AircraftInterface aircraftInterface = AircraftClient.createInterface(test, "admin", "password");
 		assertNotNull(aircraftInterface);

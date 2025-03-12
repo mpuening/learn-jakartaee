@@ -69,7 +69,9 @@ public class LoginTest {
 	public void testLogin() {
 		open(baseURL + "index.xhtml");
 		// System.out.println(WebDriverRunner.source());
-		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "index.xhtml"));
+
+		// User get redirected to login page
+		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "views/auth/login.xhtml"));
 		$(id("banner")).shouldHave(text("Welcome, please sign in..."));
 
 		$(xpath("//input[contains(@id,':username')]")).clear();
@@ -80,6 +82,15 @@ public class LoginTest {
 
 		// Saved request is index page in this test case
 		webdriver().shouldHave(urlStartingWith(baseURL + "index.xhtml"));
+		$(id("banner")).shouldHave(text("Welcome"));
+
+		// reload a few times, should stay on index.xthml because we are logged in
+		open(baseURL + "index.xhtml");
+		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "index.xhtml"));
+		$(id("banner")).shouldHave(text("Welcome"));
+
+		open(baseURL + "index.xhtml");
+		webdriver().shouldHave(urlStartingWith(baseURL.toString() + "index.xhtml"));
 		$(id("banner")).shouldHave(text("Welcome"));
 	}
 }

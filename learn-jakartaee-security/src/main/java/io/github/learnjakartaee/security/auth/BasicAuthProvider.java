@@ -17,16 +17,20 @@ public class BasicAuthProvider implements AuthProvider {
 
 	private final static String AUTH_PREFIX = "Basic ";
 
+	private final String contextPath;
+
 	private final IdentityStore identityStore;
 
-	public BasicAuthProvider(IdentityStore identityStore) {
+	public BasicAuthProvider(String contextPath, IdentityStore identityStore) {
+		this.contextPath = contextPath;
 		this.identityStore = identityStore;
 	}
 
 	@Override
 	public boolean appliesTo(HttpServletRequest request) {
+		boolean matchesContextPath = this.contextPath.equals(request.getContextPath());
 		String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
-		return authorization != null && authorization.startsWith(AUTH_PREFIX);
+		return matchesContextPath && authorization != null && authorization.startsWith(AUTH_PREFIX);
 	}
 
 	@Override
@@ -41,7 +45,7 @@ public class BasicAuthProvider implements AuthProvider {
 					.map(header -> header.substring(AUTH_PREFIX.length()))
 					.map(BasicAuthenticationCredential::new)
 					.orElseGet(() -> new BasicAuthenticationCredential(""));
-
+			
 			CredentialValidationResult result = identityStore.validate(credential);
 
 			if (result.getStatus().equals(CredentialValidationResult.Status.VALID)) {
