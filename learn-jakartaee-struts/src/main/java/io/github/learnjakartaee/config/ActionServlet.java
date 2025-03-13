@@ -3,7 +3,6 @@ package io.github.learnjakartaee.config;
 import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
 import io.github.learnjakartaee.aircraft.service.AircraftService;
-import io.github.learnjakartaee.service.PeopleService;
 
 /**
  * Extends the action servlet in order to be able to have access to CDI beans
@@ -23,12 +22,5 @@ public class ActionServlet extends org.apache.struts.action.ActionServlet {
 
 	public static AircraftService getAircraftService() {
 		return ActionServlet.singleton.aircraftService;
-	}
-
-	@Inject @EJB
-	protected PeopleService peopleService;
-
-	public static PeopleService getPeopleService() {
-		return ActionServlet.singleton.peopleService;
 	}
 }
