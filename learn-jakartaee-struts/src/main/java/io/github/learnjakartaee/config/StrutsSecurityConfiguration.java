@@ -16,10 +16,10 @@ import jakarta.servlet.ServletContext;
  */
 //@CustomFormAuthenticationMechanismDefinition(
 //		loginToContinue = @LoginToContinue(
-//				loginPage = "/views/auth/login.xhtml", 
-//				errorPage = "/views/auth/login.xhtml?error"))
+//				loginPage = "/login.do", 
+//				errorPage = "/login.do?error"))
 @ApplicationScoped
-public class JsfSecurityConfiguration {
+public class StrutsSecurityConfiguration {
 
     public void initialize(@Observes @Initialized(ApplicationScoped.class) ServletContext context) {
     	HttpAuthenticationMechanismChain.registerAuthProviders(formBasedAuthProvider(context));
@@ -27,7 +27,7 @@ public class JsfSecurityConfiguration {
 
 	private AuthProvider formBasedAuthProvider(ServletContext context) {
 		return new FormBasedAuthProvider(context.getContextPath(),
-				"/views/auth/login.xhtml", "/views/auth/login.xhtml?error", new DefaultAppIdentityStore());
+				"/login.do", "/login.do?error", new DefaultAppIdentityStore());
 	}
 
 }

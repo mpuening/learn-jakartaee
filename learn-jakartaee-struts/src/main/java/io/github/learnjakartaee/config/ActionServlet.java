@@ -2,6 +2,7 @@ package io.github.learnjakartaee.config;
 
 import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
+import jakarta.security.enterprise.SecurityContext;
 import io.github.learnjakartaee.aircraft.service.AircraftService;
 
 /**
@@ -17,8 +18,15 @@ public class ActionServlet extends org.apache.struts.action.ActionServlet {
 		ActionServlet.singleton = this;
 	}
 
+	@Inject
+	private SecurityContext securityContext;
+
 	@Inject @EJB
 	protected AircraftService aircraftService;
+
+	public static SecurityContext getSecurityContext() {
+		return ActionServlet.singleton.securityContext;
+	}
 
 	public static AircraftService getAircraftService() {
 		return ActionServlet.singleton.aircraftService;

@@ -1,7 +1,5 @@
 package io.github.learnjakartaee.security.auth;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Typed;
 import jakarta.security.enterprise.AuthenticationException;
 import jakarta.security.enterprise.AuthenticationStatus;
 import jakarta.security.enterprise.authentication.mechanism.http.AutoApplySession;

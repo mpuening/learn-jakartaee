@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="<c:url value="/index.jsp"/>"><c:out value="${pageTitle}" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,4 +11,8 @@
       <a class="nav-item nav-link <c:if test="${adminNavBarSelected == 'true'}">active</c:if>" href="<c:url value="/events.do"/>">Admin <c:if test="${adminNavBarSelected == 'true'}"><span class="sr-only">(current)</span></c:if></a>
     </div>
   </div>
+  <html:form action="/logout" method="post">
+    <button id="signOutButton" name="method" type="submit" value="logout" class="btn btn-link">Sign Out</button>
+  </html:form>
+  
 </nav>
