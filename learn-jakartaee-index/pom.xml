@@ -23,6 +23,11 @@
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.github.learnjakartaee</groupId>
+			<artifactId>learn-jakartaee-security</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 	<!-- ================================================ -->
 
