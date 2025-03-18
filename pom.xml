@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.1</version>
+		<version>3.4.3</version>
 	</parent>
 
 	<properties>
@@ -25,13 +25,13 @@
 		<microprofile.version>6.0</microprofile.version>
 
 		<!-- https://github.com/OpenLiberty/ci.maven -->
-		<liberty-maven-plugin.version>3.11.2</liberty-maven-plugin.version>
-		<liberty-runtime.version>24.0.0.12</liberty-runtime.version>
+		<liberty-maven-plugin.version>3.11.3</liberty-maven-plugin.version>
+		<liberty-runtime.version>25.0.0.2</liberty-runtime.version>
 		<liberty.loose-application>true</liberty.loose-application>
 
 		<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Reference+Guide.html -->
 		<!-- https://codehaus-cargo.github.io/cargo/Configuration+properties.html -->
-		<cargo-maven-plugin.version>1.10.16</cargo-maven-plugin.version>
+		<cargo-maven-plugin.version>1.10.18</cargo-maven-plugin.version>
 
 		<cargo-wildfly-runtime>wildfly34x</cargo-wildfly-runtime>
 		<!-- Property is intended to be used in module dirs -->
